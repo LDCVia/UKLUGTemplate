@@ -2,7 +2,7 @@
 <!DOCTYPE view SYSTEM 'xmlschemas/domino_8_5_3.dtd'>
 <view name='Attendees\Export for badges' xmlns='http://www.lotus.com/dxl'
  version='8.5' maintenanceversion='3.0' replicaid='80257A6A002CAD3E' showinmenu='false'
- publicaccess='false' designerversion='8.5.2' unreadmarks='none' onopengoto='lastopened'
+ publicaccess='false' designerversion='8.5.3' unreadmarks='none' onopengoto='lastopened'
  onrefresh='displayindicator' headers='simple' opencollapsed='false' showresponsehierarchy='true'
  showmargin='true' shrinkrows='true' extendlastcolumn='true' showhierarchies='false'
  unreadcolor='black' rowlinecount='9' headerlinecount='1' rowspacing='1.5'
@@ -10,15 +10,15 @@
  headerbgcolor='#e1e1e1' boldunreadrows='false' evaluateactions='false' allownewdocuments='false'
  allowcustomizations='false' hidemarginborder='false' marginwidth='0px' marginbgcolor='white'
  uniquekeys='false'>
-<noteinfo noteid='412' unid='1666860275F4460B80257A9A0026F0D8' sequence='1'>
+<noteinfo noteid='412' unid='1666860275F4460B80257A9A0026F0D8' sequence='2'>
 <created><datetime dst='true'>20121017T080520,24+01</datetime></created>
-<modified><datetime dst='true'>20121017T085554,72+01</datetime></modified>
-<revised><datetime dst='true'>20121017T085554,71+01</datetime></revised>
-<lastaccessed><datetime dst='true'>20121017T085554,72+01</datetime></lastaccessed>
+<modified><datetime dst='true'>20121017T085554,84+01</datetime></modified>
+<revised><datetime dst='true'>20121017T085554,83+01</datetime></revised>
+<lastaccessed><datetime dst='true'>20121017T085554,94+01</datetime></lastaccessed>
 <addedtofile><datetime dst='true'>20121017T085554,72+01</datetime></addedtofile></noteinfo>
-<updatedby><name>CN=registration desk/O=Kimonos</name><name>CN=Matt White/O=Exhilarate</name></updatedby>
-<wassignedby><name>CN=registration desk/O=Kimonos</name></wassignedby><code
- event='selection'><formula>SELECT ((Form = "Attendee")) &amp; (@Contains(STATUS; "Approved"))</formula></code>
+<updatedby><name>CN=Matt White/O=Exhilarate</name></updatedby>
+<wassignedby><name>CN=Matt White/O=Exhilarate</name></wassignedby><code event='selection'><formula
+>SELECT ((Form = "Attendee"))</formula></code>
 <actionbar bgcolor='#e1e1e1' bordercolor='black'><actionbarstyle repeat='tile'><imageref
  name='imgFadeHeader'/></actionbarstyle>
 <actionbuttonstyle heighttype='fixed' height='28' bgcolor='#e1e1e1' displayborder='notesstyle'
@@ -48,7 +48,7 @@
  size='9pt' name='multilingual'/><columnheader title='NameOnBadge,'><font
  size='9pt' style='bold' name='multilingual'/></columnheader><numberformat
  legacy='true' format='general' varying='true' punctuated='false' parens='false'
- percent='false' bytes='false'/><code event='value'><formula>@ReplaceSubstring(NameOnBadge; ","; "")</formula></code></column>
+ percent='false' bytes='false'/><code event='value'><formula>@ReplaceSubstring(@If(NameOnBadge=""; FirstName + " " + LastName; NameOnBadge); ","; "")</formula></code></column>
 <column sort='ascending' hidedetailrows='false' itemname='$21' width='10'
  resizable='true' separatemultiplevalues='false' sortnoaccent='false' sortnocase='true'
  showaslinks='false'><font size='9pt' name='multilingual'/><columnheader title='Company,'><font
@@ -61,8 +61,6 @@
 >@If(Sponsor="Y";"Sponsor";"") + @If(Sponsor="Y"&amp;Speaker="Y";" and ";"") + @If(Speaker="Y";"Speaker";"")</formula></code></column>
 <item name='$SelQuery' sign='true'>
 <rawitemdata type='f'>
-gQYAAAAAif8UAAAAAAABAAgAQXR0ZW5kZWWC/zMAIAAAAAMAAAAAAAAAAAAAAAAAAAAAAAAAAAAA
-AAAAAAAAAAAAAAAAAAAAAABBTkQAg/8+AAAAAAAABQcAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA
-AAAAAAAAAAAGAAgAU1RBVFVTQXBwcm92ZWQ=
+gQYAAAAAif8UAAAAAAABAAgAQXR0ZW5kZWU=
 </rawitemdata></item></view>
 
