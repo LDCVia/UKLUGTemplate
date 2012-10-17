@@ -35,16 +35,25 @@
 					text="${javascript:database.getTitle()}" value="/home.xsp">
 				</xp:link>
 				<div class="nav-collapse collapse">
-					<p class="navbar-text pull-right">
-						<xp:link id="loginlink" text="Login" styleClass="navbar-link">
-							<xp:this.value><![CDATA[#{javascript:getDbPath() + "?opendatabase&login=true"}]]></xp:this.value>
-							<xp:this.rendered><![CDATA[#{javascript:@UserName() == "Anonymous"}]]></xp:this.rendered>
-						</xp:link>
-						<xp:link id="logoutlink" text="Logout" styleClass="navbar-link">
-							<xp:this.rendered><![CDATA[#{javascript:@UserName() != "Anonymous"}]]></xp:this.rendered>
-							<xp:this.value><![CDATA[#{javascript:getDbPath() + "?logout&redirectto=" + getDbPath()}]]></xp:this.value>
-						</xp:link>
-					</p>
+					<ul class="nav pull-right">
+						<xp:panel tagName="li">
+							<xp:this.rendered><![CDATA[#{javascript:@UserName() != "Anonymous";}]]></xp:this.rendered>
+							<xp:link escape="true" text="Edit Profile..." styleClass="navbar-link"
+								id="profilelink" value="#{javascript:getProfileURL();}">
+							</xp:link>
+						</xp:panel>
+						<li>
+							<xp:link id="loginlink" text="Login" styleClass="navbar-link">
+								<xp:this.value><![CDATA[#{javascript:getDbPath() + "?opendatabase&login=true"}]]></xp:this.value>
+								<xp:this.rendered><![CDATA[#{javascript:@UserName() == "Anonymous"}]]></xp:this.rendered>
+							</xp:link>
+							<xp:link id="logoutlink" text="Logout" styleClass="navbar-link">
+								<xp:this.rendered><![CDATA[#{javascript:@UserName() != "Anonymous"}]]></xp:this.rendered>
+								<xp:this.value><![CDATA[#{javascript:getDbPath() + "?logout&redirectto=" + getDbPath()}]]></xp:this.value>
+							</xp:link>
+						</li>
+					</ul>
+
 					<ul class="nav">
 						<xp:repeat var="rowData" indexVar="rowIndex"
 							disableOutputTag="true" id="topmenurepeat">
@@ -87,6 +96,21 @@
 	</div>
 
 	<div id="content" class="container-fluid">
+		<xp:div id="enrollwell" styleClass="row-fluid">
+			<xp:this.rendered><![CDATA[#{javascript:!isCurrentUserEnrolledInCurrentEvent() && compositeData.showenrollmessage}]]></xp:this.rendered>
+			<div class="span3"></div>
+			<div class="span9 alert alert-error">
+				<p>
+					<xp:text id="notenrolled" tagName="strong">
+						<xp:this.value><![CDATA[#{javascript:"You are not yet enrolled for " + getCurrentEventName()}]]></xp:this.value>
+					</xp:text>
+				</p>
+				<xp:text id="enrollmessage" escape="false"
+					tagName="p">
+					<xp:this.value><![CDATA[#{javascript:"<a href=\"" + getProfileURL() + "\" class=\"btn btn-danger\">Enroll for " + getCurrentEventName() + " here</a>"}]]></xp:this.value>
+				</xp:text>
+			</div>
+		</xp:div>
 		<div class="row-fluid">
 			<xp:callback facetName="facet_1" id="callback1"></xp:callback>
 		</div><!--/row-->

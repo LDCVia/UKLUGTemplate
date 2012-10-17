@@ -11,7 +11,9 @@
 	<xp:this.resources>
 		<xp:script src="/xpCommon.jss" clientSide="false"></xp:script>
 	</xp:this.resources>
-	<xc:layout><xp:this.facets>
-	<xc:view_home xp:key="facet_1"></xc:view_home></xp:this.facets>
+	<xc:layout showenrollmessage="true">
+		<xp:this.facets>
+			<xc:view_home xp:key="facet_1"></xc:view_home>
+		</xp:this.facets>
 	</xc:layout>
 </xp:view>

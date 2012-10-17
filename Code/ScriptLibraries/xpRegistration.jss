@@ -34,12 +34,14 @@ function registerNewUser(firstname, lastname, email, password){
 		//print("Refreshed views");
 		
 		//Send Notification Email
-		emailBean.setSendTo( email );
-		emailBean.setSubject(getControlPanelFieldString("RegistrationEmailSubject"));
-		emailBean.setSenderEmail(getControlPanelFieldString("RegistrationEmailFromEmail"));
-		emailBean.setSenderName(getControlPanelFieldString("RegistrationEmailFromName"));
-		emailBean.addHTML(getControlPanelFieldString("RegistrationEmailBody"))
-		emailBean.send();
+		try{
+			emailBean.setSendTo( email );
+			emailBean.setSubject(getControlPanelFieldString("RegistrationEmailSubject"));
+			emailBean.setSenderEmail(getControlPanelFieldString("RegistrationEmailFromEmail"));
+			emailBean.setSenderName(getControlPanelFieldString("RegistrationEmailFromName"));
+			emailBean.addHTML(getControlPanelFieldString("RegistrationEmailBody"))
+			emailBean.send();
+		}catch(e){}
 	}
 }
 

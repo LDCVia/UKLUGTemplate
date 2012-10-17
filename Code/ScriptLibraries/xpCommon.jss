@@ -122,6 +122,41 @@ function getControlPanelFieldInteger(fieldname){
 	return applicationScope.get("controlpanel" + fieldname);
 }
 
+function getCurrentEventName(){
+	var out = getControlPanelFieldString("EventName");
+	return out;
+}
+
+function isCurrentUserEnrolledInCurrentEvent(){
+	if (@UserName() == "Anonymous"){
+		return true;
+	}
+	var users:NotesView = database.getView("Attendees\\By Notes Name");
+	var user:NotesDocument = users.getDocumentByKey(@UserName(), true);
+	if (user == null){
+		user = database.createDocument();
+		user.replaceItemValue("Form", "Attendee");
+		user.replaceItemValue("FirstName", @Left(@Name("[CN]", @UserName()), " "));
+		user.replaceItemValue("LastName", @RightBack(@Name("[CN]", @UserName()), " "));
+		user.replaceItemValue("CreatedBy", @UserName());
+		user.computeWithForm(false, false);
+		user.save();
+	}
+	sessionScope.profileunid = user.getUniversalID();
+	var out = false;
+	if (@IsMember(getCurrentEventName(), user.getItemValue("Events"))){
+		out = true;
+	}
+	user.recycle();
+	users.recycle();
+	return out;
+}
+
+function getProfileURL(){
+	isCurrentUserEnrolledInCurrentEvent();
+	return getDbPath() + "/profile.xsp?action=editDocument&documentId=" + sessionScope.profileunid;
+}
+
 /**
 Date Converter code taken from Tommy Valand's blog:
 http://dontpanic82.blogspot.com/2010/04/xpages-code-snippet-for-datestring.html
@@ -163,4 +198,21 @@ var DateConverter = {
    // ErrorHandling
   }
  } 
+}
+
+function $A( object ){
+	 // undefined/null -> empty array
+	 if( typeof object === 'undefined' || object === null ){ return []; }
+	 if( typeof object === 'string' ){ return [ object ]; }
+	 
+	 // Collections (Vector/ArrayList/etc) -> convert to Array
+	 if( typeof object.toArray !== 'undefined' ){
+	  return object.toArray();
+	 }
+	 
+	 // Array -> return object unharmed 
+	 if( object.constructor === Array ){ return object; }  
+	 
+	 // Return array with object as first item
+	 return [ object ];
 }

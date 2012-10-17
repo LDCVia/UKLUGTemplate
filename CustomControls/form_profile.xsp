@@ -5,7 +5,7 @@
 	</xp:this.resources>
 	<div class="row-fluid" style="padding-top: 10px;">
 		<div class="well">
-			<h1>Registration</h1>
+			<h1>Profile</h1>
 		</div>
 		<xp:panel id="newreg" styleClass="form-horizontal">
 			<xp:this.data>
@@ -54,30 +54,48 @@
 				</div>
 			</div>
 			<div class="control-group">
+				<xp:label styleClass="control-label" for="inputBadge"
+					value="Name on Badge">
+				</xp:label>
+				<div class="controls">
+					<xp:inputText id="inputBadge" value="#{document1.NameOfBadge}">
+						<xp:this.attrs>
+							<xp:attr name="placeholder" value="Fred Bloggs">
+							</xp:attr>
+						</xp:this.attrs>
+						<xp:this.defaultValue><![CDATA[#{javascript:document1.getItemValueString("FirstName") + " " + document1.getItemValueString("LastName")}]]></xp:this.defaultValue>
+					</xp:inputText>
+				</div>
+			</div>
+			<div class="control-group">
+				<xp:label styleClass="control-label" for="inputEvents"
+					value="Events">
+				</xp:label>
+				<div class="controls">
+					<xp:checkBoxGroup id="inputEvents" layout="pageDirection"
+						value="#{document1.Events}">
+						<xp:selectItems>
+							<xp:this.value><![CDATA[#{javascript:var list = document1.getItemValueArray("Events");
+list.push(getCurrentEventName());
+return $A(@Trim(@Unique(list))).sort();}]]></xp:this.value>
+						</xp:selectItems>
+					</xp:checkBoxGroup>
+				</div>
+			</div>
+
+			<div class="control-group">
 				<xp:label styleClass="control-label" for="inputEmail"
 					value="Email">
 				</xp:label>
 				<div class="controls">
-					<xp:inputText id="inputEmail" value="#{document1.Email}" type="email">
+					<xp:inputText id="inputEmail" value="#{document1.Email}"
+						type="email">
 						<xp:this.validators>
 							<xp:validateRequired message="Please enter your email address">
 							</xp:validateRequired>
 							<xp:validateConstraint message="Please enter a valid email address">
 								<xp:this.regex><![CDATA[[a-z0-9!#$%&'*+/=?^_`{|}~-]+(?:\.[a-z0-9!#$%&'*+/=?^_`{|}~-]+)*@(?:[a-z0-9](?:[a-z0-9-]*[a-z0-9])?\.)+(?:[A-Z]{2}|com|org|net|gov|mil|biz|info|mobi|name|aero|jobs|museum)\b]]></xp:this.regex>
 							</xp:validateConstraint>
-							<xp:validateExpression
-								message="That email address has already been registered">
-								<xp:this.expression><![CDATA[#{javascript:var db:NotesDatabase = sessionAsSigner.getDatabase(database.getServer(), getControlPanelFieldString("RegistrationNAB"));
-var vwAll:NotesView = db.getView("($Users)");
-var person:NotesDocument = vwAll.getDocumentByKey(getComponent("inputEmail").getSubmittedValue());
-if (person != null){
-	person.recycle();
-	return false;
-}
-vwAll.recycle();
-db.recycle();
-return true;}]]></xp:this.expression>
-							</xp:validateExpression>
 						</xp:this.validators>
 						<xp:this.attrs>
 							<xp:attr name="placeholder" value="fred@company.com">
@@ -89,20 +107,16 @@ return true;}]]></xp:this.expression>
 				</div>
 			</div>
 			<div class="control-group">
-				<xp:label styleClass="control-label" for="inputPassword"
-					value="Password">
+				<xp:label styleClass="control-label" for="inputCompany"
+					value="Company">
 				</xp:label>
 				<div class="controls">
-					<xp:inputText id="inputPassword" value="#{document1.Password}"
-						password="true">
-						<xp:this.validators>
-							<xp:validateRequired message="Please enter the password">
-							</xp:validateRequired>
-						</xp:this.validators>
+					<xp:inputText id="inputCompany" value="#{document1.Password}">
+						<xp:this.attrs>
+							<xp:attr name="placeholder" value="Acme Inc.">
+							</xp:attr>
+						</xp:this.attrs>
 					</xp:inputText>
-					<xp:message id="message4" for="inputPassword"
-						styleClass="alert alert-error">
-					</xp:message>
 				</div>
 			</div>
 			<div class='control-group'>
@@ -112,15 +126,6 @@ return true;}]]></xp:this.expression>
 							refreshMode="complete">
 							<xp:this.action>
 								<xp:actionGroup>
-									<xp:executeScript>
-										<xp:this.script><![CDATA[#{javascript:registerNewUser(getComponent("inputFirstName").getValue(), 
-				getComponent("inputLastName").getValue(), 
-				getComponent("inputEmail").getValue(), 
-				getComponent("inputPassword").getValue()
-	);
-document1.replaceItemValue("CreatedBy", session.createName(getComponent("inputFirstName").getValue() + " " + getComponent("inputLastName").getValue() + "/" + makeOrganization(getComponent("inputEmail").getValue())).getCanonical());
-document1.replaceItemValue("Events", getCurrentEventName());}]]></xp:this.script>
-									</xp:executeScript>
 									<xp:saveDocument var="document1"></xp:saveDocument>
 									<xp:openPage name="/home.xsp"></xp:openPage>
 								</xp:actionGroup>

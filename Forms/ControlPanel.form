@@ -3,11 +3,11 @@
 <form name='ControlPanel' xmlns='http://www.lotus.com/dxl' version='8.5' maintenanceversion='3.0'
  replicaid='80257A6A002CAD3E' publicaccess='false' designerversion='8.5.3'
  renderpassthrough='true'>
-<noteinfo noteid='1b2' unid='C07373E6C826338D80257A6A00375CD6' sequence='17'>
+<noteinfo noteid='1b2' unid='C07373E6C826338D80257A6A00375CD6' sequence='18'>
 <created><datetime dst='true'>20120830T110442,46+01</datetime></created>
-<modified><datetime dst='true'>20121016T144919,19+01</datetime></modified>
-<revised><datetime dst='true'>20121016T144919,18+01</datetime></revised>
-<lastaccessed><datetime dst='true'>20121016T144919,19+01</datetime></lastaccessed>
+<modified><datetime dst='true'>20121017T102812,33+01</datetime></modified>
+<revised><datetime dst='true'>20121017T102812,32+01</datetime></revised>
+<lastaccessed><datetime dst='true'>20121017T102812,33+01</datetime></lastaccessed>
 <addedtofile><datetime dst='true'>20120830T110442,70+01</datetime></addedtofile></noteinfo>
 <updatedby><name>CN=Matt White/O=Exhilarate</name></updatedby>
 <wassignedby><name>CN=Matt White/O=Exhilarate</name></wassignedby>
@@ -30,9 +30,14 @@
  aftercontainercount='1' afterbegincount='3'>
 Yg4BAIQAAAAAAAAAAAA=
 </compositedata></par>
-<par def='1'>Start Date: <field type='datetime' kind='editable' name='StartDate'><datetimeformat
- show='date' date='yearmonthday' fourdigityearfor21stcentury='true' zone='never'
- dateformat='weekdaydaymonthyear' dayformat='twodigitday' monthformat='twodigitmonth'
+<par def='1'>Event Name: <field type='text' kind='editable' name='EventName'/><compositedata
+ type='98' prevtype='65418' nexttype='222' afterparcount='6' containertype='65418'
+ aftercontainercount='1' afterbegincount='3'>
+Yg4BAIQAAAAAAAAAAAA=
+</compositedata></par>
+<par def='1'>Next Event Start Date: <field type='datetime' kind='editable'
+ name='StartDate'><datetimeformat show='date' date='yearmonthday' fourdigityearfor21stcentury='true'
+ zone='never' dateformat='weekdaydaymonthyear' dayformat='twodigitday' monthformat='twodigitmonth'
  yearformat='fourdigityear' weekdayformat='shortname' dateseparator1=' ' dateseparator2='/'
  dateseparator3='/' timeseparator=':' timeformat24='true' preference='usersetting'/></field></par>
 <par def='1'>Agenda Number of Days: <field type='number' kind='editable' name='AgendaDays'><numberformat

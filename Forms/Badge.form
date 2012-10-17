@@ -1,17 +1,16 @@
 <?xml version='1.0' encoding='utf-8'?>
 <!DOCTYPE form SYSTEM 'xmlschemas/domino_8_5_3.dtd'>
 <form name='Badge' xmlns='http://www.lotus.com/dxl' version='8.5' maintenanceversion='3.0'
- replicaid='80257A6A002CAD3E' noreplace='true' publicaccess='false' designerversion='8.5'
+ replicaid='80257A6A002CAD3E' publicaccess='false' designerversion='8.5.3'
  renderpassthrough='true'>
-<noteinfo noteid='416' unid='E851008BF5CB868980257A9A0026F556' sequence='1'>
+<noteinfo noteid='416' unid='E851008BF5CB868980257A9A0026F556' sequence='5'>
 <created><datetime dst='true'>20121017T080531,74+01</datetime></created>
-<modified><datetime dst='true'>20121017T085554,74+01</datetime></modified>
-<revised><datetime dst='true'>20121017T085554,73+01</datetime></revised>
-<lastaccessed><datetime dst='true'>20121017T085554,74+01</datetime></lastaccessed>
+<modified><datetime dst='true'>20121017T105229,42+01</datetime></modified>
+<revised><datetime dst='true'>20121017T105229,41+01</datetime></revised>
+<lastaccessed><datetime dst='true'>20121017T105229,42+01</datetime></lastaccessed>
 <addedtofile><datetime dst='true'>20121017T085554,74+01</datetime></addedtofile></noteinfo>
-<updatedby><name>CN=Stephen McDonagh/OU=mistech/OU=col/O=avxeur</name><name
->CN=UKLUG Info/O=Kimonos</name><name>CN=Matt White/O=Exhilarate</name></updatedby>
-<wassignedby><name>CN=UKLUG Info/O=Kimonos</name></wassignedby>
+<updatedby><name>CN=Matt White/O=Exhilarate</name></updatedby>
+<wassignedby><name>CN=Matt White/O=Exhilarate</name></wassignedby>
 <body><richtext>
 <pardef id='1' hide='notes web mobile'/>
 <par def='1'><run><font size='3pt'/></run></par><compositedata type='183'
@@ -119,10 +118,10 @@ J209RsqvrU6iF4kSfDqZmT7TJd0mcok1dq2HPlXRbWvXnDLtfUxTD7+tQf4UXv8AVf8A/M672r4H
 pHfCqv2kZPtX/H5s/9k=
 </jpeg></picture></par><compositedata type='186'
  prevtype='129' nexttype='131' afterparcount='1'>
-uipVAKsADhE6AwEAABYBAAUA////AAkAABAAAAAAAAAAAAAAAAAAAAAA
+uio+AKsADhE6AwEAABYBAAUA////AAkAABAAAAAAAAAAAAAAAAAAAAAA
 </compositedata>
 <par def='3'><run><font size='22pt'/><field type='text' kind='computedfordisplay'
- name='Badge_Displayname'><code event='defaultvalue'><formula>NameOnBadge</formula></code></field></run><compositedata
+ name='Badge_Displayname'><code event='defaultvalue'><formula>@If(NameOnBadge=""; FirstName + " " + LastName; NameOnBadge)</formula></code></field></run><compositedata
  type='98' prevtype='65418' nexttype='222' afterparcount='7' containertype='65418'
  aftercontainercount='1' afterbegincount='4'>
 Yg4BAIQAAAAAAAAAAAA=

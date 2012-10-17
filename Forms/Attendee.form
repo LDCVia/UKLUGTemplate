@@ -3,11 +3,11 @@
 <form name='Attendee' xmlns='http://www.lotus.com/dxl' version='8.5' maintenanceversion='3.0'
  replicaid='80257A6A002CAD3E' publicaccess='true' designerversion='8.5.3'
  renderpassthrough='true'>
-<noteinfo noteid='21e' unid='14915DFE8A409CAE80257A6A00516272' sequence='8'>
+<noteinfo noteid='21e' unid='14915DFE8A409CAE80257A6A00516272' sequence='10'>
 <created><datetime dst='true'>20120830T154856,18+01</datetime></created>
-<modified><datetime dst='true'>20121017T085554,78+01</datetime></modified>
-<revised><datetime dst='true'>20121017T085554,77+01</datetime></revised>
-<lastaccessed><datetime dst='true'>20121017T085554,78+01</datetime></lastaccessed>
+<modified><datetime dst='true'>20121017T104408,97+01</datetime></modified>
+<revised><datetime dst='true'>20121017T104408,96+01</datetime></revised>
+<lastaccessed><datetime dst='true'>20121017T104408,97+01</datetime></lastaccessed>
 <addedtofile><datetime dst='true'>20120830T154856,44+01</datetime></addedtofile></noteinfo>
 <updatedby><name>CN=Matt White/O=Exhilarate</name></updatedby>
 <wassignedby><name>CN=Matt White/O=Exhilarate</name></wassignedby>
@@ -44,11 +44,25 @@ Yg4BAIQAAAAAAAAAAAA=
  afterparcount='43' containertype='65418' aftercontainercount='1' afterbegincount='3'>
 Yg4BAIQAAAAAAAAAAAA=
 </compositedata></par>
+<par def='1'><field type='text' kind='editable' name='Company'/><compositedata
+ type='98' prevtype='65418' nexttype='222' afterparcount='6' containertype='65418'
+ aftercontainercount='1' afterbegincount='3'>
+Yg4BAIQAAAAAAAAAAAA=
+</compositedata><field type='text'
+ kind='editable' name='NameOnBadge'/><compositedata type='98' prevtype='65418'
+ nexttype='222' afterparcount='12' containertype='65418' aftercontainercount='1'
+ afterbegincount='3'>
+Yg4BAIQAAAAAAAAAAAA=
+</compositedata></par>
 <par def='1'><field type='text' kind='editable' name='Approved'/><compositedata
  type='98' prevtype='65418' nexttype='222' afterparcount='6' containertype='65418'
  aftercontainercount='1' afterbegincount='3'>
 Yg4BAIQAAAAAAAAAAAA=
 </compositedata><field type='readers'
- kind='computed' name='DocReaders'><code event='defaultvalue'><formula>"[Admin]"</formula></code></field></par></richtext></body>
+ allowmultivalues='true' kind='computed' name='DocReaders' listinputseparators='comma'
+ listdisplayseparator='comma'><code event='defaultvalue'><formula>"[Admin]" : CreatedBy</formula></code></field><field
+ type='authors' allowmultivalues='true' kind='computed' name='DocAuthors'
+ listinputseparators='comma' listdisplayseparator='comma'><code event='defaultvalue'><formula
+>"[Admin]" : CreatedBy</formula></code></field></par></richtext></body>
 <item name='$$ScriptName' summary='false' sign='true'><text>Attendee</text></item></form>
 
