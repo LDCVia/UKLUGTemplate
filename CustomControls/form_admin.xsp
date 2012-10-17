@@ -1,0 +1,411 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<xp:view xmlns:xp="http://www.ibm.com/xsp/core">
+	<xp:this.data>
+		<xp:dominoDocument var="document1" formName="ControlPanel"
+			action="editDocument" documentId="#{javascript:getControlPanelUNID()}">
+		</xp:dominoDocument>
+	</xp:this.data>
+	<xp:this.acl>
+		<xp:acl>
+			<xp:this.entries>
+				<xp:aclEntry type="ANONYMOUS" right="NOACCESS" name="Anonymous"
+					fullName="Anonymous">
+				</xp:aclEntry>
+				<xp:aclEntry type="DEFAULT" right="NOACCESS"></xp:aclEntry>
+				<xp:aclEntry type="ROLE" right="EDITOR">
+					<xp:this.name><![CDATA[[Admin]]]></xp:this.name>
+					<xp:this.fullName><![CDATA[[Admin]]]></xp:this.fullName>
+				</xp:aclEntry>
+			</xp:this.entries>
+		</xp:acl>
+	</xp:this.acl>
+
+	<div class="navbar">
+		<div class="navbar-inner">
+			<a class="brand" href="#">Admin</a>
+			<ul class="nav">
+				<li class="active">
+					<a href="admin.xsp">Control Panel</a>
+				</li>
+				<li>
+					<a href="attendees.xsp">Attendees</a>
+				</li>
+				<li>
+					<a href="files.xsp">Files</a>
+				</li>
+			</ul>
+		</div>
+	</div>
+
+	<div class="row-fluid" style="padding-top: 10px;">
+		<div class="well">
+			<div style="float: right">
+				<xp:button value="Submit" id="button1" styleClass="btn btn-primary"
+					rendered="#{javascript:document1.isEditable()}">
+					<xp:eventHandler event="onclick"
+						refreshMode="complete" submit="false">
+						<xp:this.action>
+							<xp:actionGroup>
+								<xp:saveDocument var="document1"></xp:saveDocument>
+								<xp:openPage name="/admin.xsp"></xp:openPage>
+							</xp:actionGroup>
+						</xp:this.action>
+					</xp:eventHandler>
+				</xp:button>
+				&#160;
+				<xp:button id="button3" styleClass="btn">
+					<xp:this.value><![CDATA[#{javascript:if (document1.isEditable()){
+	return "Cancel";
+}else{
+	return "Close";
+}}]]></xp:this.value>
+					<xp:eventHandler event="onclick" submit="true"
+						refreshMode="complete">
+						<xp:this.action>
+							<xp:openPage name="/admin.xsp"></xp:openPage>
+						</xp:this.action>
+					</xp:eventHandler>
+				</xp:button>
+			</div>
+			<h1>Control Panel</h1>
+		</div>
+		<xp:panel id="newreg" styleClass="form-horizontal">
+			<xp:table style="width:100%">
+				<xp:tr>
+					<xp:td>
+						<xp:label value="Enable agenda:" id="enableAgenda_Label1"
+							for="enableAgenda1">
+						</xp:label>
+					</xp:td>
+					<xp:td>
+						<xp:comboBox value="#{document1.EnableAgenda}" id="enableAgenda1">
+							<xp:selectItem itemLabel="Yes"></xp:selectItem>
+							<xp:selectItem itemLabel="No"></xp:selectItem>
+						</xp:comboBox>
+					</xp:td>
+				</xp:tr>
+				<xp:tr>
+					<xp:td>
+						<xp:label value="Enable forum:" id="enableForum_Label1"
+							for="enableForum1">
+						</xp:label>
+					</xp:td>
+					<xp:td>
+						<xp:comboBox value="#{document1.EnableForum}" id="enableForum1">
+							<xp:selectItem itemLabel="Yes"></xp:selectItem>
+							<xp:selectItem itemLabel="No"></xp:selectItem>
+						</xp:comboBox>
+					</xp:td>
+				</xp:tr>
+				<xp:tr>
+					<xp:td>
+						<xp:label value="Start date (dd/mm/yyyy):" id="startDate_Label1"
+							for="startDate1">
+						</xp:label>
+					</xp:td>
+					<xp:td>
+						<xp:inputText value="#{document1.StartDate}" id="startDate1">
+							<xp:this.converter>
+								<xp:convertDateTime pattern="dd/MM/yyyy">
+								</xp:convertDateTime>
+							</xp:this.converter>
+						</xp:inputText>
+					</xp:td>
+				</xp:tr>
+				<xp:tr>
+					<xp:td>
+						<xp:label value="Agenda days:" id="agendaDays_Label1"
+							for="agendaDays1">
+						</xp:label>
+					</xp:td>
+					<xp:td>
+						
+					<xp:inputText id="agendaDays1"
+						value="#{document1.AgendaDays}" type="number">
+						<xp:this.converter>
+							<xp:convertNumber type="number"
+								integerOnly="true">
+							</xp:convertNumber>
+						</xp:this.converter>
+					</xp:inputText></xp:td>
+				</xp:tr>
+				<xp:tr>
+					<xp:td>
+						<xp:label value="Agenda rooms:"
+							id="agendaRooms_Label1" for="agendaRooms1">
+						</xp:label>
+					</xp:td>
+					<xp:td>
+						
+					<xp:inputText id="agendaRooms1"
+						value="#{document1.AgendaRooms}" type="number">
+						<xp:this.converter>
+							<xp:convertNumber type="number"
+								integerOnly="true">
+							</xp:convertNumber>
+						</xp:this.converter>
+					</xp:inputText></xp:td>
+				</xp:tr>
+				<xp:tr>
+					<xp:td>
+						<xp:label value="Tracks (separate with ;):" id="tracks_Label1"
+							for="tracks1">
+						</xp:label>
+					</xp:td>
+					<xp:td>
+						<xp:inputText value="#{document1.Tracks}"
+							id="tracks1" multipleSeparator=";" multipleTrim="true">
+						</xp:inputText>
+					</xp:td>
+				</xp:tr>
+				<xp:tr>
+					<xp:td>
+						<xp:label value="Enable registration:"
+							id="enableRegistration_Label1" for="enableRegistration1">
+						</xp:label>
+					</xp:td>
+					<xp:td>
+						<xp:comboBox
+							value="#{document1.EnableRegistration}"
+							id="enableRegistration1">
+							<xp:selectItem itemLabel="Yes"></xp:selectItem>
+							<xp:selectItem itemLabel="No"></xp:selectItem>
+						</xp:comboBox>
+					</xp:td>
+				</xp:tr>
+				<xp:tr>
+					<xp:td>
+						<xp:label value="Registration NAB:"
+							id="registrationNAB_Label1" for="registrationNAB1">
+						</xp:label>
+					</xp:td>
+					<xp:td>
+						<xp:inputText
+							value="#{document1.RegistrationNAB}" id="registrationNAB1" defaultValue="names.nsf">
+						</xp:inputText>
+					</xp:td>
+				</xp:tr>
+				<xp:tr>
+					<xp:td>
+						<xp:label value="Registration users group:"
+							id="registrationUsersGroup_Label1"
+							for="registrationUsersGroup1">
+						</xp:label>
+					</xp:td>
+					<xp:td>
+						<xp:inputText
+							value="#{document1.RegistrationUsersGroup}"
+							id="registrationUsersGroup1">
+						</xp:inputText>
+					</xp:td>
+				</xp:tr>
+				<xp:tr>
+					<xp:td>
+						<xp:label value="Registration email subject:"
+							id="registrationEmailSubject_Label1"
+							for="registrationEmailSubject1">
+						</xp:label>
+					</xp:td>
+					<xp:td>
+						<xp:inputText
+							value="#{document1.RegistrationEmailSubject}"
+							id="registrationEmailSubject1">
+						</xp:inputText>
+					</xp:td>
+				</xp:tr>
+				<xp:tr>
+					<xp:td>
+						<xp:label value="Registration email body:"
+							id="registrationEmailBody_Label1" for="registrationEmailBody1">
+						</xp:label>
+					</xp:td>
+					<xp:td>
+						<xp:inputTextarea
+							value="#{document1.RegistrationEmailBody}"
+							id="registrationEmailBody1">
+						</xp:inputTextarea>
+					</xp:td>
+				</xp:tr>
+				<xp:tr>
+					<xp:td>
+						<xp:label value="Registration email from email:"
+							id="registrationEmailFromEmail_Label1"
+							for="registrationEmailFromEmail1">
+						</xp:label>
+					</xp:td>
+					<xp:td>
+						<xp:inputText
+							value="#{document1.RegistrationEmailFromEmail}"
+							id="registrationEmailFromEmail1">
+						</xp:inputText>
+					</xp:td>
+				</xp:tr>
+				<xp:tr>
+					<xp:td>
+						<xp:label value="Registration email from name:"
+							id="registrationEmailFromName_Label1"
+							for="registrationEmailFromName1">
+						</xp:label>
+					</xp:td>
+					<xp:td>
+						<xp:inputText
+							value="#{document1.RegistrationEmailFromName}"
+							id="registrationEmailFromName1">
+						</xp:inputText>
+					</xp:td>
+				</xp:tr>
+				<xp:tr>
+					<xp:td>
+						<xp:label value="Forgotten email subject:"
+							id="forgottenEmailSubject_Label1" for="forgottenEmailSubject1">
+						</xp:label>
+					</xp:td>
+					<xp:td>
+						<xp:inputText
+							value="#{document1.ForgottenEmailSubject}"
+							id="forgottenEmailSubject1">
+						</xp:inputText>
+					</xp:td>
+				</xp:tr>
+				<xp:tr>
+					<xp:td>
+						<xp:label value="Forgotten email body:"
+							id="forgottenEmailBody_Label1" for="forgottenEmailBody1">
+						</xp:label>
+					</xp:td>
+					<xp:td>
+						<xp:inputTextarea
+							value="#{document1.ForgottenEmailBody}"
+							id="forgottenEmailBody1">
+						</xp:inputTextarea>
+					</xp:td>
+				</xp:tr>
+				<xp:tr>
+					<xp:td>
+						<xp:label value="Forgotten email from email:"
+							id="forgottenEmailFromEmail_Label1"
+							for="forgottenEmailFromEmail1">
+						</xp:label>
+					</xp:td>
+					<xp:td>
+						<xp:inputText
+							value="#{document1.ForgottenEmailFromEmail}"
+							id="forgottenEmailFromEmail1">
+						</xp:inputText>
+					</xp:td>
+				</xp:tr>
+				<xp:tr>
+					<xp:td>
+						<xp:label value="Forgotten email from name:"
+							id="forgottenEmailFromName_Label1"
+							for="forgottenEmailFromName1">
+						</xp:label>
+					</xp:td>
+					<xp:td>
+						<xp:inputText
+							value="#{document1.ForgottenEmailFromName}"
+							id="forgottenEmailFromName1">
+						</xp:inputText>
+					</xp:td>
+				</xp:tr>
+				<xp:tr>
+					<xp:td>
+						<xp:label value="Session email from email:"
+							id="sessionEmailFromEmail_Label1" for="sessionEmailFromEmail1">
+						</xp:label>
+					</xp:td>
+					<xp:td>
+						<xp:inputText
+							value="#{document1.SessionEmailFromEmail}"
+							id="sessionEmailFromEmail1">
+						</xp:inputText>
+					</xp:td>
+				</xp:tr>
+				<xp:tr>
+					<xp:td>
+						<xp:label value="Session email from name:"
+							id="sessionEmailFromName_Label1" for="sessionEmailFromName1">
+						</xp:label>
+					</xp:td>
+					<xp:td>
+						<xp:inputText
+							value="#{document1.SessionEmailFromName}"
+							id="sessionEmailFromName1">
+						</xp:inputText>
+					</xp:td>
+				</xp:tr>
+				<xp:tr>
+					<xp:td>
+						<xp:label
+							value="Session email accepted subject:"
+							id="sessionEmailAcceptedSubject_Label1"
+							for="sessionEmailAcceptedSubject1">
+						</xp:label>
+					</xp:td>
+					<xp:td>
+						<xp:inputText
+							value="#{document1.SessionEmailAcceptedSubject}"
+							id="sessionEmailAcceptedSubject1">
+						</xp:inputText>
+					</xp:td>
+				</xp:tr>
+				<xp:tr>
+					<xp:td>
+						<xp:label value="Session email accepted body:"
+							id="sessionEmailAcceptedBody_Label1"
+							for="sessionEmailAcceptedBody1">
+						</xp:label>
+					</xp:td>
+					<xp:td>
+						<xp:inputTextarea
+							value="#{document1.SessionEmailAcceptedBody}"
+							id="sessionEmailAcceptedBody1">
+						</xp:inputTextarea>
+					</xp:td>
+				</xp:tr>
+				<xp:tr>
+					<xp:td>
+						<xp:label
+							value="Session email rejected subject:"
+							id="sessionEmailRejectedSubject_Label1"
+							for="sessionEmailRejectedSubject1">
+						</xp:label>
+					</xp:td>
+					<xp:td>
+						<xp:inputText
+							value="#{document1.SessionEmailRejectedSubject}"
+							id="sessionEmailRejectedSubject1">
+						</xp:inputText>
+					</xp:td>
+				</xp:tr>
+				<xp:tr>
+					<xp:td>
+						<xp:label value="Session email rejected body:"
+							id="sessionEmailRejectedBody_Label1"
+							for="sessionEmailRejectedBody1">
+						</xp:label>
+					</xp:td>
+					<xp:td>
+						<xp:inputTextarea
+							value="#{document1.SessionEmailRejectedBody}"
+							id="sessionEmailRejectedBody1">
+						</xp:inputTextarea>
+					</xp:td>
+				</xp:tr>
+				<xp:tr>
+					<xp:td>
+						<xp:label value="Contact Us Send To:"
+							id="feedbackSendTo_Label1" for="feedbackSendTo1">
+						</xp:label>
+					</xp:td>
+					<xp:td>
+						<xp:inputText
+							value="#{document1.FeedbackSendTo}" id="feedbackSendTo1">
+						</xp:inputText>
+					</xp:td>
+				</xp:tr>
+			</xp:table>
+		</xp:panel>
+	</div>
+
+</xp:view>

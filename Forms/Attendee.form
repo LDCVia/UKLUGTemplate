@@ -1,0 +1,54 @@
+<?xml version='1.0' encoding='utf-8'?>
+<!DOCTYPE form SYSTEM 'xmlschemas/domino_8_5_3.dtd'>
+<form name='Attendee' xmlns='http://www.lotus.com/dxl' version='8.5' maintenanceversion='3.0'
+ replicaid='80257A6A002CAD3E' publicaccess='true' designerversion='8.5.3'
+ renderpassthrough='true'>
+<noteinfo noteid='21e' unid='14915DFE8A409CAE80257A6A00516272' sequence='8'>
+<created><datetime dst='true'>20120830T154856,18+01</datetime></created>
+<modified><datetime dst='true'>20121017T085554,78+01</datetime></modified>
+<revised><datetime dst='true'>20121017T085554,77+01</datetime></revised>
+<lastaccessed><datetime dst='true'>20121017T085554,78+01</datetime></lastaccessed>
+<addedtofile><datetime dst='true'>20120830T154856,44+01</datetime></addedtofile></noteinfo>
+<updatedby><name>CN=Matt White/O=Exhilarate</name></updatedby>
+<wassignedby><name>CN=Matt White/O=Exhilarate</name></wassignedby>
+<body><richtext>
+<pardef id='1' hide='web'/>
+<par def='1'><field type='text' kind='editable' name='FirstName'/><compositedata
+ type='98' prevtype='65418' nexttype='222' afterparcount='7' containertype='65418'
+ aftercontainercount='1' afterbegincount='3'>
+Yg4BAIQAAAAAAAAAAAA=
+</compositedata><field type='text'
+ kind='editable' name='LastName'/><compositedata type='98' prevtype='65418'
+ nexttype='222' afterparcount='13' containertype='65418' aftercontainercount='1'
+ afterbegincount='3'>
+Yg4BAIQAAAAAAAAAAAA=
+</compositedata><field type='text' kind='editable' name='Email'/><compositedata
+ type='98' prevtype='65418' nexttype='222' afterparcount='19' containertype='65418'
+ aftercontainercount='1' afterbegincount='3'>
+Yg4BAIQAAAAAAAAAAAA=
+</compositedata><field type='text'
+ kind='editable' name='Phone'/><compositedata type='98' prevtype='65418' nexttype='222'
+ afterparcount='25' containertype='65418' aftercontainercount='1' afterbegincount='3'>
+Yg4BAIQAAAAAAAAAAAA=
+</compositedata><field
+ type='text' kind='editable' name='Twitter'/><compositedata type='98' prevtype='65418'
+ nexttype='222' afterparcount='31' containertype='65418' aftercontainercount='1'
+ afterbegincount='3'>
+Yg4BAIQAAAAAAAAAAAA=
+</compositedata><field type='text' kind='editable' name='Skype'/><compositedata
+ type='98' prevtype='65418' nexttype='222' afterparcount='37' containertype='65418'
+ aftercontainercount='1' afterbegincount='3'>
+Yg4BAIQAAAAAAAAAAAA=
+</compositedata><field type='text'
+ kind='editable' name='AIM'/><compositedata type='98' prevtype='65418' nexttype='222'
+ afterparcount='43' containertype='65418' aftercontainercount='1' afterbegincount='3'>
+Yg4BAIQAAAAAAAAAAAA=
+</compositedata></par>
+<par def='1'><field type='text' kind='editable' name='Approved'/><compositedata
+ type='98' prevtype='65418' nexttype='222' afterparcount='6' containertype='65418'
+ aftercontainercount='1' afterbegincount='3'>
+Yg4BAIQAAAAAAAAAAAA=
+</compositedata><field type='readers'
+ kind='computed' name='DocReaders'><code event='defaultvalue'><formula>"[Admin]"</formula></code></field></par></richtext></body>
+<item name='$$ScriptName' summary='false' sign='true'><text>Attendee</text></item></form>
+

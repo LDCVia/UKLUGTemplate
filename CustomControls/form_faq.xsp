@@ -1,0 +1,150 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<xp:view xmlns:xp="http://www.ibm.com/xsp/core">
+	<xp:this.resources>
+		<xp:script src="/jquery.autogrow-textarea.js" clientSide="true">
+		</xp:script>
+	</xp:this.resources>
+	<xp:this.data>
+		<xp:dominoDocument var="document1" formName="FAQ"
+			computeWithForm="both">
+		</xp:dominoDocument>
+	</xp:this.data>
+	<xp:this.acl>
+		<xp:acl>
+			<xp:this.entries>
+				<xp:aclEntry type="ANONYMOUS" right="NOACCESS" name="Anonymous"
+					fullName="Anonymous">
+				</xp:aclEntry>
+				<xp:aclEntry type="DEFAULT" right="NOACCESS"></xp:aclEntry>
+				<xp:aclEntry type="ROLE" right="EDITOR">
+					<xp:this.name><![CDATA[[Admin]]]></xp:this.name>
+					<xp:this.fullName><![CDATA[[Admin]]]></xp:this.fullName>
+				</xp:aclEntry>
+			</xp:this.entries>
+		</xp:acl>
+	</xp:this.acl>
+	<div class="row-fluid" style="padding-top: 10px;">
+		<div class="well">
+			<div style="float: right">
+				<xp:button value="Edit" id="button2" styleClass="btn btn-primary">
+					<xp:this.rendered><![CDATA[#{javascript:(context.getUser().getRoles().contains("[Admin]") || @UserName() == document1.getItemValueString("CreatedBy")) && !document1.isEditable()}]]></xp:this.rendered>
+					<xp:eventHandler event="onclick" submit="true"
+						refreshMode="complete">
+						<xp:this.action>
+							<xp:openPage name="/faq.xsp" target="editDocument"
+								documentId="#{javascript:document1.getDocument().getUniversalID()}">
+							</xp:openPage>
+						</xp:this.action>
+					</xp:eventHandler>
+				</xp:button>
+				<xp:button value="Submit" id="button1" styleClass="btn btn-primary"
+					rendered="#{javascript:document1.isEditable()}">
+					<xp:eventHandler event="onclick" submit="true"
+						refreshMode="complete">
+						<xp:this.action>
+							<xp:actionGroup>
+								<xp:saveDocument var="document1"></xp:saveDocument>
+								<xp:openPage name="/faqs.xsp"></xp:openPage>
+							</xp:actionGroup>
+						</xp:this.action>
+					</xp:eventHandler>
+				</xp:button>
+				&#160;
+				<xp:button id="button3" styleClass="btn">
+					<xp:this.value><![CDATA[#{javascript:if (document1.isEditable()){
+	return "Cancel";
+}else{
+	return "Close";
+}}]]></xp:this.value>
+					<xp:eventHandler event="onclick" submit="true"
+						refreshMode="complete">
+						<xp:this.action>
+							<xp:openPage name="/faqs.xsp"></xp:openPage>
+						</xp:this.action>
+					</xp:eventHandler>
+				</xp:button>
+				&#160;
+				<xp:button value="Delete..." id="button4"
+					rendered="#{javascript:!document1.isEditable()}" styleClass="btn btn-danger">
+					<xp:eventHandler event="onclick" submit="true"
+						refreshMode="complete">
+						<xp:this.action>
+							<xp:deleteDocument name="/faqs.xsp"
+								message="Are you sure you want to delete this FAQ?" var="document1">
+							</xp:deleteDocument>
+						</xp:this.action>
+					</xp:eventHandler>
+				</xp:button>
+			</div>
+
+			<xp:text id="title" escape="true" tagName="h1">
+				<xp:this.value><![CDATA[#{javascript:if(document1.isNewNote()){
+	"New FAQ";
+}else{
+	document1.getItemValueString("Question");
+}}]]></xp:this.value>
+			</xp:text>
+		</div>
+		<xp:panel id="newreg" styleClass="form-horizontal">
+			<div class="control-group">
+				<xp:label styleClass="control-label" for="inputQuestion"
+					value="Question">
+				</xp:label>
+				<div class="controls">
+					<xp:inputText id="inputQuestion" value="#{document1.Question}">
+						<xp:this.validators>
+							<xp:validateRequired message="Please enter the question">
+							</xp:validateRequired>
+						</xp:this.validators>
+						<xp:this.attrs>
+							<xp:attr name="placeholder"
+								value="How do I tell the difference between my behind and my elbow?">
+							</xp:attr>
+						</xp:this.attrs>
+					</xp:inputText>
+					<xp:message id="message1" for="inputQuestion"
+						styleClass="alert alert-error">
+					</xp:message>
+				</div>
+			</div>
+			<div class="control-group">
+				<xp:label styleClass="control-label" for="inputAnswer"
+					value="Answer">
+				</xp:label>
+				<div class="controls">
+					<xp:inputTextarea id="inputAnswer" value="#{document1.Answer}">
+						<xp:this.validators>
+							<xp:validateRequired message="Please enter the Answer">
+							</xp:validateRequired>
+						</xp:this.validators>
+						<xp:this.attrs>
+							<xp:attr name="placeholder" value="Enter the answer here (you can use HTML)">
+							</xp:attr>
+						</xp:this.attrs>
+					</xp:inputTextarea>
+					<xp:message id="message4" for="inputAnswer" styleClass="alert alert-error">
+					</xp:message>
+				</div>
+			</div>
+			<div class="control-group">
+				<xp:label styleClass="control-label" for="inputOrder"
+					value="Order">
+				</xp:label>
+				<div class="controls">
+					<xp:inputText id="inputOrder" value="#{document1.Order}"
+						type="number">
+						<xp:this.attrs>
+							<xp:attr name="placeholder" value="1">
+							</xp:attr>
+						</xp:this.attrs>
+						<xp:this.converter>
+							<xp:convertNumber type="number" integerOnly="true">
+							</xp:convertNumber>
+						</xp:this.converter>
+					</xp:inputText>
+				</div>
+			</div>
+
+		</xp:panel>
+	</div>
+</xp:view>

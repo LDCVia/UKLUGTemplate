@@ -1,0 +1,37 @@
+
+	<!--
+		The default theme contents use theme inheritance. Application themes
+		can extend an existing global theme using the extends attribute.
+		Existing themes include the following options: 1. webstandard 2. oneui
+		3. notes
+	-->
+<theme xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+	xsi:noNamespaceSchemaLocation="platform:/plugin/com.ibm.designer.domino.stylekits/schema/stylekit.xsd">
+
+	<control>
+		<name>Text.Label</name>
+		<property>
+			<name>styleClass</name>
+			<value>control-label</value>
+		</property>
+	</control>
+
+
+	<control>
+		<name>InputField.EditBox</name>
+		<property mode="concat">
+			<name>styleClass</name>
+			<value>input-xxlarge</value>
+		</property>
+	</control>
+
+	<control>
+		<name>InputField.TextArea</name>
+		<property mode="concat">
+			<name>styleClass</name>
+			<value>input-xxlarge</value>
+		</property>
+	</control>
+
+
+</theme>

@@ -1,0 +1,340 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<xp:view xmlns:xp="http://www.ibm.com/xsp/core">
+	<xp:this.resources>
+		<xp:script src="/jquery.autogrow-textarea.js" clientSide="true">
+		</xp:script>
+		<xp:script src="/xpSessions.jss" clientSide="false"></xp:script>
+	</xp:this.resources>
+	<xp:this.data>
+		<xp:dominoDocument var="document1" formName="Session"
+			computeWithForm="onsave">
+		</xp:dominoDocument>
+	</xp:this.data>
+
+	<xp:this.acl>
+		<xp:acl>
+			<xp:this.entries>
+				<xp:aclEntry type="ANONYMOUS" right="READER" name="Anonymous"
+					fullName="Anonymous">
+				</xp:aclEntry>
+				<xp:aclEntry type="DEFAULT" right="EDITOR"></xp:aclEntry>
+			</xp:this.entries>
+		</xp:acl>
+	</xp:this.acl>
+	<div class="row-fluid" style="padding-top: 10px;">
+		<div class="well">
+			<div style="float: right">
+				<xp:button value="Edit" id="button2" styleClass="btn btn-primary">
+					<xp:this.rendered><![CDATA[#{javascript:(context.getUser().getRoles().contains("[Admin]") || @UserName() == document1.getItemValueString("CreatedBy")) && !document1.isEditable()}]]></xp:this.rendered>
+					<xp:eventHandler event="onclick" submit="true"
+						refreshMode="complete">
+						<xp:this.action>
+							<xp:openPage name="/session.xsp" target="editDocument"
+								documentId="#{javascript:document1.getDocument().getUniversalID()}">
+							</xp:openPage>
+						</xp:this.action>
+					</xp:eventHandler>
+				</xp:button>
+				<xp:button value="Submit" id="button1" styleClass="btn btn-primary">
+					<xp:this.rendered><![CDATA[#{javascript:document1.isEditable() && @UserName() != "Anonymous"}]]></xp:this.rendered><xp:eventHandler event="onclick" submit="true"
+						refreshMode="complete">
+						<xp:this.action>
+							<xp:actionGroup>
+								<xp:saveDocument var="document1"></xp:saveDocument>
+								<xp:openPage name="/sessions.xsp"></xp:openPage>
+							</xp:actionGroup>
+						</xp:this.action>
+					</xp:eventHandler>
+				</xp:button>
+				&#160;
+				<xp:button id="button3" styleClass="btn">
+					<xp:this.value><![CDATA[#{javascript:if (document1.isEditable()){
+	return "Cancel";
+}else{
+	return "Close";
+}}]]></xp:this.value>
+					<xp:eventHandler event="onclick" submit="true"
+						refreshMode="complete">
+						<xp:this.action>
+							<xp:openPage name="/sessions.xsp"></xp:openPage>
+						</xp:this.action>
+					</xp:eventHandler>
+				</xp:button>
+			</div>
+			<xp:div styleClass="btn-group" style="float: right;">
+				<xp:this.rendered><![CDATA[#{javascript:context.getUser().getRoles().contains("[Admin]") && !document1.isEditable()}]]></xp:this.rendered>
+				<button class="btn">Admin</button>
+				<button class="btn dropdown-toggle" data-toggle="dropdown">
+					<span class="caret"></span>
+				</button>
+				<ul class="dropdown-menu">
+					<xp:panel tagName="li" id="approvesession">
+						<xp:this.rendered><![CDATA[#{javascript:document1.getItemValueString("Status") != "Approved"}]]></xp:this.rendered>
+						<xp:link escape="true" text="Approve" id="link3">
+							<xp:eventHandler event="onclick" submit="true"
+								refreshMode="complete">
+								<xp:this.action><![CDATA[#{javascript:approveSession(document1.getDocument());}]]></xp:this.action>
+							</xp:eventHandler>
+						</xp:link>
+					</xp:panel>
+					<xp:panel tagName="li" id="rejectsession">
+						<xp:this.rendered><![CDATA[#{javascript:document1.getItemValueString("Status") != "Unapproved"}]]></xp:this.rendered>
+						<xp:link escape="true" text="Reject" id="link4">
+							<xp:eventHandler event="onclick" submit="true"
+								refreshMode="complete">
+								<xp:this.action><![CDATA[#{javascript:rejectSession(document1.getDocument());}]]></xp:this.action>
+							</xp:eventHandler>
+						</xp:link>
+					</xp:panel>
+					<xp:panel tagName="li" id="publishsession">
+						<xp:this.rendered><![CDATA[#{javascript:document1.getItemValueString("Published") == "No"}]]></xp:this.rendered>
+						<xp:link escape="true" text="Publish" id="link5">
+							<xp:eventHandler event="onclick" submit="true"
+								refreshMode="complete">
+								<xp:this.action><![CDATA[#{javascript:publishSession(document1.getDocument());}]]></xp:this.action>
+							</xp:eventHandler>
+						</xp:link>
+					</xp:panel>
+					<xp:panel tagName="li" id="unpublishsession">
+						<xp:this.rendered><![CDATA[#{javascript:document1.getItemValueString("Published") == "Yes"}]]></xp:this.rendered>
+						<xp:link escape="true" text="Un-Publish" id="link6">
+							<xp:eventHandler event="onclick" submit="true"
+								refreshMode="complete">
+								<xp:this.action><![CDATA[#{javascript:unpublishSession(document1.getDocument());}]]></xp:this.action>
+							</xp:eventHandler>
+						</xp:link>
+					</xp:panel>
+				</ul>
+			</xp:div>
+
+			<xp:text id="title" escape="true" tagName="h1">
+				<xp:this.value><![CDATA[#{javascript:if(document1.isNewNote()){
+	"New Session";
+}else{
+	document1.getItemValueString("Title");
+}}]]></xp:this.value>
+			</xp:text>
+			<xp:text tagName="p" id="computedField1" escape="true">
+						<xp:this.value><![CDATA[#{javascript:var out = @DbLookup(@DbName(), "Sessions By Timeslot", document1.getDocument().getUniversalID(), 2);
+if(@IsError(out)){
+	return "Not yet scheduled";
+}else{
+	return out;
+}}]]></xp:this.value>
+					</xp:text>
+		</div>
+		<xp:panel id="newreg" styleClass="form-horizontal">
+			<div class="control-group">
+				<xp:label styleClass="control-label" for="inputTitle"
+					value="Title">
+				</xp:label>
+				<div class="controls">
+					<xp:inputText id="inputTitle" value="#{document1.Title}">
+						<xp:this.validators>
+							<xp:validateRequired message="Please enter the title">
+							</xp:validateRequired>
+						</xp:this.validators>
+						<xp:this.attrs>
+							<xp:attr name="placeholder" value="My great session title">
+							</xp:attr>
+						</xp:this.attrs>
+					</xp:inputText>
+					<xp:message id="message1" for="inputTitle" styleClass="alert alert-error">
+					</xp:message>
+				</div>
+			</div>
+			<div class="control-group">
+				<xp:label styleClass="control-label" for="inputTrack"
+					value="Track">
+				</xp:label>
+				<div class="controls">
+					<xp:comboBox id="inputTrack"
+						value="#{document1.Track}">
+						<xp:selectItems>
+							<xp:this.value><![CDATA[#{javascript:getControlPanelFieldArray("Tracks")}]]></xp:this.value>
+						</xp:selectItems>
+					</xp:comboBox>
+				</div>
+			</div>
+			<div class="control-group">
+				<xp:label styleClass="control-label" for="inputAbstract"
+					value="Abstract">
+				</xp:label>
+				<div class="controls">
+					<xp:inputTextarea id="inputAbstract" value="#{document1.Abstract}">
+						<xp:this.validators>
+							<xp:validateRequired message="Please enter the abstract">
+							</xp:validateRequired>
+						</xp:this.validators>
+						<xp:this.attrs>
+							<xp:attr name="placeholder"
+								value="This is where you tell us about your session, it's what the attendees will see">
+							</xp:attr>
+						</xp:this.attrs>
+					</xp:inputTextarea>
+					<xp:message id="message2" for="inputAbstract"
+						styleClass="alert alert-error">
+					</xp:message>
+				</div>
+			</div>
+			<xp:div styleClass="control-group">
+				<xp:this.rendered><![CDATA[#{javascript:context.getUser().getRoles().contains("[Admin]") || @UserName() == document1.getItemValueString("CreatedBy")}]]></xp:this.rendered>
+				<xp:label styleClass="control-label" for="inputComments"
+					value="Comments">
+				</xp:label>
+				<div class="controls">
+					<xp:inputTextarea id="inputComments" value="#{document1.Comments}">
+						<xp:this.attrs>
+							<xp:attr name="placeholder"
+								value="If you have any extra comments, this will not be seen by the attendees">
+							</xp:attr>
+						</xp:this.attrs>
+					</xp:inputTextarea>
+				</div>
+			</xp:div>
+			<div class="control-group">
+				<xp:label styleClass="control-label" for="inputSlides"
+					value="Slides">
+				</xp:label>
+				<div class="controls">
+					<xp:fileUpload id="inputSlides" value="#{document1.Slides}">
+					</xp:fileUpload>
+					<xp:fileDownload rows="30" id="fileDownload1"
+						displayLastModified="false" value="#{document1.Slides}" hideWhen="true"
+						allowDelete="true">
+					</xp:fileDownload>
+				</div>
+			</div>
+			<fieldset>
+				<legend>Presenter</legend>
+				<div class="control-group">
+					<xp:label styleClass="control-label" for="inputPresenter"
+						value="Presenter">
+					</xp:label>
+					<div class="controls">
+						<xp:inputText id="inputPresenter" value="#{document1.Presenter}"
+							multipleSeparator=";" multipleTrim="true">
+							<xp:this.validators>
+								<xp:validateRequired message="Please enter the presenter">
+								</xp:validateRequired>
+							</xp:this.validators>
+							<xp:this.attrs>
+								<xp:attr name="placeholder" value="Enter the name of the presenter">
+								</xp:attr>
+							</xp:this.attrs>
+							<xp:this.defaultValue><![CDATA[#{javascript:@Name("[CN]", @UserName())}]]></xp:this.defaultValue>
+						</xp:inputText>
+						<xp:message id="message3" for="inputPresenter"
+							styleClass="alert alert-error">
+						</xp:message>
+					</div>
+				</div>
+				<xp:div styleClass="control-group" rendered="#{javascript:document1.isEditable()}">
+					<xp:label styleClass="control-label" for="inputPhoto"
+						value="Photo (please keep the file size small!)">
+					</xp:label>
+					<div class="controls">
+						<xp:fileUpload id="inputPhoto" value="#{document1.Photo}">
+						</xp:fileUpload>
+						<xp:fileDownload rows="30" id="fileDownload2"
+							displayLastModified="false" value="#{document1.Photo}" hideWhen="true"
+							allowDelete="true">
+						</xp:fileDownload>
+					</div>
+				</xp:div>
+				<div class="control-group">
+					<xp:label styleClass="control-label" for="inputBio" value="Speaker Bio">
+					</xp:label>
+					<div class="controls">
+						<xp:inputTextarea id="inputBio" value="#{document1.Bio}">
+							<xp:this.validators>
+								<xp:validateRequired message="Please enter the speaker bio">
+								</xp:validateRequired>
+							</xp:this.validators>
+							<xp:this.attrs>
+								<xp:attr name="placeholder" value="Tell us a little bit about yourself">
+								</xp:attr>
+							</xp:this.attrs>
+						</xp:inputTextarea>
+						<xp:message id="message4" for="inputBio" styleClass="alert alert-error">
+						</xp:message>
+					</div>
+				</div>
+			</fieldset>
+			<xp:panel id="secondarypresenter" tagName="fieldset">
+				<xp:this.rendered><![CDATA[#{javascript:document1.isEditable() || document1.getItemValueString("Presenter2") != ""}]]></xp:this.rendered>
+				<legend>Second Presenter</legend>
+				<div class="control-group">
+					<xp:label styleClass="control-label" for="inputPresenter2"
+						value="Presenter">
+					</xp:label>
+					<div class="controls">
+						<xp:inputText id="inputPresenter2" value="#{document1.Presenter2}"
+							multipleSeparator=";" multipleTrim="true">
+							<xp:this.attrs>
+								<xp:attr name="placeholder" value="Enter the name of the second presenter">
+								</xp:attr>
+							</xp:this.attrs>
+						</xp:inputText>
+					</div>
+				</div>
+				<xp:div styleClass="control-group" rendered="#{javascript:document1.isEditable()}">
+					<xp:label styleClass="control-label" for="inputPhoto2"
+						value="Photo (Please keep the file size small!)">
+					</xp:label>
+					<div class="controls">
+						<xp:fileUpload id="inputPhoto2" value="#{document1.Photo2}">
+						</xp:fileUpload>
+						<xp:fileDownload rows="30" id="fileDownload3"
+							displayLastModified="false" value="#{document1.Photo2}" hideWhen="true"
+							allowDelete="true">
+						</xp:fileDownload>
+					</div>
+				</xp:div>
+				<div class="control-group">
+					<xp:label styleClass="control-label" for="inputBio2"
+						value="Speaker Bio">
+					</xp:label>
+					<div class="controls">
+						<xp:inputTextarea id="inputBio2" value="#{document1.Bio2}">
+							<xp:this.attrs>
+								<xp:attr name="placeholder" value="Tell us a little bit about yourself">
+								</xp:attr>
+							</xp:this.attrs>
+						</xp:inputTextarea>
+					</div>
+				</div>
+			</xp:panel>
+			<xp:div>
+				<xp:this.rendered><![CDATA[#{javascript:context.getUser().getRoles().contains("[Admin]");}]]></xp:this.rendered>
+				<div class="control-group">
+					<xp:label styleClass="control-label" for="inputStatus"
+						value="Status">
+					</xp:label>
+					<div class="controls">
+						<xp:comboBox id="inputStatus" value="#{document1.Status}">
+							<xp:selectItem itemLabel="Unapproved"></xp:selectItem>
+							<xp:selectItem itemLabel="Approved"></xp:selectItem>
+						</xp:comboBox>
+					</div>
+				</div>
+				<div class="control-group">
+					<xp:label styleClass="control-label" for="inputPublished"
+						value="Published">
+					</xp:label>
+					<div class="controls">
+						<xp:comboBox id="inputPublished" value="#{document1.Published}">
+							<xp:selectItem itemLabel="No"></xp:selectItem>
+							<xp:selectItem itemLabel="Yes"></xp:selectItem>
+						</xp:comboBox>
+					</div>
+				</div>
+			</xp:div>
+			<div class="control-group">
+				<div class="controls">
+
+				</div>
+			</div>
+		</xp:panel>
+	</div>
+</xp:view>

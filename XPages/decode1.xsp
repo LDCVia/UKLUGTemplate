@@ -1,0 +1,55 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<xp:view xmlns:xp="http://www.ibm.com/xsp/core" rendered="false">
+
+	<xp:this.data>
+		<xp:dominoDocument var="document1" formName="foxytest"
+			action="editDocument">
+		</xp:dominoDocument>
+	</xp:this.data>
+	<xp:this.afterRenderResponse><![CDATA[#{javascript:var docNew = database.createDocument();
+try{
+    var exCon:javax.faces.context.ExternalContext = facesContext.getExternalContext(); 
+    var writer = facesContext.getResponseWriter();
+    var response = exCon.getResponse();
+    
+	//First cache the encrypted XML we are sent by FoxyCart    
+    var map:java.util.Map = exCon.getRequestParameterMap();
+    var values = exCon.getRequest().getParameter("FoxyData");
+	//var values = map.get('FoxyData'); 
+	docNew.replaceItemValue("originalcontent", values);
+	docNew.replaceItemValue("Form", "foxycart");
+
+    response.setContentType("text/plain");
+    writer.write("foxy");
+    facesContext.responseComplete();
+	
+	//Now go and query FoxyCart API for a list of transactions
+	var url = "https://fcl.foxycart.com/api";
+	var key = "FGGYKJvu78NP2xJ8Kk2uyedtSGTxEfbbLIZnmlLpnu4fRHiwSaUheYA2zjp5";
+	var foxycart:com.elguji.utilities.FoxyCart = new com.elguji.utilities.FoxyCart(url, key);
+	var xmlstring = foxycart.callAPI("customer_list");
+	var rtitem = docNew.createRichTextItem("xml");
+	rtitem.appendText(xmlstring);
+	
+	 
+}catch(e){
+    _dump(e);
+    docNew.replaceItemValue("error", e);
+}
+docNew.save();}]]></xp:this.afterRenderResponse>
+	<xp:inputTextarea id="in" style="width:943.0px;height:242.0px">
+		<xp:this.value><![CDATA[#{javascript:print(document1.getItemValueString("request_content"));
+return unescape(document1.getItemValueString("request_content"));
+
+var key = "FGGYKJvu78NP2xJ8Kk2uyedtSGTxEfbbLIZnmlLpnu4fRHiwSaUheYA2zjp5";
+var result = com.elguji.utilities.Decrypt.decrypt(key, data);
+getComponent("out").setValue(result);
+/*
+var rc4:net.clarenceho.crypto.RC4 = new net.clarenceho.crypto.RC4(key.getBytes());
+var result = new String(rc4.rc4(data));
+
+getComponent("out").setValue(result);
+*/}]]></xp:this.value>
+	</xp:inputTextarea>
+	<xp:br></xp:br>
+</xp:view>

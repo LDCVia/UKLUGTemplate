@@ -1,0 +1,168 @@
+<?xml version='1.0' encoding='utf-8'?>
+<!DOCTYPE form SYSTEM 'xmlschemas/domino_8_5_3.dtd'>
+<form name='Session' xmlns='http://www.lotus.com/dxl' version='8.5' maintenanceversion='3.0'
+ replicaid='80257A6A002CAD3E' publicaccess='false' designerversion='8.5.3'
+ renderpassthrough='true'>
+<noteinfo noteid='27e' unid='823DE7DD98DA59B780257A8E0042F25F' sequence='10'>
+<created><datetime dst='true'>20121005T131114,23+01</datetime></created>
+<modified><datetime dst='true'>20121012T132647,58+01</datetime></modified>
+<revised><datetime dst='true'>20121012T132647,57+01</datetime></revised>
+<lastaccessed><datetime dst='true'>20121012T132647,58+01</datetime></lastaccessed>
+<addedtofile><datetime dst='true'>20121005T131114,55+01</datetime></addedtofile></noteinfo>
+<updatedby><name>CN=Matt White/O=Exhilarate</name></updatedby>
+<wassignedby><name>CN=Matt White/O=Exhilarate</name></wassignedby>
+<body><richtext>
+<pardef id='1' hide='web'/>
+<par def='1'/>
+<table widthtype='fixedleft' refwidth='12.3944in'><tablecolumn width='6.1972in'/><tablecolumn
+ width='6.1972in'/>
+<tablerow>
+<tablecell>
+<pardef id='3' hide='web' keepwithnext='true' keeptogether='true'/>
+<par def='3'>CreatedBy</par></tablecell>
+<tablecell>
+<pardef id='4' hide='web' keepwithnext='true' keeptogether='true'/>
+<par def='4'><field type='text' kind='editable' name='CreatedBy'><code event='defaultvalue'><formula
+>@UserName</formula></code></field><compositedata type='98' prevtype='65418'
+ nexttype='222' afterparcount='7' containertype='65418' aftercontainercount='1'
+ afterbegincount='3'>
+Yg4BAIQAAAAAAAAAAAA=
+</compositedata></par></tablecell></tablerow>
+<tablerow>
+<tablecell>
+<par def='3'>DateCreated</par></tablecell>
+<tablecell>
+<par def='4'><field type='datetime' kind='computedwhencomposed' name='DateCreated'><datetimeformat
+ show='date' date='yearmonthday' fourdigityearfor21stcentury='true' zone='never'
+ dateformat='weekdaydaymonthyear' dayformat='twodigitday' monthformat='twodigitmonth'
+ yearformat='fourdigityear' weekdayformat='shortname' dateseparator1=' ' dateseparator2='/'
+ dateseparator3='/' timeseparator=':' timeformat24='true' preference='usersetting'/><code
+ event='defaultvalue'><formula>@Now</formula></code></field></par></tablecell></tablerow>
+<tablerow>
+<tablecell>
+<par def='3'>Readers</par></tablecell>
+<tablecell>
+<par def='4'><field type='readers' allowmultivalues='true' kind='computed'
+ name='Readers' listinputseparators='comma' listdisplayseparator='comma'><code
+ event='defaultvalue'><formula>"[Admin]" : @If(Status="Approved" &amp; Published = "Yes"; "*"; CreatedBy)</formula></code></field></par></tablecell></tablerow>
+<tablerow>
+<tablecell>
+<par def='3'>Authors</par></tablecell>
+<tablecell>
+<par def='4'><field type='authors' allowmultivalues='true' kind='computed'
+ name='Authors' listinputseparators='comma' listdisplayseparator='comma'><code
+ event='defaultvalue'><formula>"[Admin]" : CreatedBy</formula></code></field></par></tablecell></tablerow>
+<tablerow>
+<tablecell>
+<par def='3'>Track</par></tablecell>
+<tablecell>
+<par def='4'><field type='text' kind='editable' name='Track'/><compositedata
+ type='98' prevtype='65418' nexttype='222' afterparcount='6' containertype='65418'
+ aftercontainercount='1' afterbegincount='3'>
+Yg4BAIQAAAAAAAAAAAA=
+</compositedata></par></tablecell></tablerow>
+<tablerow>
+<tablecell>
+<par def='3'>Title</par></tablecell>
+<tablecell>
+<par def='4'><field type='text' kind='editable' name='Title'/><compositedata
+ type='98' prevtype='65418' nexttype='222' afterparcount='6' containertype='65418'
+ aftercontainercount='1' afterbegincount='3'>
+Yg4BAIQAAAAAAAAAAAA=
+</compositedata></par></tablecell></tablerow>
+<tablerow>
+<tablecell>
+<par def='3'>Abstract (This is what the public will see)</par></tablecell>
+<tablecell>
+<par def='4'><field type='text' kind='editable' name='Abstract'/><compositedata
+ type='98' prevtype='65418' nexttype='222' afterparcount='6' containertype='65418'
+ aftercontainercount='1' afterbegincount='3'>
+Yg4BAIQAAAAAAAAAAAA=
+</compositedata></par></tablecell></tablerow>
+<tablerow>
+<tablecell>
+<par def='3'>Comments (anything for the organisers)</par></tablecell>
+<tablecell>
+<par def='4'><field type='text' kind='editable' name='Comments'/><compositedata
+ type='98' prevtype='65418' nexttype='222' afterparcount='6' containertype='65418'
+ aftercontainercount='1' afterbegincount='3'>
+Yg4BAIQAAAAAAAAAAAA=
+</compositedata></par></tablecell></tablerow>
+<tablerow>
+<tablecell>
+<par def='3'>Session Slides</par></tablecell>
+<tablecell>
+<par def='4'><field type='richtext' kind='editable' name='Slides'/><compositedata
+ type='98' prevtype='65418' nexttype='222' afterparcount='6' containertype='65418'
+ aftercontainercount='1' afterbegincount='3'>
+Yg4BAIQAAAAAAAEAAAA=
+</compositedata></par></tablecell></tablerow>
+<tablerow>
+<tablecell>
+<par def='3'>Speaker Photo</par></tablecell>
+<tablecell>
+<par def='4'><field type='richtext' kind='editable' name='Photo'/><compositedata
+ type='98' prevtype='65418' nexttype='222' afterparcount='6' containertype='65418'
+ aftercontainercount='1' afterbegincount='3'>
+Yg4BAIQAAAAAAAEAAAA=
+</compositedata><field type='richtext'
+ kind='editable' name='Photo2'/><compositedata type='98' prevtype='65418'
+ nexttype='222' afterparcount='12' containertype='65418' aftercontainercount='1'
+ afterbegincount='3'>
+Yg4BAIQAAAAAAAEAAAA=
+</compositedata></par></tablecell></tablerow>
+<tablerow>
+<tablecell>
+<par def='3'>Speaker Bio</par></tablecell>
+<tablecell>
+<par def='4'><field type='text' kind='editable' name='Bio'/><compositedata
+ type='98' prevtype='65418' nexttype='222' afterparcount='6' containertype='65418'
+ aftercontainercount='1' afterbegincount='3'>
+Yg4BAIQAAAAAAAAAAAA=
+</compositedata><field type='text'
+ kind='editable' name='Bio2'/><compositedata type='98' prevtype='65418' nexttype='222'
+ afterparcount='12' containertype='65418' aftercontainercount='1' afterbegincount='3'>
+Yg4BAIQAAAAAAAAAAAA=
+</compositedata></par></tablecell></tablerow>
+<tablerow>
+<tablecell>
+<par def='3'>Status</par></tablecell>
+<tablecell>
+<par def='4'><field type='text' kind='editable' name='Status'><code event='defaultvalue'><formula
+>"Unapproved"</formula></code></field><compositedata type='98' prevtype='65418'
+ nexttype='222' afterparcount='6' containertype='65418' aftercontainercount='1'
+ afterbegincount='3'>
+Yg4BAIQAAAAAAAAAAAA=
+</compositedata></par></tablecell></tablerow>
+<tablerow>
+<tablecell>
+<par def='3'>Published</par></tablecell>
+<tablecell>
+<par def='4'><field type='text' kind='editable' name='Published'><code event='defaultvalue'><formula
+>"No"</formula></code></field><compositedata type='98' prevtype='65418' nexttype='222'
+ afterparcount='6' containertype='65418' aftercontainercount='1' afterbegincount='3'>
+Yg4BAIQAAAAAAAAAAAA=
+</compositedata></par></tablecell></tablerow>
+<tablerow>
+<tablecell>
+<par def='3'>Presenter</par></tablecell>
+<tablecell>
+<par def='4'><field type='text' allowmultivalues='true' kind='editable' name='Presenter'
+ listinputseparators='semicolon' listdisplayseparator='semicolon'/><compositedata
+ type='98' prevtype='65418' nexttype='222' afterparcount='6' containertype='65418'
+ aftercontainercount='1' afterbegincount='3'>
+Yg4BAIQAAAAAAAAAAAA=
+</compositedata><field type='text'
+ kind='editable' name='Presenter2'/><compositedata type='98' prevtype='65418'
+ nexttype='222' afterparcount='12' containertype='65418' aftercontainercount='1'
+ afterbegincount='3'>
+Yg4BAIQAAAAAAAAAAAA=
+</compositedata></par></tablecell></tablerow>
+<tablerow>
+<tablecell>
+<par def='3'/></tablecell>
+<tablecell>
+<par def='4'/></tablecell></tablerow></table>
+<par def='1'/></richtext></body>
+<item name='$$ScriptName' summary='false' sign='true'><text>Session</text></item></form>
+

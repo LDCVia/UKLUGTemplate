@@ -1,0 +1,77 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<xp:view xmlns:xp="http://www.ibm.com/xsp/core">
+
+	<xp:this.acl>
+		<xp:acl>
+			<xp:this.entries>
+				<xp:aclEntry type="ANONYMOUS" right="NOACCESS" name="Anonymous"
+					fullName="Anonymous">
+				</xp:aclEntry>
+				<xp:aclEntry type="DEFAULT" right="NOACCESS"></xp:aclEntry>
+				<xp:aclEntry type="ROLE" right="EDITOR">
+					<xp:this.name><![CDATA[[Admin]]]></xp:this.name>
+					<xp:this.fullName><![CDATA[[Admin]]]></xp:this.fullName>
+				</xp:aclEntry>
+			</xp:this.entries>
+		</xp:acl>
+	</xp:this.acl>
+
+	<div class="navbar">
+		<div class="navbar-inner">
+			<a class="brand" href="#">Admin</a>
+			<ul class="nav">
+				<li>
+					<a href="admin.xsp">Control Panel</a>
+				</li>
+				<li>
+					<a href="attendees.xsp">Attendees</a>
+				</li>
+				<li class="active">
+					<a href="files.xsp">Files</a>
+				</li>
+			</ul>
+		</div>
+	</div>
+
+	<div class="row-fluid" style="padding-top: 10px;">
+		<h1>Files</h1>
+	</div>
+	<xp:panel id="newreg" styleClass="form-horizontal">
+
+		<xp:viewPanel rows="999" id="viewPanel1"
+			showColumnHeader="false" var="rowData">
+			<xp:this.data>
+				<xp:dominoView var="view1" viewName="Files"></xp:dominoView>
+			</xp:this.data>
+			<xp:viewColumn id="viewColumn2" value=" ">
+				<xp:viewColumnHeader id="viewColumnHeader2">
+				</xp:viewColumnHeader>
+				<xp:link escape="true" text="#{rowData.URL}" id="link1"
+					value="#{rowData.URL}">
+				</xp:link>
+			</xp:viewColumn>
+		</xp:viewPanel>
+		<xp:panel>
+			<xp:this.data>
+				<xp:dominoDocument var="document1" formName="File"></xp:dominoDocument>
+			</xp:this.data>
+			<fieldset>
+				<legend>New File</legend>
+				<xp:fileUpload id="fileUpload1" value="#{document1.File}">
+				</xp:fileUpload>
+				<xp:button id="button1" value="Upload..." styleClass="btn btn-primary">
+					<xp:eventHandler event="onclick" submit="true"
+						refreshMode="complete">
+						<xp:this.action>
+
+							<xp:actionGroup>
+								<xp:saveDocument var="document1"></xp:saveDocument>
+								<xp:openPage name="/files.xsp"></xp:openPage>
+							</xp:actionGroup>
+						</xp:this.action>
+					</xp:eventHandler>
+				</xp:button>
+			</fieldset>
+		</xp:panel>
+	</xp:panel>
+</xp:view>

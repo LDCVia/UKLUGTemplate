@@ -1,0 +1,14 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<xp:view xmlns:xp="http://www.ibm.com/xsp/core"
+	xmlns:xc="http://www.ibm.com/xsp/custom" pageTitle="Registration"
+	createForm="false">
+
+	<xc:layout>
+		<xp:this.facets>
+			<xc:form_registration xp:key="facet_1"></xc:form_registration>
+		</xp:this.facets>
+	</xc:layout>
+	<xp:this.navigationRules>
+		<xp:navigationRule outcome="xsp-success" viewId="/home.xsp"></xp:navigationRule>
+	</xp:this.navigationRules>
+</xp:view>

@@ -1,0 +1,184 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<xp:view xmlns:xp="http://www.ibm.com/xsp/core">
+	<xp:this.data>
+		<xp:dominoView var="view1" viewName="Sessions"></xp:dominoView>
+	</xp:this.data>
+	<xp:this.resources>
+		<xp:script src="/xpSessions.jss" clientSide="false"></xp:script>
+	</xp:this.resources>
+
+	<div class="navbar">
+		<div class="navbar-inner">
+			<a class="brand" href="#">Sessions</a>
+			<ul class="nav">
+				<xp:panel tagName="li">
+					<xp:this.styleClass><![CDATA[#{javascript:if (context.getUrlParameter("filter") == ""){
+	return "active";
+}}]]></xp:this.styleClass>
+					<xp:link escape="true" text="All" id="allsessions" value="/sessions.xsp">
+					</xp:link>
+				</xp:panel>
+				<xp:panel tagName="li">
+					<xp:this.styleClass><![CDATA[#{javascript:if (context.getUrlParameter("filter") == "mine"){
+	return "active";
+}}]]></xp:this.styleClass>
+					<xp:this.rendered><![CDATA[#{javascript:@UserName() != "Anonymous"}]]></xp:this.rendered>
+					<xp:link escape="true" text="Mine" id="link7" value="/sessions.xsp">
+						<xp:this.parameters>
+							<xp:parameter name="filter" value="mine"></xp:parameter>
+						</xp:this.parameters>
+					</xp:link>
+				</xp:panel>
+				<xp:repeat id="tracks" var="trackname" indexVar="trackindex"
+					disableOutputTag="true">
+					<xp:this.value><![CDATA[#{javascript:getControlPanelFieldArray("Tracks")}]]></xp:this.value>
+					<xp:panel tagName="li">
+						<xp:this.styleClass><![CDATA[#{javascript:if (context.getUrlParameter("filter") == trackname){
+	return "active";
+}}]]></xp:this.styleClass>
+						<xp:link escape="true" text="#{javascript:trackname}" id="link11"
+							value="/sessions.xsp">
+							<xp:this.parameters>
+								<xp:parameter name="filter" value="#{javascript:trackname}">
+								</xp:parameter>
+							</xp:this.parameters>
+						</xp:link>
+					</xp:panel>
+				</xp:repeat>
+
+			</ul>
+		</div>
+	</div>
+
+	<div id="container" class="clearfix fluid">
+		<div class="thumbnails" style="margin-top: 10px;">
+			<xp:panel styleClass="thumbnail col3">
+				<xp:this.rendered><![CDATA[#{javascript:@UserName() != "Anonymous"}]]></xp:this.rendered>
+				<h3>Submit a session</h3>
+				<p>
+					We're always looking for new speakers, if
+					you'd like to
+					start
+					speaking, then this is a good
+					place to get going.
+					<p>
+						<xp:link escape="true" id="link1" text="Submit a session..."
+							value="/session.xsp" styleClass="btn btn-primary btn-large">
+						</xp:link>
+					</p>
+				</p>
+			</xp:panel>
+			<xp:repeat id="repeat1" rows="999" value="#{view1}" var="sessiondoc"
+				indexVar="sessionindex" disableOutputTag="true">
+				<xp:div id="thumbnail" styleClass="thumbnail col3">
+					<xp:this.rendered><![CDATA[#{javascript:var filter = context.getUrlParameter("filter");
+if (filter == ""){
+	return true;
+}else if(filter == "mine"){
+	if (sessiondoc.getColumnValue("CreatedBy") == @UserName()){
+		return true;
+	}else{
+		return false;
+	}
+}else if(filter == sessiondoc.getColumnValue("Track")){
+	return true;
+}else{
+	return false;
+}}]]></xp:this.rendered>
+					<xp:panel tagName="a" id="openlink">
+						<xp:this.attrs>
+							<xp:attr name="href">
+								<xp:this.value><![CDATA[#{javascript:getDbPath() + "/session.xsp?action=openDocument&documentId=" + sessiondoc.getColumnValue("UNID");}]]></xp:this.value>
+							</xp:attr>
+						</xp:this.attrs>
+						<xp:text tagName="h3" escape="true" id="title"
+							value="#{sessiondoc.Title}">
+						</xp:text>
+					</xp:panel>
+					<xp:text tagName="span" value="#{sessiondoc.Status}">
+						<xp:this.styleClass><![CDATA[#{javascript:var out = "label ";
+if (sessiondoc.getColumnValue("Status") == "Approved"){
+	out += "label-success";
+}else{
+	out += "label-important";
+}
+return out;}]]></xp:this.styleClass>
+						<xp:this.rendered><![CDATA[#{javascript:@UserName() != "Anonymous"}]]></xp:this.rendered>
+					</xp:text>
+					<xp:text tagName="span" styleClass="label label-important"
+						style="margin-left: 5px;">
+						<xp:this.rendered><![CDATA[#{javascript:sessiondoc.getColumnValue("Published") != "Yes"}]]></xp:this.rendered>
+						<xp:this.value><![CDATA[#{javascript:"Not Published"}]]></xp:this.value>
+					</xp:text>
+					<xp:text tagName="p" escape="true" id="abstract"
+						value="#{sessiondoc.Abstract}">
+					</xp:text>
+					<xp:text tagName="blockquote" id="meta" escape="true"
+						value="#{sessiondoc.Presenter} / #{sessiondoc.Track}">
+
+					</xp:text>
+					<xp:text tagName="blockquote" id="computedField1" escape="true">
+						<xp:this.value><![CDATA[#{javascript:var out = @DbLookup(@DbName(), "Sessions By Timeslot", sessiondoc.getColumnValue("UNID"), 2);
+if(@IsError(out)){
+	return "Not yet scheduled";
+}else{
+	return out;
+}}]]></xp:this.value>
+					</xp:text>
+					<p>
+						<xp:link escape="true" text="View Details..." id="link2"
+							styleClass="btn">
+							<xp:this.value><![CDATA[#{javascript:getDbPath() + "/session.xsp?action=openDocument&documentId=" + sessiondoc.getColumnValue("UNID");}]]></xp:this.value>
+						</xp:link>
+						<xp:div styleClass="btn-group">
+							<xp:this.rendered><![CDATA[#{javascript:context.getUser().getRoles().contains("[Admin]")}]]></xp:this.rendered>
+							<button class="btn">Admin</button>
+							<button class="btn dropdown-toggle" data-toggle="dropdown">
+								<span class="caret"></span>
+							</button>
+							<ul class="dropdown-menu">
+								<xp:panel tagName="li" id="approvesession">
+									<xp:this.rendered><![CDATA[#{javascript:sessiondoc.getColumnValue("Status") != "Approved"}]]></xp:this.rendered>
+									<xp:link escape="true" text="Approve" id="link3">
+										<xp:eventHandler event="onclick" submit="true"
+											refreshMode="complete">
+											<xp:this.action><![CDATA[#{javascript:approveSession(sessiondoc.getDocument());}]]></xp:this.action>
+										</xp:eventHandler>
+									</xp:link>
+								</xp:panel>
+								<xp:panel tagName="li" id="rejectsession">
+									<xp:this.rendered><![CDATA[#{javascript:sessiondoc.getColumnValue("Status") != "Unapproved"}]]></xp:this.rendered>
+									<xp:link escape="true" text="Reject" id="link4">
+										<xp:eventHandler event="onclick" submit="true"
+											refreshMode="complete">
+											<xp:this.action><![CDATA[#{javascript:rejectSession(sessiondoc.getDocument());}]]></xp:this.action>
+										</xp:eventHandler>
+									</xp:link>
+								</xp:panel>
+								<xp:panel tagName="li" id="publishsession">
+									<xp:this.rendered><![CDATA[#{javascript:sessiondoc.getColumnValue("Published") == "No"}]]></xp:this.rendered>
+									<xp:link escape="true" text="Publish" id="link5">
+										<xp:eventHandler event="onclick" submit="true"
+											refreshMode="complete">
+											<xp:this.action><![CDATA[#{javascript:publishSession(sessiondoc.getDocument());}]]></xp:this.action>
+										</xp:eventHandler>
+									</xp:link>
+								</xp:panel>
+								<xp:panel tagName="li" id="unpublishsession">
+									<xp:this.rendered><![CDATA[#{javascript:sessiondoc.getColumnValue("Published") == "Yes"}]]></xp:this.rendered>
+									<xp:link escape="true" text="Un-Publish" id="link6">
+										<xp:eventHandler event="onclick" submit="true"
+											refreshMode="complete">
+											<xp:this.action><![CDATA[#{javascript:unpublishSession(sessiondoc.getDocument());}]]></xp:this.action>
+										</xp:eventHandler>
+									</xp:link>
+								</xp:panel>
+							</ul>
+						</xp:div>
+					</p>
+				</xp:div>
+			</xp:repeat>
+
+		</div>
+	</div>
+</xp:view>

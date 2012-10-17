@@ -1,0 +1,324 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<xp:view xmlns:xp="http://www.ibm.com/xsp/core">
+	<xp:this.data>
+		<xp:dominoView var="view1" viewName="TimeSlots">
+			<xp:this.categoryFilter><![CDATA[#{javascript:if (context.getUrlParameter("filter") == ""){
+	return "1";
+}else{
+	return context.getUrlParameter("filter");
+}}]]></xp:this.categoryFilter>
+		</xp:dominoView>
+	</xp:this.data>
+	<xp:this.resources>
+		<xp:script src="/agenda.js" clientSide="true"></xp:script>
+		<xp:script src="/xpAgenda.jss" clientSide="false"></xp:script>
+	</xp:this.resources>
+
+	<div class="navbar">
+		<div class="navbar-inner">
+			<a class="brand" href="#">Agenda</a>
+			<ul class="nav">
+				<xp:panel tagName="li">
+					<xp:this.styleClass><![CDATA[#{javascript:if (context.getUrlParameter("filter") == "" || context.getUrlParameter("filter") == "1"){
+	return "active";
+}}]]></xp:this.styleClass>
+					<xp:link escape="true" text="Day 1" id="day1" value="/agenda.xsp">
+						<xp:this.parameters>
+							<xp:parameter name="filter" value="1"></xp:parameter>
+						</xp:this.parameters>
+					</xp:link>
+				</xp:panel>
+				<xp:panel tagName="li">
+					<xp:this.styleClass><![CDATA[#{javascript:if (context.getUrlParameter("filter") == "2"){
+	return "active";
+}}]]></xp:this.styleClass>
+					<xp:this.rendered><![CDATA[#{javascript:getControlPanelFieldInteger("AgendaDays") > 1}]]></xp:this.rendered>
+					<xp:link escape="true" text="Day 2" id="link7" value="/agenda.xsp">
+						<xp:this.parameters>
+							<xp:parameter name="filter" value="2"></xp:parameter>
+						</xp:this.parameters>
+					</xp:link>
+				</xp:panel>
+				<xp:panel tagName="li">
+					<xp:this.styleClass><![CDATA[#{javascript:if (context.getUrlParameter("filter") == "3"){
+	return "active";
+}}]]></xp:this.styleClass>
+					<xp:this.rendered><![CDATA[#{javascript:getControlPanelFieldInteger("AgendaDays") > 2}]]></xp:this.rendered>
+					<xp:link escape="true" text="Day 3" id="link1" value="/agenda.xsp">
+						<xp:this.parameters>
+							<xp:parameter name="filter" value="3"></xp:parameter>
+						</xp:this.parameters>
+					</xp:link>
+				</xp:panel>
+				<xp:panel tagName="li">
+					<xp:this.styleClass><![CDATA[#{javascript:if (context.getUrlParameter("filter") == "4"){
+	return "active";
+}}]]></xp:this.styleClass>
+					<xp:this.rendered><![CDATA[#{javascript:getControlPanelFieldInteger("AgendaDays") > 3}]]></xp:this.rendered>
+					<xp:link escape="true" text="Day 4" id="link2" value="/agenda.xsp">
+						<xp:this.parameters>
+							<xp:parameter name="filter" value="4"></xp:parameter>
+						</xp:this.parameters>
+					</xp:link>
+				</xp:panel>
+				<xp:panel tagName="li">
+					<xp:this.styleClass><![CDATA[#{javascript:if (context.getUrlParameter("filter") == "5"){
+	return "active";
+}}]]></xp:this.styleClass>
+					<xp:this.rendered><![CDATA[#{javascript:getControlPanelFieldInteger("AgendaDays") > 4}]]></xp:this.rendered>
+					<xp:link escape="true" text="Day 5" id="link3" value="/agenda.xsp">
+						<xp:this.parameters>
+							<xp:parameter name="filter" value="5"></xp:parameter>
+						</xp:this.parameters>
+					</xp:link>
+				</xp:panel>
+			</ul>
+		</div>
+	</div>
+
+	<xp:panel>
+		<xp:this.rendered><![CDATA[#{javascript:context.getUser().getRoles().contains("[Admin]")}]]></xp:this.rendered>
+		<a href="#mymodal" role="button" class="btn" data-toggle="modal">
+			Add New
+			Timeslot
+		</a>
+	</xp:panel>
+
+	<xp:link id="icslink" text="Add to calendar..." value="/agendaics.xsp" style="float: right;">
+		<i class="icon-calendar"></i>
+	</xp:link>
+
+	<xp:table id="timeslotview" style="width:100%" styleClass="table">
+		<thead>
+			<tr>
+				<td></td>
+				<xp:text tagName="th" id="computedField1" escape="false">
+					<xp:this.value><![CDATA[#{javascript:"Room 1"}]]></xp:this.value>
+				</xp:text>
+				<xp:text tagName="th" id="computedField2" escape="false">
+					<xp:this.value><![CDATA[#{javascript:"Room 2"}]]></xp:this.value>
+					<xp:this.rendered><![CDATA[#{javascript:getControlPanelFieldInteger("AgendaRooms") > 1}]]></xp:this.rendered>
+				</xp:text>
+				<xp:text tagName="th" id="computedField3" escape="false">
+					<xp:this.rendered><![CDATA[#{javascript:getControlPanelFieldInteger("AgendaRooms") > 2}]]></xp:this.rendered>
+					<xp:this.value><![CDATA[#{javascript:"Room 3"}]]></xp:this.value>
+				</xp:text>
+				<xp:text tagName="th" id="computedField4" escape="false">
+					<xp:this.value><![CDATA[#{javascript:"Room 4"}]]></xp:this.value>
+					<xp:this.rendered><![CDATA[#{javascript:getControlPanelFieldInteger("AgendaRooms") > 3}]]></xp:this.rendered>
+				</xp:text>
+				<xp:text tagName="th" id="computedField5" escape="false">
+					<xp:this.value><![CDATA[#{javascript:"Room 5"}]]></xp:this.value>
+					<xp:this.rendered><![CDATA[#{javascript:getControlPanelFieldInteger("AgendaRooms") > 4}]]></xp:this.rendered>
+				</xp:text>
+			</tr>
+		</thead>
+		<tbody>
+			<xp:repeat id="repeat1" rows="100" value="#{view1}" var="timeslot"
+				indexVar="timeslotindex" disableOutputTag="true">
+				<xp:panel tagName="tr">
+					<xp:this.styleClass><![CDATA[#{javascript:if (timeslot.getColumnValue("Break") == "Yes"){
+	return "warning";
+}}]]></xp:this.styleClass>
+					<td>
+						<xp:text tagName="span" styleClass="badge badge-info"
+							value="#{timeslot.StartTime}">
+						</xp:text>
+						<br />
+						<br />
+						<xp:button value="Edit..." id="button1" styleClass="btn">
+							<xp:this.rendered><![CDATA[#{javascript:context.getUser().getRoles().contains("[Admin]")}]]></xp:this.rendered>
+							<xp:eventHandler event="onclick" submit="true"
+								refreshMode="complete">
+								<xp:this.action>
+									<xp:openPage name="/agenda.xsp" target="editDocument">
+										<xp:this.documentId><![CDATA[#{javascript:timeslot.getColumnValue("UNID")}]]></xp:this.documentId>
+									</xp:openPage>
+								</xp:this.action>
+							</xp:eventHandler>
+						</xp:button>
+					</td>
+					<xp:panel tagName="td" id="break" style="text-align: center;">
+						<xp:this.rendered><![CDATA[#{javascript:timeslot.getColumnValue("Break") == "Yes"}]]></xp:this.rendered>
+						<h2>Break</h2>
+						<xp:this.attrs>
+							<xp:attr name="colspan" value="5"></xp:attr>
+						</xp:this.attrs>
+					</xp:panel>
+					<xp:text tagName="td" id="session1" escape="false">
+						<xp:this.value><![CDATA[#{javascript:getSessionDetails(timeslot.getColumnValue("Session1"));}]]></xp:this.value>
+						<xp:this.rendered><![CDATA[#{javascript:timeslot.getColumnValue("Break") != "Yes"}]]></xp:this.rendered>
+					</xp:text>
+					<xp:text tagName="td" id="session2" escape="false">
+						<xp:this.value><![CDATA[#{javascript:getSessionDetails(timeslot.getColumnValue("Session2"));}]]></xp:this.value>
+						<xp:this.rendered><![CDATA[#{javascript:timeslot.getColumnValue("Break") != "Yes" && getControlPanelFieldInteger("AgendaRooms") > 1}]]></xp:this.rendered>
+					</xp:text>
+					<xp:text tagName="td" id="session3" escape="false">
+						<xp:this.value><![CDATA[#{javascript:getSessionDetails(timeslot.getColumnValue("Session3"));}]]></xp:this.value>
+						<xp:this.rendered><![CDATA[#{javascript:timeslot.getColumnValue("Break") != "Yes" && getControlPanelFieldInteger("AgendaRooms") > 2}]]></xp:this.rendered>
+					</xp:text>
+					<xp:text tagName="td" id="session4" escape="false">
+						<xp:this.value><![CDATA[#{javascript:getSessionDetails(timeslot.getColumnValue("Session4"));}]]></xp:this.value>
+						<xp:this.rendered><![CDATA[#{javascript:timeslot.getColumnValue("Break") != "Yes" && getControlPanelFieldInteger("AgendaRooms") > 3}]]></xp:this.rendered>
+					</xp:text>
+					<xp:text tagName="td" id="session5" escape="false">
+						<xp:this.value><![CDATA[#{javascript:getSessionDetails(timeslot.getColumnValue("Session5"));}]]></xp:this.value>
+						<xp:this.rendered><![CDATA[#{javascript:timeslot.getColumnValue("Break") != "Yes" && getControlPanelFieldInteger("AgendaRooms") > 4}]]></xp:this.rendered>
+					</xp:text>
+
+				</xp:panel>
+			</xp:repeat>
+		</tbody>
+	</xp:table>
+
+	<xp:panel id="timeslotpanel">
+		<xp:this.data>
+			<xp:dominoDocument var="document1" formName="TimeSlot"
+				computeWithForm="both">
+			</xp:dominoDocument>
+		</xp:this.data>
+		<div id="mymodal" class="modal hide fade">
+			<div class="modal-header">
+				<button type="button" class="close" data-dismiss="modal"
+					aria-hidden="true">
+				</button>
+				<h3>Edit Timeslot</h3>
+			</div>
+			<div class="modal-body">
+				<xp:table>
+					<xp:tr>
+						<xp:td>
+							<xp:label value="Day:" id="date_Label1" for="date1">
+							</xp:label>
+						</xp:td>
+						<xp:td>
+							<xp:comboBox value="#{document1.Date}" id="date1">
+								<xp:selectItems>
+									<xp:this.value><![CDATA[#{javascript:var list = ["1", "2", "3", "4", "5"];
+return @Subset(list, getControlPanelFieldInteger("AgendaDays"));}]]></xp:this.value>
+								</xp:selectItems>
+							</xp:comboBox>
+						</xp:td>
+					</xp:tr>
+					<xp:tr>
+						<xp:td>
+							<xp:label value="Start time (hh:mm):" id="startTime_Label1"
+								for="startTime1">
+							</xp:label>
+						</xp:td>
+						<xp:td>
+							<xp:inputText value="#{document1.StartTime}" id="startTime1"
+								styleClass="timepicker" style="width:80px">
+							</xp:inputText>
+						</xp:td>
+					</xp:tr>
+					<xp:tr>
+						<xp:td>
+							<xp:label value="Session1:" id="session1_Label1" for="session11">
+							</xp:label>
+						</xp:td>
+						<xp:td>
+							<xp:comboBox value="#{document1.Session1}" id="session11">
+								<xp:selectItem itemLabel="Select a session"
+									itemValue="">
+								</xp:selectItem>
+								<xp:selectItems>
+									<xp:this.value><![CDATA[#{javascript:getSessionList();}]]></xp:this.value>
+								</xp:selectItems>
+							</xp:comboBox>
+						</xp:td>
+					</xp:tr>
+					<xp:tr>
+						<xp:this.rendered><![CDATA[#{javascript: getControlPanelFieldInteger("AgendaRooms") > 1 }]]></xp:this.rendered>
+						<xp:td>
+							<xp:label value="Session2:" id="session2_Label1" for="session21">
+							</xp:label>
+						</xp:td>
+						<xp:td>
+							<xp:comboBox value="#{document1.Session2}" id="session21">
+								<xp:selectItem itemLabel="Select a session"
+									itemValue=""></xp:selectItem>
+								<xp:selectItems>
+									<xp:this.value><![CDATA[#{javascript:getSessionList();}]]></xp:this.value>
+								</xp:selectItems>
+							</xp:comboBox>
+						</xp:td>
+					</xp:tr>
+					<xp:tr>
+						<xp:this.rendered><![CDATA[#{javascript: getControlPanelFieldInteger("AgendaRooms") > 2 }]]></xp:this.rendered>
+						<xp:td>
+							<xp:label value="Session3:" id="session3_Label1" for="session31">
+							</xp:label>
+						</xp:td>
+						<xp:td>
+							<xp:comboBox value="#{document1.Session3}" id="session31">
+								<xp:selectItem itemLabel="Select a session"
+									itemValue=""></xp:selectItem>
+								<xp:selectItems>
+									<xp:this.value><![CDATA[#{javascript:getSessionList();}]]></xp:this.value>
+								</xp:selectItems>
+							</xp:comboBox>
+						</xp:td>
+					</xp:tr>
+					<xp:tr>
+						<xp:this.rendered><![CDATA[#{javascript: getControlPanelFieldInteger("AgendaRooms") > 3 }]]></xp:this.rendered>
+						<xp:td>
+							<xp:label value="Session4:" id="session4_Label1" for="session41">
+							</xp:label>
+						</xp:td>
+						<xp:td>
+							<xp:comboBox value="#{document1.Session4}" id="session41">
+								<xp:selectItem itemLabel="Select a session"
+									itemValue=""></xp:selectItem>
+								<xp:selectItems>
+									<xp:this.value><![CDATA[#{javascript:getSessionList();}]]></xp:this.value>
+								</xp:selectItems>
+							</xp:comboBox>
+						</xp:td>
+					</xp:tr>
+					<xp:tr>
+						<xp:this.rendered><![CDATA[#{javascript: getControlPanelFieldInteger("AgendaRooms") > 4 }]]></xp:this.rendered>
+						<xp:td>
+							<xp:label value="Session5:" id="session5_Label1" for="session51">
+							</xp:label>
+						</xp:td>
+						<xp:td>
+							<xp:comboBox value="#{document1.Session5}" id="session51">
+								<xp:selectItem itemLabel="Select a session"
+									itemValue=""></xp:selectItem>
+								<xp:selectItems>
+									<xp:this.value><![CDATA[#{javascript:getSessionList();}]]></xp:this.value>
+								</xp:selectItems>
+							</xp:comboBox>
+						</xp:td>
+					</xp:tr>
+					<xp:tr>
+						<xp:td>
+							<xp:label value="Break:" id="break_Label1" for="break1">
+							</xp:label>
+						</xp:td>
+						<xp:td>
+
+							<xp:checkBox id="checkBox1" value="#{document1.Break}"
+								checkedValue="Yes" uncheckedValue="No"></xp:checkBox>
+						</xp:td>
+					</xp:tr>
+				</xp:table>
+			</div>
+			<div class="modal-footer">
+				<xp:button value="OK" id="button2" styleClass="btn btn-primary">
+					<xp:eventHandler event="onclick" submit="true"
+						refreshMode="complete">
+						<xp:this.action>
+							<xp:actionGroup>
+								<xp:saveDocument var="document1"></xp:saveDocument>
+								<xp:openPage name="/agenda.xsp"></xp:openPage>
+							</xp:actionGroup>
+						</xp:this.action>
+					</xp:eventHandler>
+				</xp:button>
+			</div>
+		</div>
+	</xp:panel>
+
+</xp:view>

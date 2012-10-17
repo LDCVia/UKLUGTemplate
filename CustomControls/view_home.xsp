@@ -1,0 +1,60 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<xp:view xmlns:xp="http://www.ibm.com/xsp/core">
+
+
+	<xp:this.data>
+		<xp:dominoView var="view1" viewName="Home Pages"></xp:dominoView>
+	</xp:this.data>
+	<xp:this.resources>
+		<xp:script src="/faqs.js" clientSide="true"></xp:script>
+	</xp:this.resources>
+
+	<div class="span3 bs-docs-sidebar">
+
+		<ul class="nav nav-list bs-docs-sidenav affix">
+			<xp:repeat id="repeat1" rows="999" value="#{view1}" var="homepage"
+				indexVar="homepageindex" disableOutputTag="true">
+				<li>
+					<xp:panel id="homepage" tagName="a">
+						<xp:this.attrs>
+							<xp:attr name="href">
+								<xp:this.value><![CDATA[#{javascript:var text = homepage.getColumnValue("Title");
+return "#" + @ReplaceSubstring(text, " ", "_");}]]></xp:this.value>
+							</xp:attr>
+						</xp:this.attrs>
+						<i class="icon-chevron-right"></i>
+						<xp:text value="#{homepage.Title}" id="titletext">
+						</xp:text>
+					</xp:panel>
+				</li>
+			</xp:repeat>
+		</ul>
+	</div>
+
+	<div class="span9">
+		<xp:div>
+			<xp:this.rendered><![CDATA[#{javascript:context.getUser().getRoles().contains("[Admin]");}]]></xp:this.rendered>
+			<xp:link escape="true" id="link1" text="New Section..." value="/homepage.xsp"
+				styleClass="btn btn-primary btn-large">
+			</xp:link>
+		</xp:div>
+
+		<xp:repeat id="repeat2" rows="999" value="#{view1}" var="body"
+			indexVar="bodyindex" disableOutputTag="true">
+			<xp:panel id="bodypanel" tagName="div">
+				<xp:text escape="false">
+					<xp:this.value><![CDATA[#{javascript:var out = "<section id=\"" + @ReplaceSubstring(body.getColumnValue("Title"), " ", "_") + "\">";
+out += "<div class=\"page-header\"><h1>" + body.getColumnValue("Title") + "</h1>";
+out += "<p>" + body.getColumnValue("Body") + "</p>";
+if (context.getUser().getRoles().contains("[Admin]")){
+	out += "<p><a href=\"homepage.xsp?action=openDocument&documentId=" + body.getColumnValue("UNID") + "\" class=\"btn\">Edit...</a></p>";
+}
+out += "</section>"
+return out;}]]></xp:this.value>
+				</xp:text>
+			</xp:panel>
+		</xp:repeat>
+
+	</div>
+
+</xp:view>

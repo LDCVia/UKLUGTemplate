@@ -1,0 +1,18 @@
+<?xml version='1.0' encoding='utf-8'?>
+<!DOCTYPE form SYSTEM 'xmlschemas/domino_8_5_3.dtd'>
+<form name='$$ViewTemplateDefault' xmlns='http://www.lotus.com/dxl' version='8.5'
+ maintenanceversion='3.0' replicaid='80257A6A002CAD3E' publicaccess='false'
+ designerversion='8.5.3' renderpassthrough='true'>
+<noteinfo noteid='31a' unid='00907E0BDD9E20DB80257A9500424860' sequence='2'>
+<created><datetime dst='true'>20121012T130359,04+01</datetime></created>
+<modified><datetime dst='true'>20121012T132647,82+01</datetime></modified>
+<revised><datetime dst='true'>20121012T132647,81+01</datetime></revised>
+<lastaccessed><datetime dst='true'>20121012T132647,82+01</datetime></lastaccessed>
+<addedtofile><datetime dst='true'>20121012T132647,79+01</datetime></addedtofile></noteinfo>
+<updatedby><name>CN=Matt White/O=Exhilarate</name></updatedby>
+<wassignedby><name>CN=Matt White/O=Exhilarate</name></wassignedby>
+<body><richtext>
+<pardef id='1'/>
+<par def='1'>Naughty Naughty!</par></richtext></body>
+<item name='$$ScriptName' summary='false' sign='true'><text>$$ViewTemplateDefault</text></item></form>
+

@@ -1,0 +1,86 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<xp:view xmlns:xp="http://www.ibm.com/xsp/core" rendered="false">
+	This page creates a file agenda.ics which allows the sessions to be
+	added to people's calendars
+	<xp:this.afterRenderResponse><![CDATA[#{javascript://try {
+	var exCon = facesContext.getExternalContext();
+	var writer = facesContext.getResponseWriter();
+	var response = exCon.getResponse();
+
+	response.setContentType("text/calendar");
+	response.setHeader("Cache-Control", "no-cache");
+	response.setHeader("Content-disposition", "attachment; filename=agenda.ics");
+	
+	var startdatevector:java.util.Vector = getControlPanelFieldArray("StartDate");
+	var startdate:NotesDateTime = startdatevector.elementAt(0);
+	for (var i=0; i<getControlPanelFieldInteger("AgendaDays"); i++){
+		startdate.adjustDay(i);
+		viewScope.put("day" + (i + 1), startdate.toJavaDate());
+	}
+		
+	var out = "BEGIN:VCALENDAR\n";
+	out += "CALSCALE:GREGORIAN\n";
+	out += "X-WR-CALNAME;VALUE=TEXT:" + database.getTitle() + "\n";
+	out += "X-WR-TIMEZONE;VALUE=TEXT:Europe/London\n";
+	out += "METHOD:PUBLISH\n";
+	out += "PRODID:-//hacksw/handcal//NONSGML v1.0//EN\n";
+	out += "VERSION:2.0\n";
+	var timeslotsview:NotesView = database.getView("Timeslots");
+	var timeslots:NotesViewEntryCollection = timeslotsview.getAllEntries();
+	var timeslot:NotesViewEntry = timeslots.getFirstEntry();
+	while(timeslot != null){
+		var nextTimeslot:NotesViewEntry = timeslots.getNextEntry(timeslot);
+		if (!timeslot.isCategory()){
+			var timeslotdoc:NotesDocument = timeslot.getDocument();
+			if (timeslotdoc.getItemValueString("Break") != "Yes"){
+				for (var i=1; i<=5; i++){
+					var sessionid = timeslotdoc.getItemValueString("Session" + i);
+					if (sessionid != ""){
+						var sessiondoc:NotesDocument = database.getDocumentByUNID(sessionid);
+						if (sessiondoc.getItemValueString("Title") != ""){
+							var tempout = "BEGIN:VEVENT\n";
+							tempout += "SEQUENCE:1\n";
+							tempout += "DTSTART;TZID=Europe/London:";
+							tempout += DateConverter.dateToString(viewScope.get("day" + timeslot.getColumnValues().elementAt(0)), "yyyyMMdd");
+							tempout += "T" + @ReplaceSubstring(timeslot.getColumnValues().elementAt(1), ":", "") + "00\n";
+							
+							tempout += "SUMMARY:" + sessiondoc.getItemValueString("Title") + " (Room " + i + ")\n";
+							tempout += "UID:" + sessionid + "\n";
+				
+							var endtime = "";
+							if (nextTimeslot == null || nextTimeslot.isCategory() || nextTimeslot.getColumnValues().elementAt(0) != timeslot.getColumnValues().elementAt(0)){
+								//Assume the last session of the day is one hour long
+								var endtime = parseInt(@Left(timeslot.getColumnValues().elementAt(1), 2), 10) + 1;
+								endtime = @Right("0" + @Text(endtime), 2) + @Right(timeslot.getColumnValues().elementAt(1), 2);
+							}else{
+								endtime = @ReplaceSubstring(nextTimeslot.getColumnValues().elementAt(1), ":", "");
+							}
+							tempout += "DTEND;TZID=Europe/London:";
+							tempout += DateConverter.dateToString(viewScope.get("day" + timeslot.getColumnValues().elementAt(0)), "yyyyMMdd");
+							tempout += "T" + endtime + "00\n";
+				
+							var now = DateConverter.dateToString(new java.util.Date(), "yyyyMMdd");
+							now += "T" + DateConverter.dateToString(new java.util.Date(), "HHmm") + "00";
+							tempout += "LAST-MODIFIED:" + now + "\n";
+							tempout += "END:VEVENT\n";
+							out += tempout;
+						}
+					}
+				}
+			}
+		}
+		timeslot.recycle();
+		timeslot = nextTimeslot;
+	}
+	out += "END:VCALENDAR";
+	writer.write(out);
+	writer.endDocument();
+	facesContext.responseComplete();
+//}catch(e){
+//	_dump(e);
+//}}]]></xp:this.afterRenderResponse>
+
+	<xp:this.resources>
+		<xp:script src="/xpCommon.jss" clientSide="false"></xp:script>
+	</xp:this.resources>
+</xp:view>

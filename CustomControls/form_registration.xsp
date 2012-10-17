@@ -1,0 +1,133 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<xp:view xmlns:xp="http://www.ibm.com/xsp/core" createForm="true">
+	<xp:this.resources>
+		<xp:script src="/xpRegistration.jss" clientSide="false"></xp:script>
+	</xp:this.resources>
+	<div class="row-fluid" style="padding-top: 10px;">
+		<div class="well">
+			<h1>Registration</h1>
+		</div>
+		<xp:panel id="newreg" styleClass="form-horizontal">
+			<xp:this.data>
+				<xp:dominoDocument var="document1" formName="Attendee"
+					computeWithForm="onsave">
+				</xp:dominoDocument>
+			</xp:this.data>
+			<div class="control-group">
+				<xp:label styleClass="control-label" for="inputFirstName"
+					value="First Name">
+				</xp:label>
+				<div class="controls">
+					<xp:inputText id="inputFirstName" value="#{document1.FirstName}">
+						<xp:this.validators>
+							<xp:validateRequired message="Please enter your first name">
+							</xp:validateRequired>
+						</xp:this.validators>
+						<xp:this.attrs>
+							<xp:attr name="placeholder" value="Fred">
+							</xp:attr>
+						</xp:this.attrs>
+					</xp:inputText>
+					<xp:message id="message1" for="inputFirstName"
+						styleClass="alert alert-error">
+					</xp:message>
+				</div>
+			</div>
+			<div class="control-group">
+				<xp:label styleClass="control-label" for="inputLastName"
+					value="Last Name">
+				</xp:label>
+				<div class="controls">
+					<xp:inputText id="inputLastName" value="#{document1.LastName}">
+						<xp:this.validators>
+							<xp:validateRequired message="Please enter your last name">
+							</xp:validateRequired>
+						</xp:this.validators>
+						<xp:this.attrs>
+							<xp:attr name="placeholder" value="Bloggs">
+							</xp:attr>
+						</xp:this.attrs>
+					</xp:inputText>
+					<xp:message id="message2" for="inputLastName"
+						styleClass="alert alert-error">
+					</xp:message>
+				</div>
+			</div>
+			<div class="control-group">
+				<xp:label styleClass="control-label" for="inputEmail"
+					value="Email">
+				</xp:label>
+				<div class="controls">
+					<xp:inputText id="inputEmail" value="#{document1.Email}" type="email">
+						<xp:this.validators>
+							<xp:validateRequired message="Please enter your email address">
+							</xp:validateRequired>
+							<xp:validateConstraint message="Please enter a valid email address">
+								<xp:this.regex><![CDATA[[a-z0-9!#$%&'*+/=?^_`{|}~-]+(?:\.[a-z0-9!#$%&'*+/=?^_`{|}~-]+)*@(?:[a-z0-9](?:[a-z0-9-]*[a-z0-9])?\.)+(?:[A-Z]{2}|com|org|net|gov|mil|biz|info|mobi|name|aero|jobs|museum)\b]]></xp:this.regex>
+							</xp:validateConstraint>
+							<xp:validateExpression
+								message="That email address has already been registered">
+								<xp:this.expression><![CDATA[#{javascript:var db:NotesDatabase = sessionAsSigner.getDatabase(database.getServer(), getControlPanelFieldString("RegistrationNAB"));
+var vwAll:NotesView = db.getView("($Users)");
+var person:NotesDocument = vwAll.getDocumentByKey(getComponent("inputEmail").getSubmittedValue());
+if (person != null){
+	person.recycle();
+	return false;
+}
+vwAll.recycle();
+db.recycle();
+return true;}]]></xp:this.expression>
+							</xp:validateExpression>
+						</xp:this.validators>
+						<xp:this.attrs>
+							<xp:attr name="placeholder" value="fred@company.com">
+							</xp:attr>
+						</xp:this.attrs>
+					</xp:inputText>
+					<xp:message id="message3" for="inputEmail" styleClass="alert alert-error">
+					</xp:message>
+				</div>
+			</div>
+			<div class="control-group">
+				<xp:label styleClass="control-label" for="inputPassword"
+					value="Password">
+				</xp:label>
+				<div class="controls">
+					<xp:inputText id="inputPassword" value="#{document1.Password}"
+						password="true">
+						<xp:this.validators>
+							<xp:validateRequired message="Please enter the password">
+							</xp:validateRequired>
+						</xp:this.validators>
+					</xp:inputText>
+					<xp:message id="message4" for="inputPassword"
+						styleClass="alert alert-error">
+					</xp:message>
+				</div>
+			</div>
+			<div class='control-group'>
+				<div class="controls">
+					<xp:button value="Submit" id="button1" styleClass="btn btn-primary">
+						<xp:eventHandler event="onclick" submit="true"
+							refreshMode="complete">
+							<xp:this.action>
+								<xp:actionGroup>
+
+									<xp:executeScript>
+										<xp:this.script><![CDATA[#{javascript:registerNewUser(getComponent("inputFirstName").getValue(), 
+				getComponent("inputLastName").getValue(), 
+				getComponent("inputEmail").getValue(), 
+				getComponent("inputPassword").getValue()
+	);}]]></xp:this.script>
+									</xp:executeScript>
+									<xp:saveDocument var="document1"></xp:saveDocument>
+									<xp:openPage name="/home.xsp"></xp:openPage>
+								</xp:actionGroup>
+							</xp:this.action>
+						</xp:eventHandler>
+					</xp:button>
+				</div>
+			</div>
+		</xp:panel>
+	</div>
+</xp:view>

@@ -1,0 +1,152 @@
+<?xml version='1.0' encoding='utf-8'?>
+<!DOCTYPE form SYSTEM 'xmlschemas/domino_8_5_3.dtd'>
+<form name='$$LoginUserForm' xmlns='http://www.lotus.com/dxl' version='8.5'
+ maintenanceversion='3.0' replicaid='80257A6A002CAD3E' publicaccess='true'
+ designerversion='8.5.3' renderpassthrough='true'>
+<noteinfo noteid='1ae' unid='FA5BAAC9F8C9679180257A6A003269F0' sequence='21'>
+<created><datetime dst='true'>20120830T101039,20+01</datetime></created>
+<modified><datetime dst='true'>20121015T141849,26+01</datetime></modified>
+<revised><datetime dst='true'>20121015T141849,25+01</datetime></revised>
+<lastaccessed><datetime dst='true'>20121015T141849,26+01</datetime></lastaccessed>
+<addedtofile><datetime dst='true'>20120830T101039,22+01</datetime></addedtofile></noteinfo>
+<updatedby><name>CN=Matt White/O=Exhilarate</name></updatedby>
+<wassignedby><name>CN=Matt White/O=Exhilarate</name></wassignedby><code event='windowtitle'><formula
+>"Login | " + @DbTitle</formula></code><code event='htmlhead'><formula>"&lt;link rel=\"stylesheet\" type=\"text/css\" href=\"/" + @WebDbName + "/bootstrap.min.css\"&gt;" + @NewLine +
+"&lt;link rel=\"stylesheet\" type=\"text/css\" href=\"/" + @WebDbName + "/custom.css\"&gt;" + @NewLine +
+"&lt;script type=\"text/javascript\" src=\"/" + @WebDbName + "/jquery-1.8.0.min.js\"&gt;&lt;/script&gt;" + @NewLine +
+"&lt;script type=\"text/javascript\" src=\"/" + @WebDbName + "/bootstrap.min.js\"&gt;&lt;/script&gt;" + @NewLine +
+"&lt;style&gt;" + @NewLine +
+"input, textarea, select, .uneditable-input {height: 25px !important;}" + @NewLine +
+"input[type=\"submit\"]{height: 40px !important;}" + @NewLine +
+"&lt;/style&gt;"</formula></code>
+<body><richtext>
+<pardef id='1'/>
+<par def='1'><run html='true'><font size='9pt'/>&lt;div class="navbar navbar-inverse navbar-fixed-top"&gt;</run></par>
+<par def='1'><run html='true'><font size='9pt'/>	&lt;div class="navbar-inner"&gt;</run></par>
+<par def='1'><run html='true'><font size='9pt'/>		&lt;div class="container-fluid"&gt;</run></par>
+<par def='1'><run html='true'><font size='9pt'/>			&lt;a class="btn btn-navbar" data-target=".nav-collapse" data-toggle="collapse"&gt;</run></par>
+<par def='1'><run html='true'><font size='9pt'/>				&lt;span class="icon-bar"&gt;&lt;/span&gt;</run></par>
+<par def='1'><run html='true'><font size='9pt'/>				&lt;span class="icon-bar"&gt;&lt;/span&gt;</run></par>
+<par def='1'><run html='true'><font size='9pt'/>				&lt;span class="icon-bar"&gt;&lt;/span&gt;</run></par>
+<par def='1'><run html='true'><font size='9pt'/>			&lt;/a&gt;</run></par>
+<par def='1'><run html='true'><font size='9pt'/>			&lt;a href="</run><run
+ html='true'><computedtext><code event='value'><formula>"/" + @WebDbName</formula></code></computedtext></run><run
+ html='true'><font size='9pt'/>" class="brand"&gt;</run><run html='true'><computedtext
+><code event='value'><formula>@DbTitle</formula></code></computedtext></run><run
+ html='true'><font size='9pt'/>&lt;/a&gt;</run></par>
+<par def='1'><run html='true'><font size='9pt'/>			&lt;div class="nav-collapse collapse"&gt;</run></par>
+<par def='1'><run html='true'><font size='9pt'/>				&lt;p class="navbar-text pull-right"&gt;</run></par>
+<par def='1'><run html='true'><font size='9pt'/>					&lt;a href="</run><run
+ html='true'><computedtext><code event='value'><formula>"/" + @WebDbName + "?open&amp;login=true"</formula></code></computedtext></run><run
+ html='true'><font size='9pt'/>" class="navbar-link"&gt;Login&lt;/a&gt;</run></par>
+<par def='1'><run html='true'><font size='9pt'/>				&lt;/p&gt;</run></par>
+<par def='1'><run html='true'><font size='9pt'/>				&lt;ul class="nav"&gt;</run></par>
+<par def='1'><run html='true'><font size='9pt'/>					&lt;li&gt;<break/>						&lt;a href="</run><run
+ html='true'><computedtext><code event='value'><formula>"/" + @WebDbName</formula></code></computedtext></run><run
+ html='true'><font size='9pt'/>"&gt;Home&lt;/a&gt;</run></par>
+<par def='1'><run html='true'><font size='9pt'/>					&lt;/li&gt;<break/></run><run
+ html='true'><font size='9pt'/>				&lt;/ul&gt;</run></par>
+<par def='1'><run html='true'><font size='9pt'/>			&lt;/div&gt;</run></par>
+<par def='1'><run html='true'><font size='9pt'/>		&lt;/div&gt;</run></par>
+<par def='1'><run html='true'><font size='9pt'/>	&lt;/div&gt;</run></par>
+<par def='1'><run html='true'><font size='9pt'/>&lt;/div&gt;</run></par>
+<par def='1'><run html='true'><font size='9pt'/>&lt;div class="container-fluid"&gt;</run></par>
+<par def='1'><run html='true'><font size='9pt'/>	&lt;div class="row-fluid"&gt;</run></par>
+<par def='1'><run html='true'><font size='9pt'/></run></par>
+<par def='1'><run html='true'><font size='9pt'/></run><run html='true'><font
+ size='9pt'/><computedtext><code event='value'><formula>sDefault 		:= "&lt;div class=\"alert alert-info\"&gt;Please identify yourself:&lt;/div&gt;";
+sNotEnough	:= "&lt;div class=\"alert alert-error\"&gt;%1, you are not authorized to access %2." + @NewLine + @NewLine + "Please sign in with a name which has sufficient access rights:&lt;/div&gt;";
+sInvalid		:= "&lt;div class=\"alert alert-error\"&gt;You provided an invalid username or password." + @NewLine + @NewLine + "Please sign in again:&lt;/div&gt;";
+sExpired		:= "&lt;div class=\"alert alert-error\"&gt;Your login has expired. Please sign in again:&lt;/div&gt;";
+sOutOfSync	:= "&lt;div class=\"alert alert-error\"&gt;%1, your login has been invalidated due to a timing issue with the login servers." + @NewLine + @NewLine + "(The servers may need to have their clocks synchronized to resolve this.)" + @NewLine + @NewLine + "Please sign in again:&lt;/div&gt;";
+sLockedOrInvalid	:= "&lt;div class=\"alert alert-error\"&gt;You are locked out, or you have provided an invalid username or password." + @NewLine + @NewLine + "Please sign in again:&lt;/div&gt;";
+
+"---DNT---";
+
+User	:= @ProperCase(@Name([CN]; @UserName));
+URL	:= @Right(redirectTo; "/");
+URL	:= @If(@Contains(URL; "?"); @Left(URL; "?"); URL);
+
+List	:= User:URL;
+@For(n:=1; n&lt;=@Elements(List); n:=n+1;
+ sNotEnough := @ReplaceSubstring(sNotEnough; "%" + @Text(n); List[n]);
+ sOutOfSync := @ReplaceSubstring(sOutOfSync; "%" + @Text(n); List[n])
+);
+
+@If(	reasonType = "0"; sDefault;
+	reasonType = "1"; sNotEnough;
+	reasonType = "2"; sInvalid;
+	reasonType = "3"; sExpired;
+	reasonType = "4"; sOutOfSync;
+	reasonType = "5"; sLockedOrInvalid;
+	sDefault
+)</formula></code></computedtext></run><run><font size='9pt' color='teal'/></run></par>
+<pardef id='2' leftmargin='1in' tabs='L0.5000in L1in L1.5000in L2in L2.5000in L3in L3.5000in L4in'/>
+<par def='2'><run html='true'><font size='9pt'/></run></par>
+<par def='2'><run html='true'><font size='9pt'/>&lt;div id="loginform" class="well form-inline"&gt;</run></par>
+<par def='2'><run html='true'><font size='9pt'/>&lt;fieldset&gt;</run></par>
+<par def='2'><run html='true'><font size='9pt'/>&lt;div class="control-group"&gt;</run></par>
+<par def='1'><run html='true'><font size='9pt'/>&lt;label for="user-id"&gt;User name:&lt;/label&gt;</run></par>
+<par def='1'><run html='true'><font size='9pt'/>	&lt;div class="controls"&gt;</run></par>
+<par def='1'><run html='true'><font size='9pt'/>		</run><run html='true'><font
+ size='9pt'/><field defaultfocus='true' usenotesstyle='false' height='0.2500in'
+ width='1in' multiline='true' borderstyle='single' type='text' kind='editable'
+ name='Username' htmlid='user-id'/></run><run html='true'><font size='9pt'/></run></par>
+<par def='2'><run html='true'><font size='9pt'/>	&lt;/div&gt;</run></par>
+<par def='2'><run html='true'><font size='9pt'/>&lt;/div&gt;</run></par>
+<par def='2'><run html='true'><font size='9pt'/>&lt;div class="control-group"&gt;</run></par>
+<par def='2'><run html='true'><font size='9pt'/>&lt;label for="pw-id"&gt;Password:&lt;/label&gt;</run></par>
+<par def='2'><run html='true'><font size='9pt'/>	&lt;div class="controls"&gt;</run></par>
+<par def='2'><run html='true'><font size='9pt'/>		</run><run html='true'><font
+ size='9pt'/><field type='password' usenotesstyle='false' height='0.2500in'
+ width='1in' multiline='true' borderstyle='single' kind='editable' seal='true'
+ name='Password' htmlid='pw-id'/></run><run html='true'><font size='9pt'/></run></par>
+<par def='1'><run html='true'><font size='9pt'/>	&lt;/div&gt;</run></par>
+<par def='2'><run html='true'><font size='9pt'/>&lt;/div&gt;</run></par>
+<par def='2'><run html='true'><font size='9pt'/>&lt;/fieldset&gt;</run></par>
+<par def='2'><run html='true'><font size='9pt'/>&lt;input type="submit" value="Sign In" class="btn btn-large btn-primary" /&gt; </run></par>
+<par def='2'><run html='true'><font size='9pt'/>&lt;a href="</run><run html='true'><computedtext
+><code event='value'><formula>"/" + @WebDbName + "/forgottenpassword.xsp"</formula></code></computedtext></run><run
+ html='true'><font size='9pt'/>" class="btn btn-small"&gt;Forgotten Password...&lt;/a&gt;</run></par>
+<par def='2'><run html='true'><font size='9pt'/>&lt;!-- </run><button width='2in'
+ widthtype='maximum' maxlines='1' wraptext='true' bgcolor='system' htmlclass='btn'
+ extrahtmlattrs='type="button"'><font size='9pt'/>Sign In</button><run html='true'><font
+ size='9pt'/> --&gt;</run></par>
+<par def='2'><run html='true'><font size='9pt'/>&lt;/div&gt;</run></par>
+<pardef id='3' leftmargin='1in'/>
+<par def='3'><run html='true'><font size='9pt'/></run><run html='true'><font
+ size='9pt'/><field type='text' kind='editable' name='RedirectTo' extrahtmlattrs='type=hidden'><code
+ event='defaultvalue'><formula>"/"</formula></code></field></run><compositedata
+ type='98' prevtype='65402' nexttype='222' afterparcount='8' containertype='65418'
+ aftercontainercount='2' afterbegincount='4'>
+Yg4BAIQAAAAAAAAAAAA=
+</compositedata><run html='true'><font
+ size='9pt'/></run></par>
+<par def='1'><run html='true'><font size='9pt'/>	&lt;/div&gt;</run></par>
+<par def='1'><run html='true'><font size='9pt'/>	&lt;hr&gt;</run></par>
+<par def='1'><run html='true'><font size='9pt'/>&lt;/div&gt; </run></par>
+<par def='1'><run html='true'><font size='9pt'/></run></par>
+<pardef id='4' leftmargin='1in' hide='notes web'/>
+<par def='4'><run><font size='9pt' color='red'/>Hidden: </run><run><font size='9pt'
+ color='red'/><field type='text' kind='editable' name='$PublicAccess'><code
+ event='defaultvalue'><formula>"1"</formula></code></field></run><compositedata
+ type='98' prevtype='65418' nexttype='222' afterparcount='10' containertype='65418'
+ aftercontainercount='1' afterbegincount='3'>
+Yg4BAIQAAAAAAAAAAAA=
+</compositedata><run><font size='9pt'
+ color='red'/> </run><run><font size='9pt' color='red'/><field type='text'
+ kind='editable' name='ReasonType'><code event='defaultvalue'><formula>"0"</formula></code></field></run><compositedata
+ type='98' prevtype='65418' nexttype='222' afterparcount='19' containertype='65418'
+ aftercontainercount='1' afterbegincount='3'>
+Yg4BAIQAAAAAAAAAAAA=
+</compositedata><run><font size='9pt'/></run><run
+><font size='9pt' color='red'/><field type='text' kind='computedfordisplay'
+ name='$$HTMLTagAttributes'><code event='defaultvalue'><formula>"lang=\"en\""</formula></code></field></run><compositedata
+ type='98' prevtype='65418' nexttype='222' afterparcount='25' containertype='65418'
+ aftercontainercount='1' afterbegincount='3'>
+Yg4BAIQAAAAAAAAAAAA=
+</compositedata><run><font size='9pt'/></run></par>
+<pardef id='5' align='center' leftmargin='1in' hide='notes web'/>
+<par def='5'><run html='true'><font size='9pt'/></run></par></richtext></body>
+<item name='$$ScriptName' summary='false' sign='true'><text>login</text></item></form>
+

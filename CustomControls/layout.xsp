@@ -1,0 +1,98 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<xp:view xmlns:xp="http://www.ibm.com/xsp/core" pageTitle="${javascript:database.getTitle()}"
+	createForm="false" xmlns:xc="http://www.ibm.com/xsp/custom">
+	<xp:this.resources>
+		<xp:metaData name="charset" content="utf-8"></xp:metaData>
+		<xp:metaData name="viewport" content="width=device-width, initial-scale=1.0">
+		</xp:metaData>
+		<xp:styleSheet href="/custom.css"></xp:styleSheet>
+		<xp:styleSheet href="/bootstrap.min.css"></xp:styleSheet>
+		<xp:styleSheet href="/docs.css"></xp:styleSheet>
+		<xp:script src="/jquery-1.8.0.min.js" clientSide="true"></xp:script>
+		<xp:script src="/bootstrap.js" clientSide="true"></xp:script>
+		<xp:script src="/xpCommon.jss" clientSide="false"></xp:script>
+		<xp:script src="/common.js" clientSide="true"></xp:script>
+		<xp:script src="/jquery.masonry.min.js" clientSide="true"></xp:script>
+		<xp:script src="/jquery.timepicker.min.js" clientSide="true"></xp:script>
+		<xp:styleSheet href="/jquery.timepicker.css"></xp:styleSheet>
+		<xp:script src="/jquery.autogrow-textarea.js" clientSide="true">
+		</xp:script>
+	</xp:this.resources>
+	<!--
+		[if lt IE 9]> <script
+		src="http://html5shim.googlecode.com/svn/trunk/html5.js"></script>
+		<![endif]
+	-->
+	<div class="navbar navbar-inverse navbar-fixed-top">
+		<div class="navbar-inner">
+			<div class="container-fluid">
+				<a class="btn btn-navbar" data-toggle="collapse" data-target=".nav-collapse">
+					<span class="icon-bar"></span>
+					<span class="icon-bar"></span>
+					<span class="icon-bar"></span>
+				</a>
+				<xp:link id="homelink" styleClass="brand"
+					text="${javascript:database.getTitle()}" value="/home.xsp">
+				</xp:link>
+				<div class="nav-collapse collapse">
+					<p class="navbar-text pull-right">
+						<xp:link id="loginlink" text="Login" styleClass="navbar-link">
+							<xp:this.value><![CDATA[#{javascript:getDbPath() + "?opendatabase&login=true"}]]></xp:this.value>
+							<xp:this.rendered><![CDATA[#{javascript:@UserName() == "Anonymous"}]]></xp:this.rendered>
+						</xp:link>
+						<xp:link id="logoutlink" text="Logout" styleClass="navbar-link">
+							<xp:this.rendered><![CDATA[#{javascript:@UserName() != "Anonymous"}]]></xp:this.rendered>
+							<xp:this.value><![CDATA[#{javascript:getDbPath() + "?logout&redirectto=" + getDbPath()}]]></xp:this.value>
+						</xp:link>
+					</p>
+					<ul class="nav">
+						<xp:repeat var="rowData" indexVar="rowIndex"
+							disableOutputTag="true" id="topmenurepeat">
+							<xp:this.value><![CDATA[#{javascript:if (@UserName() == "Anonymous"){
+	return TOPMENUITEMS;
+}else{
+	return TOPMENUITEMSUSER;
+}}]]></xp:this.value>
+							<xp:panel tagName="li" id="menuitem">
+								<xp:this.styleClass><![CDATA[#{javascript:if (getCurrentXPage() == rowData.link){
+	return "active";
+}}]]></xp:this.styleClass>
+								<xp:this.rendered><![CDATA[#{javascript:if (rowData.controlpanelconfig != null){
+	if (getControlPanelFieldString(rowData.controlpanelconfig) == "Yes"){
+		return true;
+	}else{
+		return false;
+	}
+}else{
+	return true;
+}}]]></xp:this.rendered>
+								<xp:link id="menulink" text="#{javascript:rowData.title}"
+									value="#{javascript:rowData.link}">
+								</xp:link>
+							</xp:panel>
+						</xp:repeat>
+						<xp:panel tagName="li" id="adminlink">
+							<xp:this.styleClass><![CDATA[#{javascript:if (getCurrentXPage() == "/admin.xsp" || getCurrentXPage() == "/files.xsp" || getCurrentXPage() == "/attendees.xsp"){
+	return "active";
+}}]]></xp:this.styleClass>
+
+							<xp:this.rendered><![CDATA[#{javascript:context.getUser().getRoles().contains("[Admin]")}]]></xp:this.rendered>
+							<xp:link id="link1" text="Admin" value="/admin.xsp">
+							</xp:link>
+						</xp:panel>
+					</ul>
+				</div><!--/.nav-collapse -->
+			</div>
+		</div>
+	</div>
+
+	<div id="content" class="container-fluid">
+		<div class="row-fluid">
+			<xp:callback facetName="facet_1" id="callback1"></xp:callback>
+		</div><!--/row-->
+		<hr />
+		<footer>
+			<xc:layout_footer></xc:layout_footer>
+		</footer>
+	</div><!--/.fluid-container-->
+</xp:view>

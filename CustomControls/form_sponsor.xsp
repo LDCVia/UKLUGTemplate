@@ -1,0 +1,193 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<xp:view xmlns:xp="http://www.ibm.com/xsp/core">
+	<xp:this.resources>
+		<xp:script src="/jquery.autogrow-textarea.js" clientSide="true">
+		</xp:script>
+	</xp:this.resources>
+	<xp:this.data>
+		<xp:dominoDocument var="document1" formName="Sponsor"
+			computeWithForm="onsave">
+		</xp:dominoDocument>
+	</xp:this.data>
+	<xp:this.acl>
+		<xp:acl>
+			<xp:this.entries>
+				<xp:aclEntry type="ANONYMOUS" right="NOACCESS"
+					name="Anonymous" fullName="Anonymous">
+				</xp:aclEntry>
+				<xp:aclEntry type="DEFAULT" right="NOACCESS"></xp:aclEntry>
+				<xp:aclEntry type="ROLE" right="EDITOR">
+					<xp:this.name><![CDATA[[Admin]]]></xp:this.name>
+					<xp:this.fullName><![CDATA[[Admin]]]></xp:this.fullName>
+				</xp:aclEntry>
+			</xp:this.entries>
+		</xp:acl>
+	</xp:this.acl>
+	<div class="row-fluid" style="padding-top: 10px;">
+		<div class="well">
+			<div style="float: right">
+				<xp:button value="Edit" id="button2" styleClass="btn btn-primary">
+					<xp:this.rendered><![CDATA[#{javascript:(context.getUser().getRoles().contains("[Admin]") || @UserName() == document1.getItemValueString("CreatedBy")) && !document1.isEditable()}]]></xp:this.rendered>
+					<xp:eventHandler event="onclick" submit="true"
+						refreshMode="complete">
+						<xp:this.action>
+							<xp:openPage name="/sponsor.xsp" target="editDocument"
+								documentId="#{javascript:document1.getDocument().getUniversalID()}">
+							</xp:openPage>
+						</xp:this.action>
+					</xp:eventHandler>
+				</xp:button>
+				<xp:button value="Submit" id="button1" styleClass="btn btn-primary"
+					rendered="#{javascript:document1.isEditable()}">
+					<xp:eventHandler event="onclick" submit="true"
+						refreshMode="complete">
+						<xp:this.action>
+							<xp:actionGroup>
+								<xp:saveDocument var="document1"></xp:saveDocument>
+								<xp:openPage name="/sponsors.xsp"></xp:openPage>
+							</xp:actionGroup>
+						</xp:this.action>
+					</xp:eventHandler>
+				</xp:button>
+				&#160;
+				<xp:button id="button3" styleClass="btn">
+					<xp:this.value><![CDATA[#{javascript:if (document1.isEditable()){
+	return "Cancel";
+}else{
+	return "Close";
+}}]]></xp:this.value>
+					<xp:eventHandler event="onclick" submit="true"
+						refreshMode="complete">
+						<xp:this.action>
+							<xp:openPage name="/sponsors.xsp"></xp:openPage>
+						</xp:this.action>
+					</xp:eventHandler>
+				</xp:button>
+				&#160;
+				<xp:button value="Delete..." id="button4"
+					rendered="#{javascript:!document1.isEditable()}"
+					styleClass="btn btn-danger">
+					<xp:eventHandler event="onclick" submit="true"
+						refreshMode="complete">
+						<xp:this.action>
+							<xp:deleteDocument name="/sponsors.xsp"
+								message="Are you sure you want to delete this sponsor?"
+								var="document1">
+							</xp:deleteDocument>
+						</xp:this.action>
+					</xp:eventHandler>
+				</xp:button>
+			</div>
+
+			<xp:text id="title" escape="true" tagName="h1">
+				<xp:this.value><![CDATA[#{javascript:if(document1.isNewNote()){
+	"New Sponsor";
+}else{
+	document1.getItemValueString("Name");
+}}]]></xp:this.value>
+			</xp:text>
+		</div>
+		<xp:panel id="newreg" styleClass="form-horizontal">
+			<div class="control-group">
+				<xp:label styleClass="control-label" for="inputName"
+					value="Name">
+				</xp:label>
+				<div class="controls">
+					<xp:inputText id="inputName" value="#{document1.Name}">
+						<xp:this.validators>
+							<xp:validateRequired message="Please enter the name">
+							</xp:validateRequired>
+						</xp:this.validators>
+						<xp:this.attrs>
+							<xp:attr name="placeholder" value="My Cool Company">
+							</xp:attr>
+						</xp:this.attrs>
+					</xp:inputText>
+					<xp:message id="message1" for="inputName" styleClass="alert alert-error">
+					</xp:message>
+				</div>
+			</div>
+			<div class="control-group">
+				<xp:label styleClass="control-label" for="inputLevel"
+					value="Level">
+				</xp:label>
+				<div class="controls">
+					<xp:comboBox id="inputLevel"
+						value="#{document1.Level}">
+						<xp:selectItem itemLabel="Silver"
+							itemValue="3">
+						</xp:selectItem>
+						<xp:selectItem itemLabel="Gold" itemValue="2"></xp:selectItem>
+						<xp:selectItem itemLabel="Platinum" itemValue="1"></xp:selectItem>
+					</xp:comboBox>
+				</div>
+			</div>
+			<div class="control-group">
+				<xp:label styleClass="control-label" for="inputURL"
+					value="URL">
+				</xp:label>
+				<div class="controls">
+					<xp:inputText id="inputURL" value="#{document1.URL}">
+						<xp:this.validators>
+							<xp:validateRequired message="Please enter the URL">
+							</xp:validateRequired>
+						</xp:this.validators>
+						<xp:this.attrs>
+							<xp:attr name="placeholder" value="http://mycoolcompany.com">
+							</xp:attr>
+						</xp:this.attrs>
+					</xp:inputText>
+					<xp:message id="message2" for="inputURL" styleClass="alert alert-error">
+					</xp:message>
+				</div>
+			</div>
+			<div class="control-group">
+				<xp:label styleClass="control-label" for="inputPONumber"
+					value="PO Number">
+				</xp:label>
+				<div class="controls">
+					<xp:inputText id="inputPONumber" value="#{document1.PONumber}">
+						<xp:this.attrs>
+							<xp:attr name="placeholder" value="123456">
+							</xp:attr>
+						</xp:this.attrs>
+					</xp:inputText>
+				</div>
+			</div>
+			<div class="control-group">
+				<xp:label styleClass="control-label" for="inputBlurb"
+					value="Blurb">
+				</xp:label>
+				<div class="controls">
+					<xp:inputTextarea id="inputBlurb" value="#{document1.Blurb}">
+						<xp:this.validators>
+							<xp:validateRequired message="Please enter the Blurb">
+							</xp:validateRequired>
+						</xp:this.validators>
+						<xp:this.attrs>
+							<xp:attr name="placeholder" value="Enter the sponsor blurb here (it will appear on the sponsors page)">
+							</xp:attr>
+						</xp:this.attrs>
+					</xp:inputTextarea>
+					<xp:message id="message4" for="inputBlurb" styleClass="alert alert-error">
+					</xp:message>
+				</div>
+			</div>
+			<div class="control-group">
+				<xp:label styleClass="control-label" for="inputFiles"
+					value="Icon (as small as possible!)">
+				</xp:label>
+				<div class="controls">
+					<xp:fileUpload id="inputFiles"
+						value="#{document1.Files}"
+						rendered="#{javascript:document1.isEditable()}">
+					</xp:fileUpload>
+					<xp:fileDownload rows="30" id="fileDownload1"
+						displayLastModified="false" hideWhen="true" allowDelete="true"
+						value="#{document1.Files}">
+					</xp:fileDownload>
+				</div>
+			</div>
+		</xp:panel>
+	</div>
+</xp:view>

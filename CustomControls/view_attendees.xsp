@@ -1,0 +1,103 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<xp:view xmlns:xp="http://www.ibm.com/xsp/core">
+
+	<xp:this.acl>
+		<xp:acl>
+			<xp:this.entries>
+				<xp:aclEntry type="ANONYMOUS" right="NOACCESS" name="Anonymous"
+					fullName="Anonymous">
+				</xp:aclEntry>
+				<xp:aclEntry type="DEFAULT" right="NOACCESS"></xp:aclEntry>
+				<xp:aclEntry type="ROLE" right="EDITOR">
+					<xp:this.name><![CDATA[[Admin]]]></xp:this.name>
+					<xp:this.fullName><![CDATA[[Admin]]]></xp:this.fullName>
+				</xp:aclEntry>
+			</xp:this.entries>
+		</xp:acl>
+	</xp:this.acl>
+
+	<div class="navbar">
+		<div class="navbar-inner">
+			<a class="brand" href="#">Admin</a>
+			<ul class="nav">
+				<li>
+					<a href="admin.xsp">Control Panel</a>
+				</li>
+				<li class="active">
+					<a href="attendees.xsp">Attendees</a>
+				</li>
+				<li>
+					<a href="files.xsp">Files</a>
+				</li>
+			</ul>
+		</div>
+	</div>
+
+	<div class="row-fluid" style="padding-top: 10px;">
+		<h1>Attendees</h1>
+	</div>
+	<xp:panel id="newreg" styleClass="form-horizontal">
+		<xp:button id="deletebutton" value="Delete Selected"
+			styleClass="btn btn-danger">
+			<xp:eventHandler event="onclick" submit="true"
+				refreshMode="complete">
+				<xp:this.action>
+					<xp:deleteSelectedDocuments view="viewPanel1"
+						message="Are you sure you want to delete the selected attendeed? The person documents will remain in the NAB.">
+					</xp:deleteSelectedDocuments>
+				</xp:this.action>
+			</xp:eventHandler>
+		</xp:button>
+		<xp:viewPanel rows="30" id="viewPanel1" viewStyle="width:100%"
+			dataTableStyleClass="table">
+			<xp:this.facets>
+				<xp:pager partialRefresh="true" xp:key="headerPager" id="pager1"
+					alwaysCalculateLast="true">
+					<xp:pagerControl id="pagerControl1" type="First"
+						styleClass="spacer"></xp:pagerControl>
+					<xp:pagerControl id="pagerControl2" type="Separator"
+						styleClass="spacer">
+					</xp:pagerControl>
+					<xp:pagerControl id="pagerControl3" type="Previous"
+						styleClass="spacer">
+					</xp:pagerControl>
+					<xp:pagerControl id="pagerControl4" type="Separator"
+						styleClass="spacer">
+					</xp:pagerControl>
+					<xp:pagerControl id="pagerControl5" type="Next"
+						styleClass="spacer"></xp:pagerControl>
+					<xp:pagerControl id="pagerControl6" type="Separator"
+						styleClass="spacer">
+					</xp:pagerControl>
+					<xp:pagerControl id="pagerControl7" type="Last"
+						styleClass="spacer"></xp:pagerControl>
+				</xp:pager>
+			</xp:this.facets>
+			<xp:this.data>
+				<xp:dominoView var="view1" viewName="Attendees"></xp:dominoView>
+			</xp:this.data>
+			<xp:viewColumn columnName="LastName" id="viewColumn1"
+				showCheckbox="true">
+				<xp:viewColumnHeader value="LastName" id="viewColumnHeader1"
+					sortable="true">
+				</xp:viewColumnHeader>
+			</xp:viewColumn>
+			<xp:viewColumn columnName="FirstName" id="viewColumn2">
+				<xp:viewColumnHeader value="FirstName" id="viewColumnHeader2"
+					sortable="true">
+				</xp:viewColumnHeader>
+			</xp:viewColumn>
+			<xp:viewColumn columnName="Email" id="viewColumn3">
+				<xp:viewColumnHeader value="EMail" id="viewColumnHeader3"
+					sortable="true">
+				</xp:viewColumnHeader>
+			</xp:viewColumn>
+			<xp:viewColumn columnName="$3" id="viewColumn4">
+				<xp:viewColumnHeader value="DateCreated" id="viewColumnHeader4"
+					sortable="true">
+				</xp:viewColumnHeader>
+			</xp:viewColumn>
+		</xp:viewPanel>
+	</xp:panel>
+
+</xp:view>

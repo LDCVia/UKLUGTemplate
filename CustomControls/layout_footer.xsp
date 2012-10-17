@@ -1,0 +1,41 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<xp:view xmlns:xp="http://www.ibm.com/xsp/core">
+
+	<xp:this.data>
+		<xp:dominoView var="view1" viewName="Sponsors By Level"></xp:dominoView>
+	</xp:this.data>
+	<xp:this.resources>
+		<xp:script src="/xpSponsors.jss" clientSide="false"></xp:script>
+	</xp:this.resources>
+	<xp:repeat id="repeat1" rows="999" value="#{view1}" var="sponsordoc"
+		indexVar="sponsorindex" disableOutputTag="true">
+		<xp:panel id="category" rendered="#{javascript:sponsordoc.isCategory();}"
+			styleClass="well well-small">
+			<xp:text escape="true" id="computedField1" tagName="p">
+
+				<xp:this.value><![CDATA[#{javascript:var level = sponsordoc.getColumnValue("Level");
+if (level == "1"){
+	return "Platinum";
+}else if(level == "2"){
+	return "Gold";
+}else{
+	return "Silver";
+}}]]></xp:this.value>
+			</xp:text>
+		</xp:panel>
+		<xp:span style="padding: 3px;"  rendered="#{javascript:!sponsordoc.isCategory();}">
+			<xp:panel id="footerlink" tagName="a">
+				<xp:this.attrs>
+					<xp:attr name="href">
+						<xp:this.value><![CDATA[#{javascript:sponsordoc.getColumnValue("URL");}]]></xp:this.value>
+					</xp:attr>
+				</xp:this.attrs>
+				<xp:image
+					url="#{javascript:getSponsorPhoto(sponsordoc.getDocument());}"
+					id="image1" styleClass="img-rounded" style="max-width: 100px;">
+				</xp:image>
+			</xp:panel>
+		</xp:span>
+	</xp:repeat>
+	<p>&#169; UKLUG 2012</p>
+</xp:view>

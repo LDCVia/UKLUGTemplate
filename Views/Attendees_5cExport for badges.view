@@ -1,0 +1,68 @@
+<?xml version='1.0' encoding='utf-8'?>
+<!DOCTYPE view SYSTEM 'xmlschemas/domino_8_5_3.dtd'>
+<view name='Attendees\Export for badges' xmlns='http://www.lotus.com/dxl'
+ version='8.5' maintenanceversion='3.0' replicaid='80257A6A002CAD3E' showinmenu='false'
+ publicaccess='false' designerversion='8.5.2' unreadmarks='none' onopengoto='lastopened'
+ onrefresh='displayindicator' headers='simple' opencollapsed='false' showresponsehierarchy='true'
+ showmargin='true' shrinkrows='true' extendlastcolumn='true' showhierarchies='false'
+ unreadcolor='black' rowlinecount='9' headerlinecount='1' rowspacing='1.5'
+ treatashtml='true' bgcolor='white' altrowcolor='#f7f7f7' totalscolor='gray'
+ headerbgcolor='#e1e1e1' boldunreadrows='false' evaluateactions='false' allownewdocuments='false'
+ allowcustomizations='false' hidemarginborder='false' marginwidth='0px' marginbgcolor='white'
+ uniquekeys='false'>
+<noteinfo noteid='412' unid='1666860275F4460B80257A9A0026F0D8' sequence='1'>
+<created><datetime dst='true'>20121017T080520,24+01</datetime></created>
+<modified><datetime dst='true'>20121017T085554,72+01</datetime></modified>
+<revised><datetime dst='true'>20121017T085554,71+01</datetime></revised>
+<lastaccessed><datetime dst='true'>20121017T085554,72+01</datetime></lastaccessed>
+<addedtofile><datetime dst='true'>20121017T085554,72+01</datetime></addedtofile></noteinfo>
+<updatedby><name>CN=registration desk/O=Kimonos</name><name>CN=Matt White/O=Exhilarate</name></updatedby>
+<wassignedby><name>CN=registration desk/O=Kimonos</name></wassignedby><code
+ event='selection'><formula>SELECT ((Form = "Attendee")) &amp; (@Contains(STATUS; "Approved"))</formula></code>
+<actionbar bgcolor='#e1e1e1' bordercolor='black'><actionbarstyle repeat='tile'><imageref
+ name='imgFadeHeader'/></actionbarstyle>
+<actionbuttonstyle heighttype='fixed' height='28' bgcolor='#e1e1e1' displayborder='notesstyle'
+ internalmargin='4px'><imageref name='imgFadeHeader'/></actionbuttonstyle><border
+ style='solid' color='none'/>
+<action title='Categori_ze' showinbar='false' systemcommand='categorize'/>
+<action title='_Edit Document' showinbar='false' systemcommand='edit'/>
+<action title='_Send Document' showinbar='false' systemcommand='send'/>
+<action title='_Forward' showinbar='false' systemcommand='forward'/>
+<action title='_Move To Folder...' showinbar='false' systemcommand='movetofolder'/>
+<action title='_Remove From Folder' showinbar='false' systemcommand='removefromfolder'/>
+<action title='_Read' showinbar='false' systemcommand='markread'/>
+<action title='_Unread' showinbar='false' systemcommand='markunread'/>
+<action title='_Open in New Window' showinbar='false' systemcommand='openinnewwindow'/>
+<action title='_Print...' showinbar='false' systemcommand='print'/>
+<action title='_Delete' showinbar='false' systemcommand='delete'/>
+<action title='_Document Properties' showinbar='false' systemcommand='properties'/>
+<action title='C_ut' showinbar='false' systemcommand='cut'/>
+<action title='_Copy' showinbar='false' systemcommand='copy'/>
+<action title='Copy as Document _Link' showinbar='false' systemcommand='copyasdoclink'/>
+<action title='Copy as _Table' showinbar='false' systemcommand='copyastable'/>
+<action title='P_aste' showinbar='false' systemcommand='paste'/>
+<action title='_Open' showinbar='false' systemcommand='open'/>
+<action title='Bookmark' showinbar='false' systemcommand='bookmark'/></actionbar>
+<column hidedetailrows='false' itemname='$25' width='10' resizable='true'
+ separatemultiplevalues='false' sortnoaccent='false' sortnocase='true' showaslinks='false'><font
+ size='9pt' name='multilingual'/><columnheader title='NameOnBadge,'><font
+ size='9pt' style='bold' name='multilingual'/></columnheader><numberformat
+ legacy='true' format='general' varying='true' punctuated='false' parens='false'
+ percent='false' bytes='false'/><code event='value'><formula>@ReplaceSubstring(NameOnBadge; ","; "")</formula></code></column>
+<column sort='ascending' hidedetailrows='false' itemname='$21' width='10'
+ resizable='true' separatemultiplevalues='false' sortnoaccent='false' sortnocase='true'
+ showaslinks='false'><font size='9pt' name='multilingual'/><columnheader title='Company,'><font
+ size='9pt' style='bold' name='multilingual'/></columnheader><numberformat
+ legacy='true' format='general' varying='true' punctuated='false' parens='false'
+ percent='false' bytes='false'/><code event='value'><formula>@ReplaceSubstring(Company; ","; "")</formula></code></column>
+<column hidedetailrows='false' itemname='$28' width='20.6250' resizable='true'
+ separatemultiplevalues='false' sortnoaccent='false' sortnocase='true' showaslinks='false'><columnheader
+ title='Role'><font size='9pt' style='bold'/></columnheader><code event='value'><formula
+>@If(Sponsor="Y";"Sponsor";"") + @If(Sponsor="Y"&amp;Speaker="Y";" and ";"") + @If(Speaker="Y";"Speaker";"")</formula></code></column>
+<item name='$SelQuery' sign='true'>
+<rawitemdata type='f'>
+gQYAAAAAif8UAAAAAAABAAgAQXR0ZW5kZWWC/zMAIAAAAAMAAAAAAAAAAAAAAAAAAAAAAAAAAAAA
+AAAAAAAAAAAAAAAAAAAAAABBTkQAg/8+AAAAAAAABQcAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA
+AAAAAAAAAAAGAAgAU1RBVFVTQXBwcm92ZWQ=
+</rawitemdata></item></view>
+

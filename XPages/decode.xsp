@@ -1,0 +1,31 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<xp:view xmlns:xp="http://www.ibm.com/xsp/core" rendered="false">
+
+	<xp:this.afterRenderResponse><![CDATA[#{javascript:var docNew = database.createDocument();
+try{
+    var exCon:javax.faces.context.ExternalContext = facesContext.getExternalContext(); 
+    var writer = facesContext.getResponseWriter();
+    var response = exCon.getResponse();
+    
+	//First cache the encrypted XML we are sent by FoxyCart    
+    var map:java.util.Map = exCon.getRequestParameterMap();
+    var values = exCon.getRequest().getParameter("FoxyData");
+	//print("values = " + values);
+	docNew.replaceItemValue("originalcontent", values);
+	docNew.replaceItemValue("Form", "foxycart");
+	var xml = com.fcl.ProcessFoxyCart.getXML(values);
+	docNew.replaceItemValue("xml", xml);
+	var values:java.util.Hashtable = com.fcl.ProcessFoxyCart.getValues(xml);
+	var keys = values.keys();
+	while(keys.hasMoreElements()){
+		var key = keys.nextElement();
+		docNew.replaceItemValue(key, values.get(key));
+	}
+    response.setContentType("text/plain");
+    writer.write("foxy");
+    facesContext.responseComplete();
+}catch(e){
+    _dump(e);
+    docNew.replaceItemValue("error", e);
+}
+docNew.save();}]]></xp:this.afterRenderResponse></xp:view>

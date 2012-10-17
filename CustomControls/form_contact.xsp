@@ -1,0 +1,88 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<xp:view xmlns:xp="http://www.ibm.com/xsp/core" createForm="true">
+	<xp:this.resources>
+		<xp:script src="/xpContact.jss" clientSide="false"></xp:script>
+	</xp:this.resources>
+	<div class="row-fluid" style="padding-top: 10px;">
+		<div class="well">
+			<h1>
+				Contact Us</h1>
+		</div>
+		<xp:panel id="newreg" styleClass="form-horizontal">
+			<xp:this.data>
+				<xp:dominoDocument var="document1" formName="Attendee"
+					computeWithForm="onsave">
+				</xp:dominoDocument>
+			</xp:this.data>
+			<div class="control-group">
+				<xp:label styleClass="control-label" for="inputName" value="Name">
+				</xp:label>
+				<div class="controls">
+					<xp:inputText id="inputName" value="#{viewScope.contactname}">
+						<xp:this.validators>
+							<xp:validateRequired message="Please enter your name">
+							</xp:validateRequired>
+						</xp:this.validators>
+						<xp:this.attrs>
+							<xp:attr name="placeholder" value="Fred Bloggs">
+							</xp:attr>
+						</xp:this.attrs>
+					</xp:inputText>
+					<xp:message id="message1" for="inputName" styleClass="alert alert-error">
+					</xp:message>
+				</div>
+			</div>
+			<div class="control-group">
+				<xp:label styleClass="control-label" for="inputEmail"
+					value="Email">
+				</xp:label>
+				<div class="controls">
+					<xp:inputText id="inputEmail" value="#{viewScope.contactemail}"
+						type="email">
+						<xp:this.validators>
+							<xp:validateRequired message="Please enter your email address">
+							</xp:validateRequired>
+							<xp:validateConstraint message="Please enter a valid email address">
+								<xp:this.regex><![CDATA[[a-z0-9!#$%&'*+/=?^_`{|}~-]+(?:\.[a-z0-9!#$%&'*+/=?^_`{|}~-]+)*@(?:[a-z0-9](?:[a-z0-9-]*[a-z0-9])?\.)+(?:[A-Z]{2}|com|org|net|gov|mil|biz|info|mobi|name|aero|jobs|museum)\b]]></xp:this.regex>
+							</xp:validateConstraint>
+						</xp:this.validators>
+						<xp:this.attrs>
+							<xp:attr name="placeholder" value="fred@bloggs.com">
+							</xp:attr>
+						</xp:this.attrs>
+					</xp:inputText>
+					<xp:message id="message3" for="inputEmail" styleClass="alert alert-error">
+					</xp:message>
+				</div>
+			</div>
+			<div class="control-group">
+				<xp:label styleClass="control-label" for="inputBody" value="Message">
+				</xp:label>
+				<div class="controls">
+					<xp:inputTextarea id="inputBody" value="#{viewScope.contactbody}">
+						<xp:this.attrs>
+							<xp:attr name="placeholder" value="Enter your message here...">
+							</xp:attr>
+						</xp:this.attrs>
+					</xp:inputTextarea>
+				</div>
+			</div>
+			<div class='control-group'>
+				<div class="controls">
+					<xp:button value="Submit" id="button1" styleClass="btn btn-primary">
+						<xp:eventHandler event="onclick" submit="true"
+							refreshMode="complete">
+							<xp:this.action>
+								<xp:actionGroup>
+									<xp:executeScript script="#{javascript:sendFeedback();}">
+									</xp:executeScript>
+									<xp:openPage name="/home.xsp"></xp:openPage>
+								</xp:actionGroup>
+							</xp:this.action>
+						</xp:eventHandler>
+					</xp:button>
+				</div>
+			</div>
+		</xp:panel>
+	</div>
+</xp:view>
