@@ -1,9 +1,9 @@
 <?xml version="1.0" encoding="UTF-8"?><note class="form" maintenanceversion="3.0" replicaid="80257A6A002CAD3E" version="8.5" xmlns="http://www.lotus.com/dxl">
-<noteinfo noteid="432" sequence="3" unid="CEC67A25565D894080257A9A003843B8">
+<noteinfo noteid="432" sequence="5" unid="CEC67A25565D894080257A9A003843B8">
 <created><datetime dst="true">20121017T111433,52+01</datetime></created>
-<modified><datetime dst="true">20121017T111455,88+01</datetime></modified>
-<revised><datetime dst="true">20121017T111455,87+01</datetime></revised>
-<lastaccessed><datetime dst="true">20121017T111455,88+01</datetime></lastaccessed>
+<modified><datetime dst="true">20121017T111456,80+01</datetime></modified>
+<revised><datetime dst="true">20121017T111456,79+01</datetime></revised>
+<lastaccessed><datetime dst="true">20121017T111456,80+01</datetime></lastaccessed>
 <addedtofile><datetime dst="true">20121017T111433,53+01</datetime></addedtofile></noteinfo>
 <updatedby><name>CN=Matt White/O=Exhilarate</name></updatedby>
 <wassignedby><name>CN=Matt White/O=Exhilarate</name></wassignedby>
@@ -11,4 +11,10 @@
 <item name="$TITLE"><text>profile.xsp</text></item>
 
 
-<item name="$FileNames" sign="true"><text>profile.xsp</text></item></note>
+<item name="$FileNames" sign="true"><text>profile.xsp</text></item>
+<item name="$DesignerVersion"><text>8.5</text></item>
+
+
+
+
+</note>

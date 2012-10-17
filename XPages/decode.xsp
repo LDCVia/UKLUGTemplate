@@ -10,7 +10,6 @@ try{
 	//First cache the encrypted XML we are sent by FoxyCart    
     var map:java.util.Map = exCon.getRequestParameterMap();
     var values = exCon.getRequest().getParameter("FoxyData");
-	//print("values = " + values);
 	docNew.replaceItemValue("originalcontent", values);
 	docNew.replaceItemValue("Form", "foxycart");
 	var xml = com.fcl.ProcessFoxyCart.getXML(values);

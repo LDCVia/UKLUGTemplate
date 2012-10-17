@@ -84,7 +84,8 @@
 		</a>
 	</xp:panel>
 
-	<xp:link id="icslink" text="Add to calendar..." value="/agendaics.xsp" style="float: right;">
+	<xp:link id="icslink" text="Add to calendar..." value="/agendaics.xsp"
+		style="float: right;">
 		<i class="icon-calendar"></i>
 	</xp:link>
 
@@ -94,22 +95,67 @@
 				<td></td>
 				<xp:text tagName="th" id="computedField1" escape="false">
 					<xp:this.value><![CDATA[#{javascript:"Room 1"}]]></xp:this.value>
+					<xp:this.attrs>
+						<xp:attr name="onclick">
+							<xp:this.value><![CDATA[#{javascript:var day = context.getUrlParameter("filter");
+if (day == ""){
+	day = "1";
+}
+return "window.location.href='whatson.xsp?room=1&day=" + day + "';";}]]></xp:this.value>
+						</xp:attr>
+					</xp:this.attrs>
 				</xp:text>
 				<xp:text tagName="th" id="computedField2" escape="false">
 					<xp:this.value><![CDATA[#{javascript:"Room 2"}]]></xp:this.value>
 					<xp:this.rendered><![CDATA[#{javascript:getControlPanelFieldInteger("AgendaRooms") > 1}]]></xp:this.rendered>
+					<xp:this.attrs>
+						<xp:attr name="onclick">
+							<xp:this.value><![CDATA[#{javascript:var day = context.getUrlParameter("filter");
+if (day == ""){
+	day = "1";
+}
+return "window.location.href='whatson.xsp?room=2&day=" + day + "';";}]]></xp:this.value>
+						</xp:attr>
+					</xp:this.attrs>
 				</xp:text>
 				<xp:text tagName="th" id="computedField3" escape="false">
 					<xp:this.rendered><![CDATA[#{javascript:getControlPanelFieldInteger("AgendaRooms") > 2}]]></xp:this.rendered>
 					<xp:this.value><![CDATA[#{javascript:"Room 3"}]]></xp:this.value>
+					<xp:this.attrs>
+						<xp:attr name="onclick">
+							<xp:this.value><![CDATA[#{javascript:var day = context.getUrlParameter("filter");
+if (day == ""){
+	day = "1";
+}
+return "window.location.href='whatson.xsp?room=3&day=" + day + "';";}]]></xp:this.value>
+						</xp:attr>
+					</xp:this.attrs>
 				</xp:text>
 				<xp:text tagName="th" id="computedField4" escape="false">
 					<xp:this.value><![CDATA[#{javascript:"Room 4"}]]></xp:this.value>
 					<xp:this.rendered><![CDATA[#{javascript:getControlPanelFieldInteger("AgendaRooms") > 3}]]></xp:this.rendered>
+					<xp:this.attrs>
+						<xp:attr name="onclick">
+							<xp:this.value><![CDATA[#{javascript:var day = context.getUrlParameter("filter");
+if (day == ""){
+	day = "1";
+}
+return "window.location.href='whatson.xsp?room=4&day=" + day + "';";}]]></xp:this.value>
+						</xp:attr>
+					</xp:this.attrs>
 				</xp:text>
 				<xp:text tagName="th" id="computedField5" escape="false">
 					<xp:this.value><![CDATA[#{javascript:"Room 5"}]]></xp:this.value>
 					<xp:this.rendered><![CDATA[#{javascript:getControlPanelFieldInteger("AgendaRooms") > 4}]]></xp:this.rendered>
+					<xp:this.attrs>
+						<xp:attr name="onclick">
+							<xp:this.value><![CDATA[#{javascript:var day = context.getUrlParameter("filter");
+if (day == ""){
+	day = "1";
+}
+return "window.location.href='whatson.xsp?room=5&day=" + day + "';";}]]></xp:this.value>
+						</xp:attr>
+					</xp:this.attrs>
 				</xp:text>
 			</tr>
 		</thead>
@@ -208,6 +254,17 @@ return @Subset(list, getControlPanelFieldInteger("AgendaDays"));}]]></xp:this.va
 						</xp:td>
 						<xp:td>
 							<xp:inputText value="#{document1.StartTime}" id="startTime1"
+								styleClass="timepicker" style="width:80px">
+							</xp:inputText>
+						</xp:td>
+					</xp:tr>
+					<xp:tr>
+						<xp:td>
+							<xp:label value="End time (hh:mm):" id="label1" for="endTime1">
+							</xp:label>
+						</xp:td>
+						<xp:td>
+							<xp:inputText value="#{document1.EndTime}" id="endTime1"
 								styleClass="timepicker" style="width:80px">
 							</xp:inputText>
 						</xp:td>
