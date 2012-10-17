@@ -10,11 +10,11 @@
  headerbgcolor='#e1e1e1' boldunreadrows='false' evaluateactions='false' allownewdocuments='false'
  allowcustomizations='false' hidemarginborder='false' marginwidth='0px' marginbgcolor='white'
  uniquekeys='false'>
-<noteinfo noteid='412' unid='1666860275F4460B80257A9A0026F0D8' sequence='2'>
+<noteinfo noteid='412' unid='1666860275F4460B80257A9A0026F0D8' sequence='4'>
 <created><datetime dst='true'>20121017T080520,24+01</datetime></created>
-<modified><datetime dst='true'>20121017T085554,84+01</datetime></modified>
-<revised><datetime dst='true'>20121017T085554,83+01</datetime></revised>
-<lastaccessed><datetime dst='true'>20121017T085554,94+01</datetime></lastaccessed>
+<modified><datetime dst='true'>20121017T120931,71+01</datetime></modified>
+<revised><datetime dst='true'>20121017T120931,70+01</datetime></revised>
+<lastaccessed><datetime dst='true'>20121017T120931,71+01</datetime></lastaccessed>
 <addedtofile><datetime dst='true'>20121017T085554,72+01</datetime></addedtofile></noteinfo>
 <updatedby><name>CN=Matt White/O=Exhilarate</name></updatedby>
 <wassignedby><name>CN=Matt White/O=Exhilarate</name></wassignedby><code event='selection'><formula
@@ -43,6 +43,10 @@
 <action title='P_aste' showinbar='false' systemcommand='paste'/>
 <action title='_Open' showinbar='false' systemcommand='open'/>
 <action title='Bookmark' showinbar='false' systemcommand='bookmark'/></actionbar>
+<column sort='ascending' hidedetailrows='false' itemname='Events' width='1'
+ resizable='true' separatemultiplevalues='true' sortnoaccent='false' sortnocase='true'
+ showaslinks='false' categorized='true' twisties='true'><columnheader><font
+ size='9pt' style='bold'/></columnheader></column>
 <column hidedetailrows='false' itemname='$25' width='10' resizable='true'
  separatemultiplevalues='false' sortnoaccent='false' sortnocase='true' showaslinks='false'><font
  size='9pt' name='multilingual'/><columnheader title='NameOnBadge,'><font

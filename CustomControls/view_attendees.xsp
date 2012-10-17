@@ -92,6 +92,13 @@
 					sortable="true">
 				</xp:viewColumnHeader>
 			</xp:viewColumn>
+			<xp:viewColumn id="viewColumn5" columnName="Events">
+				<xp:this.facets>
+					<xp:viewColumnHeader xp:key="header"
+						id="viewColumnHeader5" value="Events" sortable="true">
+					</xp:viewColumnHeader>
+				</xp:this.facets>
+			</xp:viewColumn>
 			<xp:viewColumn columnName="$3" id="viewColumn4">
 				<xp:viewColumnHeader value="DateCreated" id="viewColumnHeader4"
 					sortable="true">
