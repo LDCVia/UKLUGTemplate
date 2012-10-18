@@ -13,7 +13,6 @@
 		<xp:script src="/agenda.js" clientSide="true"></xp:script>
 		<xp:script src="/xpAgenda.jss" clientSide="false"></xp:script>
 	</xp:this.resources>
-
 	<div class="navbar">
 		<div class="navbar-inner">
 			<a class="brand" href="#">Agenda</a>
@@ -239,7 +238,7 @@ return "window.location.href='whatson.xsp?room=5&day=" + day + "';";}]]></xp:thi
 						</xp:td>
 						<xp:td>
 							<xp:comboBox value="#{document1.Date}" id="date1">
-								<xp:selectItems>
+								<xp:this.defaultValue><![CDATA[#{javascript:context.getUrlParameter("filter");}]]></xp:this.defaultValue><xp:selectItems>
 									<xp:this.value><![CDATA[#{javascript:var list = ["1", "2", "3", "4", "5"];
 return @Subset(list, getControlPanelFieldInteger("AgendaDays"));}]]></xp:this.value>
 								</xp:selectItems>
@@ -369,7 +368,12 @@ return @Subset(list, getControlPanelFieldInteger("AgendaDays"));}]]></xp:this.va
 						<xp:this.action>
 							<xp:actionGroup>
 								<xp:saveDocument var="document1"></xp:saveDocument>
-								<xp:openPage name="/agenda.xsp"></xp:openPage>
+								<xp:executeScript>
+									<xp:this.script><![CDATA[#{javascript:var url = getDbPath() + "/agenda.xsp";
+url += "?filter=" + document1.getItemValueString("Date");
+print("redirecting to " + url);
+facesContext.getExternalContext().redirect(url);}]]></xp:this.script>
+								</xp:executeScript>
 							</xp:actionGroup>
 						</xp:this.action>
 					</xp:eventHandler>
