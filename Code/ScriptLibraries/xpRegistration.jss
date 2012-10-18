@@ -1,5 +1,8 @@
-import xpHTMLEmail;
-
+/**
+ * Wrapper function which registers a new person on the domino server
+ * Person document created in NAB, Group modified or created
+ * Email sent to user
+ */
 function registerNewUser(firstname, lastname, email, password){
 	var dbNab:NotesDatabase = sessionAsSigner.getDatabase(database.getServer(), getControlPanelFieldString("RegistrationNAB"));
 	var nname = session.createName(firstname + " " + lastname + "/" + makeOrganization(email));
@@ -21,7 +24,6 @@ function registerNewUser(firstname, lastname, email, password){
 		docPerson.replaceItemValue("InternetAddress", email);
 		
 		docPerson.computeWithForm( false, false );
-		//print("Saving new person doc: " + docPerson.getUniversalID() + " in " + dbNab.getTitle());
 		docPerson.save();
 		
 		var addviews = new Array();
@@ -31,7 +33,6 @@ function registerNewUser(firstname, lastname, email, password){
 		addviews.push(dbNab.getView("($VIMPeople)"));
 		for(var i=0; i<addviews.length; i++)
 			addviews[i].refresh();
-		//print("Refreshed views");
 		
 		//Send Notification Email
 		try{
@@ -45,6 +46,9 @@ function registerNewUser(firstname, lastname, email, password){
 	}
 }
 
+/**
+ * Function which adds the new user name to the ACL group specified in Control Panel
+ */
 var addUserToGroup = function(nname){
 	var group = getControlPanelFieldString("RegistrationUsersGroup");
 	var dbMainNab = sessionAsSigner.getDatabase(database.getServer(), "names.nsf");
@@ -113,11 +117,17 @@ var addUserToGroup = function(nname){
 	return true;
 }
 
+/**
+ * Sanitizes an email address so that it can be used as the new user's Organisation
+ */
 function makeOrganization(s){
 	s = @ReplaceSubstring(s, ["!", "#", "$", "%", "*", "?", "/", "|", "^", "{", "}", "`", "~", "&", "'", "+", "=", "_", "@", "/", "\""], "");
 	return s;
 }
 
+/**
+ * Generates a unique, temporary key which allows the user to change their password.
+ */
 function sendForgottenPasswordEmail(email){
 	var code = makeid();
 	var codes:java.util.Hashtable = null;
@@ -138,6 +148,9 @@ function sendForgottenPasswordEmail(email){
 	emailBean.send();
 }
 
+/**
+ * Generates a mixed case 6 character unique key
+ */
 function makeid(){
     var text = "";
     var possible = "ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz0123456789";
@@ -147,6 +160,9 @@ function makeid(){
     return text;
 }
 
+/**
+ * Changes a user's HTTP Password
+ */
 function changePassword(email, newpassword){
 	var db:NotesDatabase = sessionAsSigner.getDatabase(database.getServer(), getControlPanelFieldString("RegistrationNAB"));
 	var vwAll:NotesView = db.getView("($Users)");

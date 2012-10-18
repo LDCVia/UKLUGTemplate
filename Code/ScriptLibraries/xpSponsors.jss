@@ -1,3 +1,6 @@
+/**
+ * Builds a URL to reference a sponsor logo image
+ */
 function getSponsorPhoto(sponsordoc:NotesDocument){
 	try{
 		var out = "/blank.gif";

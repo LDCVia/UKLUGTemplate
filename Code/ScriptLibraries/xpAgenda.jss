@@ -1,3 +1,6 @@
+/**
+ * Return a list of all session names in the system
+ */
 function getSessionList(){
 	if (!viewScope.containsKey("sessionlist")){
 		viewScope.sessionlist = @DbColumn(@DbName(), "Sessions", 2);
@@ -5,6 +8,9 @@ function getSessionList(){
 	return viewScope.sessionlist;
 }
 
+/**
+ * Given the unid of a session, returns an HTML chunk describing the session
+ */
 function getSessionDetails(unid){
 	try{
 		if (unid == ""){

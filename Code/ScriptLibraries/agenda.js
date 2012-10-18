@@ -1,5 +1,6 @@
 $(document).ready(function(){
 	if (getURLParameter("action") == "editDocument"){
+		//Initialise the modal dialog
 		$('#mymodal').modal('show');
 	}
 });

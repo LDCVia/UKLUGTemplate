@@ -1,3 +1,6 @@
+/**
+ * Builds a URL to reference a presenter headshot photo
+ */
 function getPresenterPhoto(sessiondoc:NotesDocument, presentername){
 	try{
 		var out = "/person.png";

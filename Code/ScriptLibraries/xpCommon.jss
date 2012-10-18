@@ -1,3 +1,6 @@
+/**
+ * The top level menut items which will appear for anonymous users
+ */
 var TOPMENUITEMS = [
 	{"title": "Home", "link": "/home.xsp", "controlpanelconfig": null}, 
 	{"title": "Registration", "link": "/registration.xsp", "controlpanelconfig": "EnableAgenda"}, 
@@ -10,6 +13,9 @@ var TOPMENUITEMS = [
 	{"title": "Contact Us", "link": "/contact.xsp", "controlpanelconfig": null}
 ];
 
+/**
+ * The top level menu items which will appear for authenticated users
+ */
 var TOPMENUITEMSUSER = [
 	{"title": "Home", "link": "/home.xsp", "controlpanelconfig": null}, 
 	{"title": "Agenda", "link": "/agenda.xsp", "controlpanelconfig": "EnableAgenda"}, 
@@ -77,6 +83,10 @@ function isCacheInvalid(key, cacheInterval) {
 	}
 }
 
+/**
+ * Returns the UNID of the control panel config document
+ * If the document doesn't exist then it is created
+ */
 function getControlPanelUNID(){
 	if (isCacheInvalid("controlpanelunid", 600)){
 		var controlpanels:NotesView = database.getView("controlPanels");
@@ -94,6 +104,10 @@ function getControlPanelUNID(){
 	return applicationScope.controlpanelunid;
 }
 
+/**
+ * Returns the string value of a field on the control panel document
+ * Value is cached into ApplicationScope
+ */
 function getControlPanelFieldString(fieldname){
 	if (isCacheInvalid("controlpanel" + fieldname, 600)) {
 		var controlpanel:NotesDocument = database.getDocumentByUNID(getControlPanelUNID());
@@ -103,16 +117,20 @@ function getControlPanelFieldString(fieldname){
 	return applicationScope.get("controlpanel" + fieldname);
 }
 
+/**
+ * Returns the vector value of a field on the control panel document
+ */
 function getControlPanelFieldArray(fieldname){
-	//if (isCacheInvalid("controlpanel" + fieldname, 600)) {
-		var controlpanel:NotesDocument = database.getDocumentByUNID(getControlPanelUNID());
-		applicationScope.put("controlpanel" + fieldname, controlpanel.getItemValue(fieldname));
-		controlpanel.recycle();
-	//}
+	var controlpanel:NotesDocument = database.getDocumentByUNID(getControlPanelUNID());
+	applicationScope.put("controlpanel" + fieldname, controlpanel.getItemValue(fieldname));
+	controlpanel.recycle();
 	return applicationScope.get("controlpanel" + fieldname);
 }
 
-
+/**
+ * Returns the integer value of a field on the control panel document
+ * Value is cached into applicationScope
+ */
 function getControlPanelFieldInteger(fieldname){
 	if (isCacheInvalid("controlpanel" + fieldname, 600)) {
 		var controlpanel:NotesDocument = database.getDocumentByUNID(getControlPanelUNID());
@@ -122,11 +140,18 @@ function getControlPanelFieldInteger(fieldname){
 	return applicationScope.get("controlpanel" + fieldname);
 }
 
+/**
+ * Gets the current event name from the Control Panel
+ */
 function getCurrentEventName(){
 	var out = getControlPanelFieldString("EventName");
 	return out;
 }
 
+/**
+ * Returns a boolean to say whether the current user is enrolled in the current
+ * event. Anonymous user is always assumed to be enrolled
+ */
 function isCurrentUserEnrolledInCurrentEvent(){
 	if (@UserName() == "Anonymous"){
 		return true;
@@ -152,6 +177,9 @@ function isCurrentUserEnrolledInCurrentEvent(){
 	return out;
 }
 
+/**
+ * Works out the URL to get to the current user's attendee document
+ */
 function getProfileURL(){
 	isCurrentUserEnrolledInCurrentEvent();
 	return getDbPath() + "/profile.xsp?action=editDocument&documentId=" + sessionScope.profileunid;
@@ -200,6 +228,9 @@ var DateConverter = {
  } 
 }
 
+/**
+ * Converts any object into an array
+ */
 function $A( object ){
 	 // undefined/null -> empty array
 	 if( typeof object === 'undefined' || object === null ){ return []; }
