@@ -33,10 +33,6 @@
 	}
 	var roomno=@TextToNumber(context.getUrlParameter("room"));
 	
-	print("day=" + day);
-	print("time=" + time);
-	print("roomno=" + roomno);
-	
 	var agendas:NotesView = database.getView("TimeSlots");
 	var slots:NotesViewEntryCollection = agendas.getAllEntriesByKey(day);
 	var slot:NotesViewEntry = slots.getFirstEntry()
@@ -58,7 +54,6 @@
 		if (time >= doc.getItemValueString("starttime") && time <= doc.getItemValueString("endtime")){
 			if (doc.getItemValueString("Session" + roomno) != ""){
 				var sessiondoc = database.getDocumentByUNID(doc.getItemValueString("Session" + roomno));
-				print("Got the current session: " + sessiondoc.getUniversalID());
 				sessionScope.currentsession = sessiondoc.getItemValueString("Title");
 				sessionScope.currentsessionabstract = sessiondoc.getItemValueString("Abstract");
 				sessionScope.currentsessionpresenter = sessiondoc.getItemValueString("Presenter");
@@ -66,7 +61,6 @@
 				sessionScope.currentsessiontrack = sessiondoc.getItemValueString("Track");
 				sessionScope.currentsessionstart = doc.getItemValueString("starttime");
 				doc.recycle();
-				print("currentsession=" + sessionScope.currentsession);
 			}else if(doc.getItemValueString("Break") == "Yes") {
 				sessionScope.currentsession = "Break";
 				sessionScope.currentsessionstart = doc.getItemValueString("starttime");
@@ -80,7 +74,6 @@
 				if (doc.getItemValueString("Date") == day){
 					if (doc.getItemValueString("Session" + roomno) != ""){
 						var sessiondoc = database.getDocumentByUNID(doc.getItemValueString("Session" + roomno));
-						print("Got the next session: " + sessiondoc.getUniversalID());
 						sessionScope.nextsession = sessiondoc.getItemValueString("Title");
 						sessionScope.nextsessionabstract = sessiondoc.getItemValueString("Abstract");
 						sessionScope.nextsessionpresenter = sessiondoc.getItemValueString("Presenter");
@@ -93,18 +86,15 @@
 						sessionScope.nextsessionstart = doc.getItemValueString("starttime");
 					}
 				}else{
-					print("next session is tomorrow!");
 				}
 			}
 			break;
 		}else if(time < doc.getItemValueString("starttime")){
-			print("We're before the first session of the day");
 			//First session of the day!
 			//Get the next session details
 			var doc:NotesDocument = slot.getDocument();
 			if (doc.getItemValueString("Session" + roomno) != ""){
 				var sessiondoc = database.getDocumentByUNID(doc.getItemValueString("Session" + roomno));
-				print("Got the next session: " + sessiondoc.getUniversalID());
 				sessionScope.nextsession = sessiondoc.getItemValueString("Title");
 				sessionScope.nextsessionabstract = sessiondoc.getItemValueString("Abstract");
 				sessionScope.nextsessionpresenter = sessiondoc.getItemValueString("Presenter");
@@ -147,10 +137,8 @@ return out;}]]></xp:this.value>
 			<xp:text id="computedField1" tagName="h2">
 				<xp:this.value><![CDATA[#{javascript:var out = "";
 if (sessionScope.currentsession == null){
-	print("Current session is blank");
 	out += "Nothing to see here, move along";
 }else{
-	print("Current session is " + sessionScope.currentsession);
 	out += sessionScope.currentsession;
 }
 return out;}]]></xp:this.value>
