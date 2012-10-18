@@ -371,7 +371,7 @@ return @Subset(list, getControlPanelFieldInteger("AgendaDays"));}]]></xp:this.va
 								<xp:executeScript>
 									<xp:this.script><![CDATA[#{javascript:var url = getDbPath() + "/agenda.xsp";
 url += "?filter=" + document1.getItemValueString("Date");
-print("redirecting to " + url);
+//print("redirecting to " + url);
 facesContext.getExternalContext().redirect(url);}]]></xp:this.script>
 								</xp:executeScript>
 							</xp:actionGroup>
