@@ -3,7 +3,7 @@
  * No document is saved in the current database
  */
 function sendFeedback(){
-	emailBean.setSendTo( getControlPanelFieldString("FeedbackSendTo") );
+	emailBean.setSendTo( controlpanelBean.getFeedbackSendTo() );
 	emailBean.setSubject("New Feedback from " + database.getTitle());
 	emailBean.setSenderEmail(viewScope.contactname);
 	emailBean.setSenderName(viewScope.contactemail);

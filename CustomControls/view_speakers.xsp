@@ -18,7 +18,7 @@
 				</xp:panel>
 				<xp:repeat id="tracks" var="trackname" indexVar="trackindex"
 					disableOutputTag="true">
-					<xp:this.value><![CDATA[#{javascript:getControlPanelFieldArray("Tracks")}]]></xp:this.value>
+					<xp:this.value><![CDATA[#{javascript:controlpanelBean.getTracks()}]]></xp:this.value>
 					<xp:panel tagName="li">
 						<xp:this.styleClass><![CDATA[#{javascript:if (context.getUrlParameter("filter") == trackname){
 	return "active";

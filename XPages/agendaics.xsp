@@ -11,9 +11,9 @@
 	response.setHeader("Cache-Control", "no-cache");
 	response.setHeader("Content-disposition", "attachment; filename=agenda.ics");
 	
-	var startdatevector:java.util.Vector = getControlPanelFieldArray("StartDate");
+	var startdatevector:java.util.Vector = controlpanelBean.getStartDate();
 	var startdate:NotesDateTime = startdatevector.elementAt(0);
-	for (var i=0; i<getControlPanelFieldInteger("AgendaDays"); i++){
+	for (var i=0; i<controlpanelBean.getAgendaDays(); i++){
 		startdate.adjustDay(i);
 		viewScope.put("day" + (i + 1), startdate.toJavaDate());
 	}

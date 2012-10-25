@@ -4,7 +4,7 @@
  * Email sent to user
  */
 function registerNewUser(firstname, lastname, email, password){
-	var dbNab:NotesDatabase = sessionAsSigner.getDatabase(database.getServer(), getControlPanelFieldString("RegistrationNAB"));
+	var dbNab:NotesDatabase = sessionAsSigner.getDatabase(database.getServer(), controlpanelBean.getRegistrationNAB());
 	var nname = session.createName(firstname + " " + lastname + "/" + makeOrganization(email));
 	if (addUserToGroup(nname)){
 		dbNab.setDelayUpdates(false);
@@ -37,10 +37,10 @@ function registerNewUser(firstname, lastname, email, password){
 		//Send Notification Email
 		try{
 			emailBean.setSendTo( email );
-			emailBean.setSubject(getControlPanelFieldString("RegistrationEmailSubject"));
-			emailBean.setSenderEmail(getControlPanelFieldString("RegistrationEmailFromEmail"));
-			emailBean.setSenderName(getControlPanelFieldString("RegistrationEmailFromName"));
-			emailBean.addHTML(getControlPanelFieldString("RegistrationEmailBody"))
+			emailBean.setSubject(controlpanelBean.getRegistrationEmailSubject());
+			emailBean.setSenderEmail(controlpanelBean.getRegistrationEmailFromEmail());
+			emailBean.setSenderName(controlpanelBean.getRegistrationEmailFromName());
+			emailBean.addHTML(controlpanelBean.getRegistrationEmailBody())
 			emailBean.send();
 		}catch(e){}
 	}
@@ -50,7 +50,7 @@ function registerNewUser(firstname, lastname, email, password){
  * Function which adds the new user name to the ACL group specified in Control Panel
  */
 var addUserToGroup = function(nname){
-	var group = getControlPanelFieldString("RegistrationUsersGroup");
+	var group = controlpanelBean.getRegistrationUsersGroup();
 	var dbMainNab = sessionAsSigner.getDatabase(database.getServer(), "names.nsf");
 	var groups = dbMainNab.getView("Groups");
 	var docGroup = groups.getDocumentByKey(group, true);
@@ -139,10 +139,10 @@ function sendForgottenPasswordEmail(email){
 	codes.put(email, code);
 	applicationScope.resetpasswordcodes = codes;
 	emailBean.setSendTo(email);
-	emailBean.setSubject(getControlPanelFieldString("ForgottenEmailSubject"));
-	emailBean.setSenderEmail(getControlPanelFieldString("ForgottenEmailFromEmail"));
-	emailBean.setSenderName(getControlPanelFieldString("ForgottenEmailFromName"));
-	var body = getControlPanelFieldString("ForgottenEmailBody");
+	emailBean.setSubject(controlpanelBean.getForgottenEmailSubject());
+	emailBean.setSenderEmail(controlpanelBean.getForgottenEmailFromEmail());
+	emailBean.setSenderName(controlpanelBean.getForgottenEmailFromName());
+	var body = controlpanelBean.getForgottenEmailBody();
 	body = @ReplaceSubstring(body, "@code@", code);
 	emailBean.addHTML(body);
 	emailBean.send();
@@ -164,7 +164,7 @@ function makeid(){
  * Changes a user's HTTP Password
  */
 function changePassword(email, newpassword){
-	var db:NotesDatabase = sessionAsSigner.getDatabase(database.getServer(), getControlPanelFieldString("RegistrationNAB"));
+	var db:NotesDatabase = sessionAsSigner.getDatabase(database.getServer(), controlpanelBean.getRegistrationNAB());
 	var vwAll:NotesView = db.getView("($Users)");
 	var person:NotesDocument = vwAll.getDocumentByKey(email);
 	if (person != null){

@@ -151,7 +151,7 @@ if(@IsError(out)){
 					<xp:comboBox id="inputTrack"
 						value="#{document1.Track}">
 						<xp:selectItems>
-							<xp:this.value><![CDATA[#{javascript:getControlPanelFieldArray("Tracks")}]]></xp:this.value>
+							<xp:this.value><![CDATA[#{javascript:controlpanelBean.getTracks()}]]></xp:this.value>
 						</xp:selectItems>
 					</xp:comboBox>
 				</div>

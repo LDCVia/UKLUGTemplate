@@ -88,63 +88,14 @@ function isCacheInvalid(key, cacheInterval) {
  * If the document doesn't exist then it is created
  */
 function getControlPanelUNID(){
-	if (isCacheInvalid("controlpanelunid", 600)){
-		var controlpanels:NotesView = database.getView("controlPanels");
-		var controlpanel:NotesDocument = controlpanels.getFirstDocument();
-		if (controlpanel == null){
-			controlpanel = database.createDocument();
-			controlpanel.replaceItemValue("Form", "ControlPanel");
-			controlpanel.computeWithForm(false, false);
-			controlpanel.save();
-		}
-		applicationScope.controlpanelunid = controlpanel.getUniversalID();
-		controlpanel.recycle();
-		controlpanels.recycle();
-	}
-	return applicationScope.controlpanelunid;
-}
-
-/**
- * Returns the string value of a field on the control panel document
- * Value is cached into ApplicationScope
- */
-function getControlPanelFieldString(fieldname){
-	if (isCacheInvalid("controlpanel" + fieldname, 600)) {
-		var controlpanel:NotesDocument = database.getDocumentByUNID(getControlPanelUNID());
-		applicationScope.put("controlpanel" + fieldname, controlpanel.getItemValueString(fieldname));
-		controlpanel.recycle();
-	}
-	return applicationScope.get("controlpanel" + fieldname);
-}
-
-/**
- * Returns the vector value of a field on the control panel document
- */
-function getControlPanelFieldArray(fieldname){
-	var controlpanel:NotesDocument = database.getDocumentByUNID(getControlPanelUNID());
-	applicationScope.put("controlpanel" + fieldname, controlpanel.getItemValue(fieldname));
-	controlpanel.recycle();
-	return applicationScope.get("controlpanel" + fieldname);
-}
-
-/**
- * Returns the integer value of a field on the control panel document
- * Value is cached into applicationScope
- */
-function getControlPanelFieldInteger(fieldname){
-	if (isCacheInvalid("controlpanel" + fieldname, 600)) {
-		var controlpanel:NotesDocument = database.getDocumentByUNID(getControlPanelUNID());
-		applicationScope.put("controlpanel" + fieldname, controlpanel.getItemValueInteger(fieldname));
-		controlpanel.recycle();
-	}
-	return applicationScope.get("controlpanel" + fieldname);
+	return controlpanelBean.getUnid();
 }
 
 /**
  * Gets the current event name from the Control Panel
  */
 function getCurrentEventName(){
-	var out = getControlPanelFieldString("EventName");
+	var out = controlpanelBean.getEventName();
 	return out;
 }
 

@@ -67,11 +67,16 @@
 	return "active";
 }}]]></xp:this.styleClass>
 								<xp:this.rendered><![CDATA[#{javascript:if (rowData.controlpanelconfig != null){
-	if (getControlPanelFieldString(rowData.controlpanelconfig) == "Yes"){
-		return true;
-	}else{
-		return false;
+	if (rowData.controlpanelconfig == "EnableAgenda"){
+		if (controlpanelBean.getEnableAgenda() == "Yes"){
+			return true;
+		}	
+	}else if(rowData.controlpanelconfig == "EnableForum"){
+		if (controlpanelBean.getEnableForum() == "Yes"){
+			return true;
+		}	
 	}
+	return false;
 }else{
 	return true;
 }}]]></xp:this.rendered>
@@ -105,8 +110,7 @@
 						<xp:this.value><![CDATA[#{javascript:"You are not yet enrolled for " + getCurrentEventName()}]]></xp:this.value>
 					</xp:text>
 				</p>
-				<xp:text id="enrollmessage" escape="false"
-					tagName="p">
+				<xp:text id="enrollmessage" escape="false" tagName="p">
 					<xp:this.value><![CDATA[#{javascript:"<a href=\"" + getProfileURL() + "\" class=\"btn btn-danger\">Enroll for " + getCurrentEventName() + " here</a>"}]]></xp:this.value>
 				</xp:text>
 			</div>

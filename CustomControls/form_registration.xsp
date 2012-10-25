@@ -67,7 +67,7 @@
 							</xp:validateConstraint>
 							<xp:validateExpression
 								message="That email address has already been registered">
-								<xp:this.expression><![CDATA[#{javascript:var db:NotesDatabase = sessionAsSigner.getDatabase(database.getServer(), getControlPanelFieldString("RegistrationNAB"));
+								<xp:this.expression><![CDATA[#{javascript:var db:NotesDatabase = sessionAsSigner.getDatabase(database.getServer(), controlpanelBean.getRegistrationNAB());
 var vwAll:NotesView = db.getView("($Users)");
 var person:NotesDocument = vwAll.getDocumentByKey(getComponent("inputEmail").getSubmittedValue());
 if (person != null){
