@@ -6,7 +6,6 @@ import lotus.domino.Database;
 import lotus.domino.DateTime;
 import lotus.domino.Document;
 import lotus.domino.NotesException;
-import lotus.domino.Session;
 import lotus.domino.View;
 
 import com.ibm.domino.xsp.module.nsf.NotesContext;
@@ -52,7 +51,11 @@ public class ControlPanel {
 	}
 	
 	public ControlPanel() throws NotesException{
-		Session session = getCurrentSession();
+		init();
+	}
+	
+	@SuppressWarnings("unchecked")
+	public void init() throws NotesException{
 		Database database = getCurrentDatabase();
 		View controlpanels = database.getView("Control Panels");
 		Document controlpaneldoc = controlpanels.getFirstDocument();
@@ -75,7 +78,7 @@ public class ControlPanel {
 		Vector<DateTime> dates = controlpaneldoc.getItemValueDateTimeArray("StartDate");
 		this.setStartDate(dates.elementAt(0).toJavaDate());
 		Vector<String> v = controlpaneldoc.getItemValue("Tracks");
-		this.setTracks((String[])v.toArray(new String[v.size()]));
+		this.setTracks(v.toArray(new String[v.size()]));
 		this.setRegistrationEmailSubject(controlpaneldoc.getItemValueString("RegistrationEmailSubject"));
 		this.setRegistrationEmailBody(controlpaneldoc.getItemValueString("RegistrationEmailBody"));
 		this.setRegistrationEmailFromEmail(controlpaneldoc.getItemValueString("RegistrationEmailFromEmail"));
@@ -94,15 +97,6 @@ public class ControlPanel {
 		controlpanels.recycle();
 	}
 	
-	// -------------------------------------------------------------------------
-
-	private Session getCurrentSession() {
-		NotesContext nc = NotesContext.getCurrentUnchecked();
-		return (null != nc) ? nc.getCurrentSession() : null;
-	}
-
-	// -------------------------------------------------------------------------
-
 	private Database getCurrentDatabase() {
 		NotesContext nc = NotesContext.getCurrentUnchecked();
 		return (null != nc) ? nc.getCurrentDatabase() : null;

@@ -46,14 +46,14 @@
 						submit="true" immediate="false" save="true">
 						<xp:this.action>
 							<xp:actionGroup>
+								<xp:saveDocument var="document1"></xp:saveDocument>
 								<xp:executeScript>
 									<xp:this.script><![CDATA[#{javascript:var iterator = applicationScope.keySet().iterator();
 while( iterator.hasNext() ){
 	applicationScope.remove( iterator.next() );
-}}]]></xp:this.script>
-								</xp:executeScript>
-								<xp:saveDocument var="document1"></xp:saveDocument>
-								<xp:openPage name="/admin.xsp"></xp:openPage>
+}
+controlpanelBean.init();}]]></xp:this.script>
+								</xp:executeScript><xp:openPage name="/admin.xsp"></xp:openPage>
 							</xp:actionGroup>
 						</xp:this.action>
 					</xp:eventHandler>
