@@ -66,7 +66,6 @@
 								<xp:this.styleClass><![CDATA[#{javascript:if (getCurrentXPage() == rowData.link){
 	return "active";
 }}]]></xp:this.styleClass>
-<<<<<<< HEAD
 								<xp:this.rendered><![CDATA[#{javascript:if (rowData.controlpanelconfig != null){
 	if (rowData.controlpanelconfig == "EnableAgenda"){
 		if (controlpanelBean.getEnableAgenda() == "Yes"){
@@ -80,21 +79,6 @@
 	return false;
 }else{
 	return true;
-=======
-								<xp:this.rendered><![CDATA[#{javascript:if (rowData.controlpanelconfig != null){
-	if (rowData.controlpanelconfig == "EnableAgenda"){
-		if (controlpanelBean.getEnableAgenda() == "Yes"){
-			return true;
-		}	
-	}else if(rowData.controlpanelconfig == "EnableForum"){
-		if (controlpanelBean.getEnableForum() == "Yes"){
-			return true;
-		}	
-	}
-	return false;
-}else{
-	return true;
->>>>>>> 4th March Commit
 }}]]></xp:this.rendered>
 								<xp:link id="menulink" text="#{javascript:rowData.title}"
 									value="#{javascript:rowData.link}">

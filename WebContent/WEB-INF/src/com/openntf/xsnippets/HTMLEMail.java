@@ -31,10 +31,6 @@ import com.ibm.xsp.model.domino.wrapped.DominoDocument.AttachmentValueHolder;
 import com.ibm.xsp.persistence.PersistedContent;
 
 public class HTMLEMail implements Serializable {
-
-	/**
-	 * 
-	 */
 	private static final long serialVersionUID = 1L;
 	private ArrayList<String> sendTo;
 	private ArrayList<String> ccList;

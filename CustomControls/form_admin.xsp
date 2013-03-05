@@ -49,21 +49,13 @@
 						submit="true" immediate="false" save="true">
 						<xp:this.action>
 							<xp:actionGroup>
-<<<<<<< HEAD
-=======
-
-								
->>>>>>> 4th March Commit
 								<xp:saveDocument var="document1"></xp:saveDocument>
 								<xp:executeScript>
 									<xp:this.script><![CDATA[#{javascript:/*var iterator = applicationScope.keySet().iterator();
 while( iterator.hasNext() ){
 	applicationScope.remove( iterator.next() );
-<<<<<<< HEAD
 }
-=======
 }*/
->>>>>>> 4th March Commit
 controlpanelBean.init();}]]></xp:this.script>
 								</xp:executeScript><xp:openPage name="/admin.xsp"></xp:openPage>
 							</xp:actionGroup>

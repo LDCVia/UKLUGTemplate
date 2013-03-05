@@ -67,11 +67,7 @@
 								<xp:this.regex><![CDATA[[a-z0-9!#$%&'*+/=?^_`{|}~-]+(?:\.[a-z0-9!#$%&'*+/=?^_`{|}~-]+)*@(?:[a-z0-9](?:[a-z0-9-]*[a-z0-9])?\.)+(?:[A-Z]{2}|com|org|net|gov|mil|biz|info|mobi|name|aero|jobs|museum)\b]]></xp:this.regex>
 							</xp:validateConstraint>
 							<xp:validateExpression
-<<<<<<< HEAD
-								message="That email address has already been registered">
-=======
 								message="That email address has already been registered. Please login to register for the event.">
->>>>>>> 4th March Commit
 								<xp:this.expression><![CDATA[#{javascript:var db:NotesDatabase = sessionAsSigner.getDatabase(database.getServer(), controlpanelBean.getRegistrationNAB());
 var vwAll:NotesView = db.getView("($Users)");
 var person:NotesDocument = vwAll.getDocumentByKey(getComponent("inputEmail").getSubmittedValue());
