@@ -57,7 +57,7 @@
 	return "Close";
 }}]]></xp:this.value>
 					<xp:eventHandler event="onclick" submit="true"
-						refreshMode="complete">
+						refreshMode="complete" immediate="true">
 						<xp:this.action>
 							<xp:openPage name="/home.xsp"></xp:openPage>
 						</xp:this.action>

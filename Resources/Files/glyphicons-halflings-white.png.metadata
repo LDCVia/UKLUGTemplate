@@ -1,8 +1,17 @@
-<?xml version="1.0" encoding="UTF-8"?><fileresource designerversion="8.5.3" maintenanceversion="3.0" name="glyphicons-halflings-white.png" publicaccess="false" replicaid="80257A6A002CAD3E" version="8.5" xmlns="http://www.lotus.com/dxl">
-<noteinfo noteid="172" sequence="3" unid="4AABEC2940EB309480257A6A002CCBA9">
+<?xml version="1.0" encoding="UTF-8"?><note class="form" replicaid="80257A6A002CAD3E" version="9.0" xmlns="http://www.lotus.com/dxl">
+<noteinfo noteid="6ce" sequence="3" unid="4AABEC2940EB309480257A6A002CCBA9">
 <created><datetime dst="true">20120830T090917,21+01</datetime></created>
-<modified><datetime dst="true">20120830T093226,50+01</datetime></modified>
+<modified><datetime>20130220T125818,93+00</datetime></modified>
 <revised><datetime dst="true">20120830T093226,49+01</datetime></revised>
-<lastaccessed><datetime dst="true">20120830T093226,50+01</datetime></lastaccessed>
-<addedtofile><datetime dst="true">20120830T090917,24+01</datetime></addedtofile></noteinfo>
-<updatedby><name>CN=Matt White/O=Exhilarate</name></updatedby></fileresource>
+<lastaccessed><datetime>20130220T125818,93+00</datetime></lastaccessed>
+<addedtofile><datetime>20130220T125818,93+00</datetime></addedtofile></noteinfo>
+<updatedby><name>CN=Matt White/O=Exhilarate</name></updatedby>
+<wassignedby><name>CN=Matt White/O=Exhilarate</name></wassignedby>
+<item name="$Flags"><text>345CgQ</text></item>
+<item name="$FlagsExt"><text>D</text></item>
+
+<item name="$FileModDT" sign="true"><datetime dst="true">20120830T080520,00+01</datetime></item>
+
+<item name="$FileNames" sign="true"><text>glyphicons-halflings-white.png</text></item>
+<item name="$TITLE" sign="true"><textlist><text>glyphicons-halflings-white.png</text></textlist></item>
+<item name="$DesignerVersion"><text>8.5.3</text></item></note>

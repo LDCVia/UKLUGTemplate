@@ -58,7 +58,8 @@
 					value="Email">
 				</xp:label>
 				<div class="controls">
-					<xp:inputText id="inputEmail" value="#{document1.Email}" type="email">
+					<xp:inputText id="inputEmail" value="#{document1.Email}"
+						type="email">
 						<xp:this.validators>
 							<xp:validateRequired message="Please enter your email address">
 							</xp:validateRequired>
@@ -66,7 +67,11 @@
 								<xp:this.regex><![CDATA[[a-z0-9!#$%&'*+/=?^_`{|}~-]+(?:\.[a-z0-9!#$%&'*+/=?^_`{|}~-]+)*@(?:[a-z0-9](?:[a-z0-9-]*[a-z0-9])?\.)+(?:[A-Z]{2}|com|org|net|gov|mil|biz|info|mobi|name|aero|jobs|museum)\b]]></xp:this.regex>
 							</xp:validateConstraint>
 							<xp:validateExpression
+<<<<<<< HEAD
 								message="That email address has already been registered">
+=======
+								message="That email address has already been registered. Please login to register for the event.">
+>>>>>>> 4th March Commit
 								<xp:this.expression><![CDATA[#{javascript:var db:NotesDatabase = sessionAsSigner.getDatabase(database.getServer(), controlpanelBean.getRegistrationNAB());
 var vwAll:NotesView = db.getView("($Users)");
 var person:NotesDocument = vwAll.getDocumentByKey(getComponent("inputEmail").getSubmittedValue());
@@ -103,6 +108,32 @@ return true;}]]></xp:this.expression>
 					<xp:message id="message4" for="inputPassword"
 						styleClass="alert alert-error">
 					</xp:message>
+				</div>
+			</div>
+			<div class="control-group">
+				<xp:label styleClass="control-label" for="inputCompany"
+					value="Company">
+				</xp:label>
+				<div class="controls">
+					<xp:inputText id="inputCompany" value="#{document1.Company}">
+						<xp:this.attrs>
+							<xp:attr name="placeholder" value="Acme Inc.">
+							</xp:attr>
+						</xp:this.attrs>
+					</xp:inputText>
+				</div>
+			</div>
+			<div class="control-group">
+				<xp:label styleClass="control-label" for="inputTwitter"
+					value="Twitter ID">
+				</xp:label>
+				<div class="controls">
+					<xp:inputText id="inputTwitter" value="#{document1.Twitter}">
+						<xp:this.attrs>
+							<xp:attr name="placeholder" value="@fredbloggs">
+							</xp:attr>
+						</xp:this.attrs>
+					</xp:inputText>
 				</div>
 			</div>
 			<div class='control-group'>

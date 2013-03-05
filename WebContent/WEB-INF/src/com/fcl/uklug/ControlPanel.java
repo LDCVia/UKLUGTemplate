@@ -1,7 +1,11 @@
 package com.fcl.uklug;
 
 import javax.faces.context.FacesContext;
+<<<<<<< HEAD
 
+=======
+import java.io.Serializable;
+>>>>>>> 4th March Commit
 import lotus.domino.Database;
 import lotus.domino.DateTime;
 import lotus.domino.Document;
@@ -14,7 +18,12 @@ import java.util.Date;
 import java.util.Vector;
 
 
+<<<<<<< HEAD
 public class ControlPanel {
+=======
+public class ControlPanel implements Serializable {
+	private static final long serialVersionUID = 1L;
+>>>>>>> 4th March Commit
 	public static final String BEAN_NAME = "controlpanelbean"; // name of the bean
 	private String enableRegistration;
 	private String enableAgenda;
@@ -310,4 +319,8 @@ public class ControlPanel {
 		this.sessionEmailRejectedBody = sessionEmailRejectedBody;
 	}
 
+<<<<<<< HEAD
 }
+=======
+}
+>>>>>>> 4th March Commit

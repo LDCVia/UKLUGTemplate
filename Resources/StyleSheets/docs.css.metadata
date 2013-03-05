@@ -1,8 +1,17 @@
-<?xml version="1.0" encoding="UTF-8"?><stylesheetresource charset="UTF-8" designerversion="8.5.3" maintenanceversion="3.0" name="docs.css" publicaccess="false" replicaid="80257A6A002CAD3E" version="8.5" xmlns="http://www.lotus.com/dxl">
-<noteinfo noteid="1fe" sequence="6" unid="584730E6F2E6554580257A6A004DBEC4">
+<?xml version="1.0" encoding="UTF-8"?><note class="form" replicaid="80257A6A002CAD3E" version="9.0" xmlns="http://www.lotus.com/dxl">
+<noteinfo noteid="72e" sequence="6" unid="584730E6F2E6554580257A6A004DBEC4">
 <created><datetime dst="true">20120830T150911,08+01</datetime></created>
-<modified><datetime dst="true">20120830T151839,87+01</datetime></modified>
+<modified><datetime>20130220T125824,86+00</datetime></modified>
 <revised><datetime dst="true">20120830T151839,86+01</datetime></revised>
-<lastaccessed><datetime dst="true">20120830T151839,87+01</datetime></lastaccessed>
-<addedtofile><datetime dst="true">20120830T150911,09+01</datetime></addedtofile></noteinfo>
-<updatedby><name>CN=Matt White/O=Exhilarate</name></updatedby></stylesheetresource>
+<lastaccessed><datetime>20130220T125824,86+00</datetime></lastaccessed>
+<addedtofile><datetime>20130220T125824,86+00</datetime></addedtofile></noteinfo>
+<updatedby><name>CN=Matt White/O=Exhilarate</name></updatedby>
+<wassignedby><name>CN=Matt White/O=Exhilarate</name></wassignedby>
+<item name="$TITLE"><text>docs.css</text></item>
+<item name="$MimeType"><text>text/css</text></item>
+<item name="$Flags"><text>34C=Q</text></item>
+<item name="$MimeCharSet"><text>UTF-8</text></item>
+<item name="$DesignerVersion"><text>8.5.3</text></item>
+
+
+<item name="$FileNames" sign="true"><text>docs.css</text></item></note>

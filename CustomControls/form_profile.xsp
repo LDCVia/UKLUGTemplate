@@ -111,9 +111,22 @@ return $A(@Trim(@Unique(list))).sort();}]]></xp:this.value>
 					value="Company">
 				</xp:label>
 				<div class="controls">
-					<xp:inputText id="inputCompany" value="#{document1.Password}">
+					<xp:inputText id="inputCompany" value="#{document1.Company}">
 						<xp:this.attrs>
 							<xp:attr name="placeholder" value="Acme Inc.">
+							</xp:attr>
+						</xp:this.attrs>
+					</xp:inputText>
+				</div>
+			</div>
+			<div class="control-group">
+				<xp:label styleClass="control-label" for="inputTwitter"
+					value="Twitter ID">
+				</xp:label>
+				<div class="controls">
+					<xp:inputText id="inputTwitter" value="#{document1.Twitter}">
+						<xp:this.attrs>
+							<xp:attr name="placeholder" value="@fredbloggs">
 							</xp:attr>
 						</xp:this.attrs>
 					</xp:inputText>

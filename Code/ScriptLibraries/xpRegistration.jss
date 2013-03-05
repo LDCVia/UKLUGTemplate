@@ -121,7 +121,7 @@ var addUserToGroup = function(nname){
  * Sanitizes an email address so that it can be used as the new user's Organisation
  */
 function makeOrganization(s){
-	s = @ReplaceSubstring(s, ["!", "#", "$", "%", "*", "?", "/", "|", "^", "{", "}", "`", "~", "&", "'", "+", "=", "_", "@", "/", "\""], "");
+	s = @ReplaceSubstring(s, ["!", "#", "$", "%", "*", "?", "/", "|", "^", "{", "}", "`", "~", "&", "'", "+", "=", "_", "@", "/", "\"", "-"], "");
 	return s;
 }
 

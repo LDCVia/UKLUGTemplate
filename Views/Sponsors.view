@@ -1,63 +1,70 @@
 <?xml version='1.0' encoding='utf-8'?>
-<!DOCTYPE view SYSTEM 'xmlschemas/domino_8_5_3.dtd'>
-<view name='Sponsors' xmlns='http://www.lotus.com/dxl' version='8.5' maintenanceversion='3.0'
- replicaid='80257A6A002CAD3E' showinmenu='false' publicaccess='false' designerversion='8.5.3'
- unreadmarks='none' onopengoto='lastopened' onrefresh='displayindicator' headers='beveled'
- opencollapsed='false' showresponsehierarchy='true' showmargin='true' shrinkrows='false'
- extendlastcolumn='false' showhierarchies='false' unreadcolor='black' rowlinecount='1'
- headerlinecount='1' rowspacing='1' bgcolor='white' totalscolor='black' headerbgcolor='white'
- boldunreadrows='false' evaluateactions='false' allownewdocuments='false'
- allowcustomizations='false' hidemarginborder='false' marginwidth='0px' marginbgcolor='white'
- uniquekeys='false' formatnoteid='78DFA919D006B01380257A6A002CAD3F'>
-<noteinfo noteid='32e' unid='D8A8CC30E288038D80257A95004DCF5D' sequence='7'>
+<note class='view' xmlns='http://www.lotus.com/dxl' version='9.0' replicaid='80257A6A002CAD3E'>
+<noteinfo noteid='586' unid='D8A8CC30E288038D80257A95004DCF5D' sequence='8'>
 <created><datetime dst='true'>20121012T150953,57+01</datetime></created>
-<modified><datetime dst='true'>20121015T152821,83+01</datetime></modified>
-<revised><datetime dst='true'>20121015T152821,82+01</datetime></revised>
-<lastaccessed><datetime dst='true'>20121015T152821,83+01</datetime></lastaccessed>
-<addedtofile><datetime dst='true'>20121012T150953,58+01</datetime></addedtofile></noteinfo>
+<modified><datetime>20130220T153010,31+00</datetime></modified>
+<revised><datetime>20130220T153010,30+00</datetime></revised>
+<lastaccessed><datetime>20130220T153010,31+00</datetime></lastaccessed>
+<addedtofile><datetime>20130220T125817,23+00</datetime></addedtofile></noteinfo>
 <updatedby><name>CN=Matt White/O=Exhilarate</name></updatedby>
-<wassignedby><name>CN=Matt White/O=Exhilarate</name></wassignedby><code event='selection'><formula
->SELECT ((Form = "Sponsor"))</formula></code>
-<actionbar bgcolor='#f0f0f0' bordercolor='black'>
-<actionbuttonstyle bgcolor='#f0f0f0'/><font color='system'/><border style='solid'
- width='0px 0px 1px'/>
-<action title='Categori_ze' showinbar='false' systemcommand='categorize'/>
-<action title='_Edit Document' showinbar='false' systemcommand='edit'/>
-<action title='_Send Document' showinbar='false' systemcommand='send'/>
-<action title='_Forward' showinbar='false' systemcommand='forward'/>
-<action title='_Move To Folder...' showinbar='false' systemcommand='movetofolder'/>
-<action title='_Remove From Folder' showinbar='false' systemcommand='removefromfolder'/>
-<action title='_Read' showinbar='false' systemcommand='markread'/>
-<action title='_Unread' showinbar='false' systemcommand='markunread'/>
-<action title='_Open in New Window' showinbar='false' systemcommand='openinnewwindow'/>
-<action title='_Print...' showinbar='false' systemcommand='print'/>
-<action title='_Delete' showinbar='false' systemcommand='delete'/>
-<action title='_Document Properties' showinbar='false' systemcommand='properties'/>
-<action title='C_ut' showinbar='false' systemcommand='cut'/>
-<action title='_Copy' showinbar='false' systemcommand='copy'/>
-<action title='Copy as Document _Link' showinbar='false' systemcommand='copyasdoclink'/>
-<action title='Copy as _Table' showinbar='false' systemcommand='copyastable'/>
-<action title='P_aste' showinbar='false' systemcommand='paste'/>
-<action title='_Open' showinbar='false' systemcommand='open'/>
-<action title='Bookmark' showinbar='false' systemcommand='bookmark'/></actionbar>
-<column sort='ascending' hidedetailrows='false' itemname='Level' width='10'
- resizable='true' separatemultiplevalues='false' sortnoaccent='true' sortnocase='true'
- showaslinks='false'><columnheader title='Level'><font size='9pt' style='bold'/></columnheader></column>
-<column sort='ascending' hidedetailrows='false' itemname='Name' width='10'
- resizable='true' separatemultiplevalues='false' sortnoaccent='false' sortnocase='true'
- showaslinks='false'><columnheader title='Name'><font size='9pt' style='bold'/></columnheader></column>
-<column hidedetailrows='false' itemname='URL' width='10' resizable='true'
- separatemultiplevalues='false' sortnoaccent='false' sortnocase='true' showaslinks='false'><columnheader
- title='URL'><font size='9pt' style='bold'/></columnheader></column>
-<column hidedetailrows='false' itemname='Blurb' width='10' resizable='true'
- separatemultiplevalues='false' sortnoaccent='false' sortnocase='true' showaslinks='false'><columnheader
- title='Blurb'><font size='9pt' style='bold'/></columnheader></column>
-<column hidedetailrows='false' itemname='$5' width='10' resizable='true' separatemultiplevalues='false'
- sortnoaccent='false' sortnocase='true' showaslinks='false'><columnheader
- title='UNID'><font size='9pt' style='bold'/></columnheader><code event='value'><formula
->@Text(@DocumentUniqueID)</formula></code></column>
+<wassignedby><name>CN=Matt White/O=Exhilarate</name></wassignedby>
+<item name='$FormatNote' summary='true'>
+<rawitemdata type='4'>
+AQATsAbQGanfeD+tLABqeiWA
+</rawitemdata></item>
+<item name='$FormulaClass' sign='true'><text>1</text></item>
+<item name='$TITLE' sign='true'><text>Sponsors</text></item>
+<item name='$Index' sign='true'><text/></item>
+<item name='$Formula' summary='true' sign='true'><formula compiled='true'>
+dgACAA4AAgAkNZAAVgEDAAUANgAyAAcABQAEAAMABQACAAkABABMZXZlbE5hbWVVUkxCbHVyYiQ1
+JENvbmZsaWN0JFJFRgQABAAAACAABQAEAEZvcm0BAAcAU3BvbnNvcgAKAgQABAADAAcADAAFAAkz
+UzRTAA==
+</formula></item>
+<item name='$Collation' summary='true'>
+<rawitemdata type='2'>
+HQACAABEAGYAAAAFAIBmAAUABABMZXZlbE5hbWU=
+</rawitemdata></item>
+<item name='$ViewFormat' summary='true' sign='true'>
+<rawitemdata type='5'>
+AQAFAAYACAAAAFZDAQAFAAUAAAAAAFAAAQAACgAAAAAAAAAAAAICAAAAVkMBAAQABAAAAAAAUAAB
+AAAKAAAAAAAAAAAAAgIAAABWQwAAAwADAAAAAABQAAEAAAoAAAAAAAAAAAACAgAAAFZDAAAFAAUA
+AAAAAFAAAQAACgAAAAAAAAAAAAICAAAAVkMAAAIABAAcAAAAUAABAAAKAAAAAAAAAAAAAgIAAABM
+ZXZlbExldmVsTmFtZU5hbWVVUkxVUkxCbHVyYkJsdXJiJDVVTklEHAACAA4AAgAkNZAAVgEDAAcA
+DAAFAAkwUzBFACYAAQAAAAEBAAkBAAAKAQEOCgAAAQCtKwEAAQABAAAAAAAAAAAAV0MBAQAJAAAA
+AAAAAAAAAAAAAAAAAAAAAAAAAAAA//8AAAAAAAAAAAAAAAAAAFdDAQEACQAAAAAAAAAAAAAAAAAA
+AAAAAAQAAAAAAP//AAAAAAAAAAAAAAAAAABXQwEBAAkAAAAAAAAAAAAAAAAAAAAAAAAEAAAAAAD/
+/wAAAAAAAAAAAAAAAAAAV0MBAQAJAAAAAAAAAAAAAAAAAAAAAAAABAAAAAAA//8AAAAAAAAAAAAA
+AAAAAFdDAQEACQAAAAAAAAAAAAAAAAAAAAAAAAQAAAAAAP//AAAAAAAAAAAAAAAAAABCABAAAAAB
+AP///wAFAP///wABAAAAAAAAAAAAAAAAAAEA////AAEA////AAAAAQAAAAAAAQAAAAAAAQAAAAAA
+AAAIAAAAAAABAA==
+</rawitemdata></item>
+<item name='$Comment' sign='true'><text/></item>
+<item name='$Flags'><text>Y</text></item>
+<item name='$DesignerVersion'><text>8.5.3</text></item>
 <item name='$SelQuery' sign='true'>
 <rawitemdata type='f'>
 gQYAAAAAif8TAAAAAAABAAcAU3BvbnNvcgA=
-</rawitemdata></item></view>
+</rawitemdata></item>
+<item name='$V5ACTIONS' sign='true'>
+<rawitemdata type='1'>
+vRw/AAAAAQABAAAAAQAAAAAAAAAAAAAACAACAHn/bAABAPDw8AABAAAAAAAJAAAAAAABAPDw8AAA
+AB8AAAAAAAAAAAADAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA
+AAAAAAAAAAAAAAAAAAAAAAAAAAAAAPz/OgAAAAAAAQAAAAAAAQAAAAAAAAAAAAAAAAAAAAAAAAAA
+AAAAAAAAAAEAAAAAAAAAAAAAAAAAAAC+/yYAAAAFAAAAnQEAAAsAAAAAAAAAQ2F0ZWdvcmlfemVt
+AQBOfL7/KAAAAAUAAACdAQAADgAAAAAAAABfRWRpdCBEb2N1bWVudAIAAgq+/0wAAAABAB4AnwEA
+AAsAAAAAAAAATmV3IFNwb25zb3I1KgAAAB4AAgDoAwAAAAAAAAEABwBTcG9uc29yAO0CAwAHAAoA
+AwAJNFMAXv80AAAAAAAAAAAAGAAAAAAAAAAAAAAAAAAAABgAAAAWAAEACwBOZXcgU3BvbnNvcgAD
+AL7/KAAAAAUAAACdAQAADgAAAAAAAABfU2VuZCBEb2N1bWVudAMAAwq+/yIAAAAFAAAAnQEAAAgA
+AAAAAAAAX0ZvcndhcmQEAAQKvv8sAAAABQAAAJ0BAAASAAAAAAAAAF9Nb3ZlIFRvIEZvbGRlci4u
+LgUAPXy+/y4AAAAFAAAAnQEAABMAAAAAAAAAX1JlbW92ZSBGcm9tIEZvbGRlcjEGAD58vv8gAAAA
+BQAAAJ0BAAAFAAAAAAAAAF9SZWFkaQcAXny+/yIAAAAFAAAAnQEAAAcAAAAAAAAAX1VucmVhZG4I
+AG58vv8uAAAABQAAAJ0BAAATAAAAAAAAAF9PcGVuIGluIE5ldyBXaW5kb3dvCQB+fL7/JAAAAAUA
+AACdAQAACQAAAAAAAABfUHJpbnQuLi4vCgCOfL7/IgAAAAUAAACdAQAABwAAAAAAAABfRGVsZXRl
+MAsAnny+/y4AAAAFAAAAnQEAABQAAAAAAAAAX0RvY3VtZW50IFByb3BlcnRpZXMMAK58vv8eAAAA
+BQAAAJ0BAAAEAAAAAAAAAENfdXQNAL58vv8gAAAABQAAAJ0BAAAFAAAAAAAAAF9Db3B5AA4Azny+
+/zAAAAAFAAAAnQEAABYAAAAAAAAAQ29weSBhcyBEb2N1bWVudCBfTGluaw8A3ny+/ygAAAAFAAAA
+nQEAAA4AAAAAAAAAQ29weSBhcyBfVGFibGUQAO58vv8gAAAABQAAAJ0BAAAGAAAAAAAAAFBfYXN0
+ZREA/ny+/yAAAAAFAAAAnQEAAAUAAAAAAAAAX09wZW5lEgAOfb7/IgAAAAUAAACdAQAACAAAAAAA
+AABCb29rbWFyaxMAHn0=
+</rawitemdata></item></note>
 

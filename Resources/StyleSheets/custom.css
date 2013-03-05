@@ -655,3 +655,6 @@ code .nd { color: #9FAD7E; } /* CSS pseudo selector */
 .clearfix:after { clear: both; }
 .clearfix { zoom: 1; }
 
+.alert-error {
+	display: block;
+}

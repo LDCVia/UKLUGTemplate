@@ -5,6 +5,7 @@ package com.openntf.xsnippets;
  */
 import java.io.IOException;
 import java.io.InputStream;
+import java.io.Serializable;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.regex.Matcher;
@@ -29,8 +30,12 @@ import com.ibm.xsp.model.domino.wrapped.DominoRichTextItem;
 import com.ibm.xsp.model.domino.wrapped.DominoDocument.AttachmentValueHolder;
 import com.ibm.xsp.persistence.PersistedContent;
 
-public class HTMLEMail {
+public class HTMLEMail implements Serializable {
 
+	/**
+	 * 
+	 */
+	private static final long serialVersionUID = 1L;
 	private ArrayList<String> sendTo;
 	private ArrayList<String> ccList;
 	private ArrayList<String> bccList;
@@ -395,8 +400,11 @@ public class HTMLEMail {
 						}
 					}
 				}
-
-				emailDocument.send();
+				try{
+					emailDocument.send();
+				}catch(Exception e){
+					
+				}
 				session.setConvertMime(true);
 				if (this.isDebugMode()) {
 					System.out.println("Completed send()");

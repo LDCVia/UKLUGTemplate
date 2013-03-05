@@ -41,10 +41,16 @@
 			<xp:repeat id="speakers" var="presentername"
 				indexVar="presenternameindex" disableOutputTag="true">
 				<xp:this.value><![CDATA[#{javascript:var filter = context.getUrlParameter("filter");
+var out;
 if (filter == ""){
-	return @Unique(@DbColumn(@DbName(), "Sessions By Presenter", 1));
+	out = @Unique(@DbColumn(@DbName(), "Sessions By Presenter", 1));
 }else{
-	return @Unique(@DbLookup(@DbName(), "Sessions By Presenter By Track", filter, 2));
+	out = @Unique(@DbLookup(@DbName(), "Sessions By Presenter By Track", filter, 2));
+}
+if (out == ""){
+	return null;
+}else{
+	return out;
 }}]]></xp:this.value>
 				<div class="thumbnail">
 					<xp:text id="speakername" tagName="h3"
