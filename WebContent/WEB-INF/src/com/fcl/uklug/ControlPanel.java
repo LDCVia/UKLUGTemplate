@@ -43,6 +43,7 @@ public class ControlPanel implements Serializable {
 	private String sessionEmailRejectedSubject;
 	private String sessionEmailRejectedBody;
 	private String unid;
+	private String sessionVoting;
 
 	public static ControlPanel get() {
 		FacesContext context = FacesContext.getCurrentInstance();
@@ -94,6 +95,7 @@ public class ControlPanel implements Serializable {
 		this.setSessionEmailAcceptedBody(controlpaneldoc.getItemValueString("SessionEmailAcceptedBody"));
 		this.setSessionEmailRejectedSubject(controlpaneldoc.getItemValueString("SessionEmailRejectedSubject"));
 		this.setSessionEmailRejectedBody(controlpaneldoc.getItemValueString("SessionEmailRejectedBody"));
+		this.setSessionVoting(controlpaneldoc.getItemValueString("SessionVoting"));
 		controlpaneldoc.recycle();
 		controlpanels.recycle();
 	}
@@ -309,5 +311,13 @@ public class ControlPanel implements Serializable {
 
 	public void setSessionEmailRejectedBody(String sessionEmailRejectedBody) {
 		this.sessionEmailRejectedBody = sessionEmailRejectedBody;
+	}
+
+	public void setSessionVoting(String sessionVoting) {
+		this.sessionVoting = sessionVoting;
+	}
+
+	public String getSessionVoting() {
+		return sessionVoting;
 	}
 }

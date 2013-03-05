@@ -5,6 +5,11 @@
 	</xp:this.data>
 	<xp:this.resources>
 		<xp:script src="/xpSessions.jss" clientSide="false"></xp:script>
+		<xp:script src="/jQuery.tablecloth.js" clientSide="true"></xp:script>
+		<xp:script src="/jQuery.tablesorter.min.js" clientSide="true"></xp:script>
+		<xp:script src="/sessions.js" clientSide="true"></xp:script>
+		<xp:styleSheet href="/tablecloth.css"></xp:styleSheet>
+		<xp:styleSheet href="/prettify.css"></xp:styleSheet>
 	</xp:this.resources>
 
 	<div class="navbar">
@@ -16,6 +21,17 @@
 	return "active";
 }}]]></xp:this.styleClass>
 					<xp:link escape="true" text="All" id="allsessions" value="/sessions.xsp">
+					</xp:link>
+				</xp:panel>
+				<xp:panel tagName="li">
+					<xp:this.styleClass><![CDATA[#{javascript:if (context.getUrlParameter("filter") == "voting"){
+	return "active";
+}}]]></xp:this.styleClass>
+					<xp:this.rendered><![CDATA[#{javascript:@UserName() != "Anonymous" && (controlpanelBean.getSessionVoting() == "Enabled" || controlpanelBean.getSessionVoting() == "Read Mode")}]]></xp:this.rendered>
+					<xp:link escape="true" text="Voting" id="link8" value="/sessions.xsp">
+						<xp:this.parameters>
+							<xp:parameter name="filter" value="voting"></xp:parameter>
+						</xp:this.parameters>
 					</xp:link>
 				</xp:panel>
 				<xp:panel tagName="li">
@@ -53,7 +69,7 @@
 	<div id="container" class="clearfix fluid">
 		<div class="thumbnails" style="margin-top: 10px;">
 			<xp:panel styleClass="thumbnail col3">
-				<xp:this.rendered><![CDATA[#{javascript:@UserName() != "Anonymous"}]]></xp:this.rendered>
+				<xp:this.rendered><![CDATA[#{javascript:@UserName() != "Anonymous" && context.getUrlParameter("filter") != "voting"}]]></xp:this.rendered>
 				<h3>Submit a session</h3>
 				<p>
 					We're always looking for new speakers, if
@@ -70,6 +86,7 @@
 			</xp:panel>
 			<xp:repeat id="repeat1" rows="999" value="#{view1}" var="sessiondoc"
 				indexVar="sessionindex" disableOutputTag="true">
+				<xp:this.rendered><![CDATA[#{javascript:context.getUrlParameter("filter") != "voting"}]]></xp:this.rendered>
 				<xp:div id="thumbnail" styleClass="thumbnail col3">
 					<xp:this.rendered><![CDATA[#{javascript:var filter = context.getUrlParameter("filter");
 if (filter == ""){
@@ -178,7 +195,70 @@ if(@IsError(out)){
 					</p>
 				</xp:div>
 			</xp:repeat>
-
 		</div>
+
 	</div>
+	<xp:panel id="votingholder" styleClass="clearfix fluid">
+		<xp:this.rendered><![CDATA[#{javascript:return controlpanelBean.getSessionVoting() != "Disabled" && context.getUrlParameter("filter") == "voting"}]]></xp:this.rendered>
+		<table class="table table-hover">
+			<thead>
+				<th>Vote</th>
+				<th>Score</th>
+				<th>Title</th>
+				<th>Abstract</th>
+				<th>Track</th>
+			</thead>
+			<tbody>
+				<xp:repeat id="repeat2" disableOutputTag="true" rows="999"
+					var="sessdetails" indexVar="sessindex" value="#{javascript:getSessionVotingList()}">
+					<tr>
+						<td>
+							<xp:button value="Promote" id="promotebutton"
+								styleClass="btn btn-success">
+								<xp:this.disabled><![CDATA[#{javascript:@UserName() == "Anonymous" || @IsMember(@UserName() + "|" + sessdetails.unid, sessionScope.sessionvotes);}]]></xp:this.disabled>
+								<i class="icon-thumbs-up" />
+								&#160;
+								<xp:eventHandler event="onclick" submit="true"
+									refreshMode="partial" refreshId="votingholder">
+									<xp:this.action><![CDATA[#{javascript:promoteSession(sessdetails.unid)}]]></xp:this.action>
+								</xp:eventHandler>
+							</xp:button>
+							&#160;
+							<xp:button value="Demote" id="demotebutton" styleClass="btn btn-danger">
+								<xp:this.disabled><![CDATA[#{javascript:@UserName() == "Anonymous" || @IsMember(@UserName() + "|" + sessdetails.unid, sessionScope.sessionvotes);}]]></xp:this.disabled>
+								<i class="icon-thumbs-down" />
+								&#160;
+								<xp:eventHandler event="onclick" submit="true"
+									refreshMode="partial" refreshId="votingholder">
+									<xp:this.action><![CDATA[#{javascript:demoteSession(sessdetails.unid)}]]></xp:this.action>
+								</xp:eventHandler>
+							</xp:button>
+						</td>
+						<xp:text tagName="td" id="score" value="#{javascript:sessdetails.score}">
+							<xp:this.converter>
+								<xp:convertNumber type="number" integerOnly="true">
+								</xp:convertNumber>
+							</xp:this.converter>
+						</xp:text>
+						<xp:text tagName="td" id="sesstitle" value="#{javascript:sessdetails.title}">
+						</xp:text>
+						<xp:text tagName="td" id="sessabstract"
+							value="#{javascript:sessdetails.abstracttext}">
+						</xp:text>
+						<xp:text tagName="td" id="track" value="#{javascript:sessdetails.track}">
+						</xp:text>
+					</tr>
+				</xp:repeat>
+			</tbody>
+		</table>
+		<xp:eventHandler event="onClientLoad" submit="false">
+			<xp:this.script><![CDATA[$(document).ready(function() {
+	$("table").tablecloth({
+		theme: "paper",
+		striped: true,
+		sortable: true,
+		condensed: true
+	});
+});]]></xp:this.script>
+		</xp:eventHandler></xp:panel>
 </xp:view>

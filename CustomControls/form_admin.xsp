@@ -57,7 +57,8 @@ while( iterator.hasNext() ){
 }
 }*/
 controlpanelBean.init();}]]></xp:this.script>
-								</xp:executeScript><xp:openPage name="/admin.xsp"></xp:openPage>
+								</xp:executeScript>
+								<xp:openPage name="/admin.xsp"></xp:openPage>
 							</xp:actionGroup>
 						</xp:this.action>
 					</xp:eventHandler>
@@ -85,10 +86,12 @@ controlpanelBean.init();}]]></xp:this.script>
 					<xp:td>
 						<xp:label
 							value="Event name (If you change this, then all users will need to re-enroll!):"
-							id="eventName_Label1" for="eventName1"></xp:label>
+							id="eventName_Label1" for="eventName1">
+						</xp:label>
 					</xp:td>
 					<xp:td>
-						<xp:inputText value="#{document1.EventName}" id="eventName1"></xp:inputText>
+						<xp:inputText value="#{document1.EventName}" id="eventName1">
+						</xp:inputText>
 					</xp:td>
 				</xp:tr>
 				<xp:tr>
@@ -99,8 +102,8 @@ controlpanelBean.init();}]]></xp:this.script>
 					</xp:td>
 					<xp:td>
 						<xp:comboBox value="#{document1.EnableAgenda}" id="enableAgenda1">
-							<xp:selectItem itemLabel="Yes"></xp:selectItem>
-							<xp:selectItem itemLabel="No"></xp:selectItem>
+							<xp:selectItem itemLabel="Yes" id="selectItem1"></xp:selectItem>
+							<xp:selectItem itemLabel="No" id="selectItem2"></xp:selectItem>
 						</xp:comboBox>
 					</xp:td>
 				</xp:tr>
@@ -112,8 +115,8 @@ controlpanelBean.init();}]]></xp:this.script>
 					</xp:td>
 					<xp:td>
 						<xp:comboBox value="#{document1.EnableForum}" id="enableForum1">
-							<xp:selectItem itemLabel="Yes"></xp:selectItem>
-							<xp:selectItem itemLabel="No"></xp:selectItem>
+							<xp:selectItem itemLabel="Yes" id="selectItem3"></xp:selectItem>
+							<xp:selectItem itemLabel="No" id="selectItem4"></xp:selectItem>
 						</xp:comboBox>
 					</xp:td>
 				</xp:tr>
@@ -180,6 +183,19 @@ controlpanelBean.init();}]]></xp:this.script>
 				</xp:tr>
 				<xp:tr>
 					<xp:td>
+						<xp:label value="Session Voting:" id="sessionvotinglabel"
+							for="SessionVoting"></xp:label>
+					</xp:td>
+					<xp:td>
+						<xp:comboBox id="SessionVoting" value="#{document1.SessionVoting}">
+							<xp:selectItem itemLabel="Disabled"></xp:selectItem>
+							<xp:selectItem itemLabel="Enabled"></xp:selectItem>
+							<xp:selectItem itemLabel="Read Mode"></xp:selectItem>
+						</xp:comboBox>
+					</xp:td>
+				</xp:tr>
+				<xp:tr>
+					<xp:td>
 						<xp:label value="Enable registration:" id="enableRegistration_Label1"
 							for="enableRegistration1">
 						</xp:label>
@@ -187,8 +203,8 @@ controlpanelBean.init();}]]></xp:this.script>
 					<xp:td>
 						<xp:comboBox value="#{document1.EnableRegistration}"
 							id="enableRegistration1">
-							<xp:selectItem itemLabel="Yes"></xp:selectItem>
-							<xp:selectItem itemLabel="No"></xp:selectItem>
+							<xp:selectItem itemLabel="Yes" id="selectItem5"></xp:selectItem>
+							<xp:selectItem itemLabel="No" id="selectItem6"></xp:selectItem>
 						</xp:comboBox>
 					</xp:td>
 				</xp:tr>

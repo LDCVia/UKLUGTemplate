@@ -52,3 +52,71 @@ function unpublishSession(sessiondoc:NotesDocument){
 	sessiondoc.computeWithForm(false, false);
 	sessiondoc.save();
 }
+
+function getSessionVotingList(){
+	var db:NotesDatabase = sessionAsSigner.getDatabase(database.getServer(), database.getFilePath());
+	var vw:NotesView = db.getView("Sessions");
+	var doc:NotesDocument = vw.getFirstDocument();
+	var out = new Array();
+	while(doc != null){
+		var sess = {"unid": doc.getUniversalID(), 
+				"title": doc.getItemValueString("Title"), 
+				"abstracttext": doc.getItemValueString("Abstract"), 
+				"track": doc.getItemValueString("Track"), 
+				"score": doc.getItemValueInteger("Score")
+			};
+		out.push(sess);
+		var doctemp:NotesDocument = vw.getNextDocument(doc);
+		doc.recycle();
+		doc = doctemp;
+	}
+	vw.recycle();
+	//Cache the list of votes that the current user has cast
+	var list = @DbLookup(@DbName(), "Votes", @UserName() + "|", 1, "[PARTIALMATCH]");
+	sessionScope.sessionvotes = $A(list);
+	return out;
+}
+
+function promoteSession(unid){
+	var db:NotesDatabase = sessionAsSigner.getDatabase(database.getServer(), database.getFilePath());
+	var votes:NotesView = db.getView("Votes");
+	var votedoc:NotesDocument = votes.getDocumentByKey(@UserName() + "|" + unid);
+	if (votedoc == null){
+		votedoc = db.createDocument();
+		votedoc.replaceItemValue("Form", "Vote");
+		votedoc.replaceItemValue("UNID", unid);
+		votedoc.replaceItemValue("Person", @UserName());
+		votedoc.replaceItemValue("Score", 1);
+		votedoc.save();
+		//Now we also need to increment the score on the session
+		var sessiondoc:NotesDocument = db.getDocumentByUNID(unid);
+		if (sessiondoc.hasItem("Score")){
+			sessiondoc.replaceItemValue("Score", sessiondoc.getItemValueInteger("Score") + 1);
+		}else{
+			sessiondoc.replaceItemValue("Score", 1);
+		}
+		sessiondoc.save();
+	}
+}
+
+function demoteSession(unid){
+	var db:NotesDatabase = sessionAsSigner.getDatabase(database.getServer(), database.getFilePath());
+	var votes:NotesView = db.getView("Votes");
+	var votedoc:NotesDocument = votes.getDocumentByKey(@UserName() + "|" + unid);
+	if (votedoc == null){
+		votedoc = db.createDocument();
+		votedoc.replaceItemValue("Form", "Vote");
+		votedoc.replaceItemValue("UNID", unid);
+		votedoc.replaceItemValue("Person", @UserName());
+		votedoc.replaceItemValue("Score", -1);
+		votedoc.save();
+		//Now we also need to increment the score on the session
+		var sessiondoc:NotesDocument = db.getDocumentByUNID(unid);
+		if (sessiondoc.hasItem("Score")){
+			sessiondoc.replaceItemValue("Score", sessiondoc.getItemValueInteger("Score") - 1);
+		}else{
+			sessiondoc.replaceItemValue("Score", -1);
+		}
+		sessiondoc.save();
+	}
+}
