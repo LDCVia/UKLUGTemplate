@@ -7,7 +7,7 @@
 		<div class="well">
 			<h1>Registration</h1>
 		</div>
-		<xp:panel id="newreg" styleClass="form-horizontal">
+		<xp:panel id="newreg" styleClass="form-horizontal span9">
 			<xp:this.data>
 				<xp:dominoDocument var="document1" formName="Attendee"
 					computeWithForm="onsave">
@@ -157,5 +157,18 @@ document1.replaceItemValue("Events", getCurrentEventName());}]]></xp:this.script
 				</div>
 			</div>
 		</xp:panel>
+		<xp:div styleClass="well hero span2">
+			<xp:this.rendered><![CDATA[#{javascript:@UserName() == "Anonymous"}]]></xp:this.rendered>
+			<p>
+				Already have an account? You can log in to register your
+				attendance of the event.
+			</p>
+			<p>
+				<xp:link escape="true" text="Login" id="loginlink"
+					styleClass="btn btn-primary btn-large">
+					<xp:this.value><![CDATA[#{javascript:"/" + @ReplaceSubstring(database.getFilePath(), "\\", "/") + "?open&login"}]]></xp:this.value>
+				</xp:link>
+			</p>
+		</xp:div>
 	</div>
 </xp:view>

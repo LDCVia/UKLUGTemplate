@@ -1,19 +1,19 @@
 <?xml version="1.0" encoding="UTF-8"?><note class="form" replicaid="80257A6A002CAD3E" version="9.0" xmlns="http://www.lotus.com/dxl">
-<noteinfo noteid="776" sequence="3" unid="A9B7C3D420F0E05280257A6A004A09F3">
-<created><datetime dst="true">20120830T142842,11+01</datetime></created>
-<modified><datetime>20130220T125829,27+00</datetime></modified>
-<revised><datetime dst="true">20120830T143019,75+01</datetime></revised>
-<lastaccessed><datetime>20130220T125829,27+00</datetime></lastaccessed>
-<addedtofile><datetime>20130220T125829,27+00</datetime></addedtofile></noteinfo>
+<noteinfo noteid="1432" sequence="1" unid="337737085070939D80257B26003A2FC6">
+<created><datetime>20130306T103533,18+00</datetime></created>
+<modified><datetime>20130306T103533,20+00</datetime></modified>
+<revised><datetime>20130306T103533,19+00</datetime></revised>
+<lastaccessed><datetime>20130306T103533,20+00</datetime></lastaccessed>
+<addedtofile><datetime>20130306T103533,20+00</datetime></addedtofile></noteinfo>
 <updatedby><name>CN=Matt White/O=Exhilarate</name></updatedby>
 <wassignedby><name>CN=Matt White/O=Exhilarate</name></wassignedby>
 <item name="$TITLE"><text>bootstrap.js</text></item>
 <item name="$Flags"><text>345CgQ</text></item>
 <item name="$FlagsExt"><text>D</text></item>
-<item name="$FileModDT" sign="true"><datetime dst="true">20120830T080520,00+01</datetime></item>
-<item name="$DesignerVersion"><text>8.5.3</text></item>
+
+<item name="$FileModDT" sign="true"><datetime>20130228T212604,00+00</datetime></item>
 
 
 
-
-<item name="$FileNames" sign="true"><text>bootstrap.js</text></item></note>
+<item name="$FileNames" sign="true"><text>bootstrap.js</text></item>
+<item name="$DesignerVersion"><text>8.5.3</text></item></note>

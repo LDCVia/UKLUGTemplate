@@ -11,4 +11,5 @@ $(document).ready(function(){
 	try{
 		$('.timepicker').timepicker({ 'timeFormat': 'H:i' });
 	}catch(e){}
+	$('body').scrollspy();
 })

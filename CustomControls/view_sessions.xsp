@@ -27,7 +27,7 @@
 					<xp:this.styleClass><![CDATA[#{javascript:if (context.getUrlParameter("filter") == "voting"){
 	return "active";
 }}]]></xp:this.styleClass>
-					<xp:this.rendered><![CDATA[#{javascript:@UserName() != "Anonymous" && (controlpanelBean.getSessionVoting() == "Enabled" || controlpanelBean.getSessionVoting() == "Read Mode")}]]></xp:this.rendered>
+					<xp:this.rendered><![CDATA[#{javascript:(controlpanelBean.getSessionVoting() == "Enabled" || controlpanelBean.getSessionVoting() == "Read Mode")}]]></xp:this.rendered>
 					<xp:link escape="true" text="Voting" id="link8" value="/sessions.xsp">
 						<xp:this.parameters>
 							<xp:parameter name="filter" value="voting"></xp:parameter>

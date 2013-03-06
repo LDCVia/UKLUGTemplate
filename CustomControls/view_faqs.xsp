@@ -9,21 +9,32 @@
 		<xp:script src="/faqs.js" clientSide="true"></xp:script>
 	</xp:this.resources>
 
-	<div class="span3 bs-docs-sidebar">
-
-		<ul class="nav nav-list bs-docs-sidenav affix">
-			<xp:repeat id="repeat1" rows="999" value="#{view1}" var="question"
+	<div class="span3 bs-docs-sidebar nav">
+		<ul class="nav-list bs-docs-sidenav affix">
+			<xp:repeat id="repeat3" rows="999" value="#{view1}" var="question"
 				indexVar="questionindex" disableOutputTag="true">
 				<li>
-					<xp:panel id="question" tagName="a">
+					<xp:panel id="homepage" tagName="a">
 						<xp:this.attrs>
 							<xp:attr name="href">
-								<xp:this.value><![CDATA[#{javascript:var text = question.getColumnValue("Question");
-return "#" + @ReplaceSubstring(text, " ", "_");}]]></xp:this.value>
+								<xp:this.value><![CDATA[#{javascript:var out = "<section id=\"" + @ReplaceSubstring(question.getColumnValue("Question"), [" ", "?"], "") + "\">";
+out += "<div class=\"page-header\"><h1>" + question.getColumnValue("Question") + "</h1>";
+out += "<p>" + question.getColumnValue("Answer") + "</p>";
+if (context.getUser().getRoles().contains("[Admin]")){
+	out += "<p><a href=\"faq.xsp?action=openDocument&documentId=" + question.getColumnValue("UNID") + "\" class=\"btn\">Edit...</a></p>";
+}
+out += "</section>"
+var text = question.getColumnValue("Question");
+if (viewScope.homehtml == null){
+	viewScope.homehtml = out;
+}else{
+	viewScope.homehtml = viewScope.homehtml + out;
+}
+return "#" + @ReplaceSubstring(text, [" ", "?"], "");}]]></xp:this.value>
 							</xp:attr>
 						</xp:this.attrs>
 						<i class="icon-chevron-right"></i>
-						<xp:text value="#{question.Question}" id="questiontext">
+						<xp:text value="#{question.Question}" id="titletext">
 						</xp:text>
 					</xp:panel>
 				</li>
@@ -31,30 +42,12 @@ return "#" + @ReplaceSubstring(text, " ", "_");}]]></xp:this.value>
 		</ul>
 	</div>
 
-	<div class="span9">
-		<xp:div>
-			<xp:this.rendered><![CDATA[#{javascript:context.getUser().getRoles().contains("[Admin]");}]]></xp:this.rendered>
-			<xp:link escape="true" id="link1" text="New FAQ..." value="/faq.xsp"
-				styleClass="btn btn-primary btn-large">
-			</xp:link>
-		</xp:div>
-
-		<xp:repeat id="repeat2" rows="999" value="#{view1}" var="answer"
-			indexVar="answerindex" disableOutputTag="true">
-			<xp:panel id="answerpanel" tagName="div">
-				<xp:text escape="false">
-					<xp:this.value><![CDATA[#{javascript:var out = "<section id=\"" + @ReplaceSubstring(answer.getColumnValue("Question"), " ", "_") + "\">";
-out += "<div class=\"page-header\"><h1>" + answer.getColumnValue("Question") + "</h1>";
-out += "<p>" + answer.getColumnValue("Answer") + "</p>";
+	<xp:text escape="false" id="contentholder" tagName="div">
+		<xp:this.value><![CDATA[#{javascript:var out = "<div id=\"content\" class=\"span9\">";
 if (context.getUser().getRoles().contains("[Admin]")){
-	out += "<p><a href=\"faq.xsp?action=openDocument&documentId=" + answer.getColumnValue("UNID") + "\" class=\"btn\">Edit...</a></p>";
+	out += "<div><a href=\"/faq.xsp\" class=\"btn btn-primary btn-large\">New FAQ...</a></div>";
 }
-out += "</section>"
-return out;}]]></xp:this.value>
-				</xp:text>
-			</xp:panel>
-		</xp:repeat>
-
-	</div>
+return out + viewScope.homehtml + "</div>";}]]></xp:this.value>
+	</xp:text>
 
 </xp:view>
