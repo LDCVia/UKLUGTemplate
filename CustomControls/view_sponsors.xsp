@@ -43,7 +43,7 @@
 	</div>
 
 	<div id="container" class="clearfix fluid">
-		<div class="thumbnails" style="margin-top: 10px;">
+		<div id="bricks" class="thumbnails" style="margin-top: 10px;">
 			<xp:panel styleClass="thumbnail col3">
 				<xp:this.rendered><![CDATA[#{javascript:context.getUser().getRoles().contains("[Admin]")}]]></xp:this.rendered>
 				<h3>Create a new sponsor</h3>

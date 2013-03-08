@@ -37,7 +37,7 @@
 	</div>
 
 	<div id="container" class="clearfix fluid">
-		<div class="thumbnails" style="margin-top: 10px;">
+		<div id="bricks" class="thumbnails" style="margin-top: 10px;">
 			<xp:repeat id="speakers" var="presentername"
 				indexVar="presenternameindex" disableOutputTag="true">
 				<xp:this.value><![CDATA[#{javascript:var filter = context.getUrlParameter("filter");

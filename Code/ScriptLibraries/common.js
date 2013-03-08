@@ -1,5 +1,5 @@
 $(document).ready(function(){
-	$('#container').masonry({
+	$('#bricks').masonry({
 		  itemSelector: '.thumbnail',
 		  // set columnWidth a fraction of the container width
 		  columnWidth: 100, 
