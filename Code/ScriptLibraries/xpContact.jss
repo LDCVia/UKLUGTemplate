@@ -7,6 +7,6 @@ function sendFeedback(){
 	emailBean.setSubject("New Feedback from " + database.getTitle());
 	emailBean.setSenderEmail(viewScope.contactname);
 	emailBean.setSenderName(viewScope.contactemail);
-	emailBean.addHTML(viewScope.contactbody);
+	emailBean.addHTML(viewScope.contactname + "<br />" + viewScope.contactemail + "<br />" + viewScope.contactbody);
 	emailBean.send();
 }
