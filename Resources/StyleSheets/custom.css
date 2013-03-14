@@ -658,3 +658,7 @@ code .nd { color: #9FAD7E; } /* CSS pseudo selector */
 .alert-error {
 	display: block;
 }
+
+.bs-docs-sidenav.affix {
+	top: auto !important;
+}

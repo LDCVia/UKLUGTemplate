@@ -9,7 +9,7 @@
 		<xp:script src="/faqs.js" clientSide="true"></xp:script>
 	</xp:this.resources>
 
-	<div class="span3 bs-docs-sidebar nav">
+	<div class="span3 bs-docs-sidebar nav hidden-phone">
 
 		<ul class="nav-list bs-docs-sidenav affix">
 			<xp:repeat id="repeat1" rows="999" value="#{view1}" var="homepage"

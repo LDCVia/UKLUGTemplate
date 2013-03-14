@@ -9,7 +9,7 @@
 		<xp:script src="/faqs.js" clientSide="true"></xp:script>
 	</xp:this.resources>
 
-	<div class="span3 bs-docs-sidebar nav">
+	<div class="span3 bs-docs-sidebar nav hidden-phone">
 		<ul class="nav-list bs-docs-sidenav affix">
 			<xp:repeat id="repeat3" rows="999" value="#{view1}" var="question"
 				indexVar="questionindex" disableOutputTag="true">
@@ -45,7 +45,7 @@ return "#" + @ReplaceSubstring(text, [" ", "?"], "");}]]></xp:this.value>
 	<xp:text escape="false" id="contentholder" tagName="div">
 		<xp:this.value><![CDATA[#{javascript:var out = "<div id=\"content\" class=\"span9\">";
 if (context.getUser().getRoles().contains("[Admin]")){
-	out += "<div><a href=\"/faq.xsp\" class=\"btn btn-primary btn-large\">New FAQ...</a></div>";
+	out += "<div><a href=\"/" + @ReplaceSubstring(database.getFilePath(), "\\", "/") + "/faq.xsp\" class=\"btn btn-primary btn-large\">New FAQ...</a></div>";
 }
 return out + viewScope.homehtml + "</div>";}]]></xp:this.value>
 	</xp:text>
