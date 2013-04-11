@@ -1,12 +1,14 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <xp:view xmlns:xp="http://www.ibm.com/xsp/core" xmlns:xc="http://www.ibm.com/xsp/custom"
-	createForm="false" pageTitle="Home">
+	createForm="false" pageTitle="Evaluation">
 	<xp:this.resources>
 		<xp:script src="/xpCommon.jss" clientSide="false"></xp:script>
+		<xp:script src="/xpTableWalker.jss" clientSide="false"></xp:script>
 	</xp:this.resources>
 	<xc:layout showenrollmessage="true">
 		<xp:this.facets>
-			<xc:view_home xp:key="facet_1"></xc:view_home>
+			<xc:form_eval xp:key="facet_1"></xc:form_eval>
 		</xp:this.facets>
+
 	</xc:layout>
 </xp:view>

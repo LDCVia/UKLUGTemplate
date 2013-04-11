@@ -1,0 +1,162 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<xp:view xmlns:xp="http://www.ibm.com/xsp/core">
+	<xp:this.acl>
+		<xp:acl>
+			<xp:this.entries>
+				<xp:aclEntry type="ANONYMOUS" right="NOACCESS"
+					name="Anonymous" fullName="Anonymous">
+				</xp:aclEntry>
+				<xp:aclEntry type="DEFAULT" right="NOACCESS"></xp:aclEntry>
+				<xp:aclEntry type="ROLE" right="EDITOR">
+					<xp:this.name><![CDATA[[Admin]]]></xp:this.name>
+					<xp:this.fullName><![CDATA[[Admin]]]></xp:this.fullName>
+				</xp:aclEntry>
+			</xp:this.entries>
+		</xp:acl>
+	</xp:this.acl>
+
+	<xp:this.resources>
+		<xp:script src="/xpEvals.jss" clientSide="false"></xp:script>
+	</xp:this.resources>
+	<xp:this.afterPageLoad><![CDATA[#{javascript:sessionScope.allsessiondetails = getAllSessionDetails();}]]></xp:this.afterPageLoad>
+	<div class="navbar">
+		<div class="navbar-inner">
+			<a class="brand" href="#">Admin</a>
+			<ul class="nav">
+				<li>
+					<a href="admin.xsp">Control Panel</a>
+				</li>
+				<li>
+					<a href="attendees.xsp">Attendees</a>
+				</li>
+				<li>
+					<a href="files.xsp">Files</a>
+				</li>
+				<li>
+					<a href="agenda.xsp">Agenda</a>
+				</li>
+				<li class="active">
+					<a href="evaluations.xsp">Evaluations</a>
+				</li>
+			</ul>
+		</div>
+	</div>
+
+	<h2>Overall Scores</h2>
+
+	<table>
+		<tr>
+			<td>
+				<label>Average Score:</label>
+			</td>
+			<td>
+				<xp:text id="computedField8" escape="true"
+					value="#{javascript:sessionScope.overalldetails.getAverageScore();}">
+					<xp:this.converter>
+						<xp:convertNumber type="number"
+							integerOnly="true">
+						</xp:convertNumber>
+					</xp:this.converter>
+				</xp:text>
+				%
+			</td>
+		</tr>
+		<tr>
+			<td>
+				<label>Number of evals completed:</label>
+			</td>
+			<td>
+				<xp:text id="computedField9" escape="true"
+					value="#{javascript:sessionScope.overalldetails.getEvalCount();}">
+					<xp:this.converter>
+						<xp:convertNumber type="number"
+							integerOnly="true">
+						</xp:convertNumber>
+					</xp:this.converter>
+				</xp:text>
+			</td>
+		</tr>
+		<tr>
+			<td>
+				<label>Comments:</label>
+			</td>
+			<td>
+				<xp:repeat
+					value="#{javascript:sessionScope.overalldetails.getComments()}"
+					var="comment" rows="250">
+					<xp:text id="computedField10" escape="true"
+						value="#{javascript:comment}">
+					</xp:text>
+					<hr />
+				</xp:repeat>
+			</td>
+		</tr>
+	</table>
+
+	<xp:repeat id="repeat4" rows="250"
+		value="#{javascript:sessionScope.allsessiondetails}"
+		var="sessiondetails">
+		<div class="sessiondetails">
+			<h2>
+				<xp:text escape="true" id="computedField6"
+					value="#{javascript:sessiondetails.getTitle()}">
+				</xp:text>
+			</h2>
+			<h3>
+				<xp:text escape="true" id="computedField11">
+					<xp:this.value><![CDATA[#{javascript:@Implode(sessiondetails.getSpeakers(), ", ")}]]></xp:this.value>
+				</xp:text>
+			</h3>
+			<table>
+				<tr>
+					<td>
+						<label>Average Score:</label>
+					</td>
+					<td>
+						<xp:text id="averagescore" escape="true"
+							value="#{javascript:sessiondetails.getAverageScore();}">
+							<xp:this.converter>
+								<xp:convertNumber type="number"
+									integerOnly="true">
+								</xp:convertNumber>
+							</xp:this.converter>
+						</xp:text>
+						%
+					</td>
+				</tr>
+				<tr>
+					<td>
+						<label>
+							Number of evals completed for session:
+						</label>
+					</td>
+					<td>
+						<xp:text id="computedField7" escape="true"
+							value="#{javascript:sessiondetails.getEvalCount();}">
+							<xp:this.converter>
+								<xp:convertNumber type="number"
+									integerOnly="true">
+								</xp:convertNumber>
+							</xp:this.converter>
+						</xp:text>
+					</td>
+				</tr>
+				<tr>
+					<td>
+						<label>Comments:</label>
+					</td>
+					<td>
+						<xp:repeat
+							value="#{javascript:sessiondetails.getComments()}" var="comment"
+							rows="250">
+							<xp:text id="comment" escape="true"
+								value="#{javascript:comment}">
+							</xp:text>
+							<hr />
+						</xp:repeat>
+					</td>
+				</tr>
+			</table>
+		</div>
+	</xp:repeat>
+</xp:view>

@@ -693,3 +693,7 @@ code .nd { color: #9FAD7E; } /* CSS pseudo selector */
     background-position: 0 -125px;
     display: block;    
 }
+
+.ui-slider {
+	width: 80%;
+}

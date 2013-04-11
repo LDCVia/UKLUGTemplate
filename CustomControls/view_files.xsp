@@ -29,6 +29,12 @@
 				<li class="active">
 					<a href="files.xsp">Files</a>
 				</li>
+				<li>
+					<a href="agenda.xsp">Agenda</a>
+				</li>
+				<li>
+					<a href="evaluations.xsp">Evaluations</a>
+				</li>
 			</ul>
 		</div>
 	</div>

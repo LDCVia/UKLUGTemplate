@@ -1,0 +1,20 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<xp:view xmlns:xp="http://www.ibm.com/xsp/core" pageTitle="Admin"
+	xmlns:xc="http://www.ibm.com/xsp/custom">
+	<xp:this.acl>
+		<xp:acl>
+			<xp:this.entries>
+				<xp:aclEntry type="DEFAULT" right="NOACCESS"></xp:aclEntry>
+				<xp:aclEntry type="ROLE" right="EDITOR">
+					<xp:this.name><![CDATA[[Admin]]]></xp:this.name>
+					<xp:this.fullName><![CDATA[[Admin]]]></xp:this.fullName>
+				</xp:aclEntry>
+			</xp:this.entries>
+		</xp:acl>
+	</xp:this.acl>
+	<xc:layout>
+		<xp:this.facets>
+			<xc:form_evals xp:key="facet_1"></xc:form_evals>
+		</xp:this.facets>
+	</xc:layout>
+</xp:view>

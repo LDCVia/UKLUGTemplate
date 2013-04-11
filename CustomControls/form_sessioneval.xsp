@@ -1,0 +1,56 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<xp:view xmlns:xp="http://www.ibm.com/xsp/core">
+	<xp:this.afterPageLoad><![CDATA[#{javascript:sessionScope.sessiondetails = getSessionDetails(compositeData.sessiontitle);}]]></xp:this.afterPageLoad>
+	<xp:this.resources>
+		<xp:script src="/xpEvals.jss" clientSide="false"></xp:script>
+	</xp:this.resources>
+	<div class="well">
+		<h2>Evaluation</h2>
+
+		<table>
+			<tr>
+				<td>
+					<label>Average Score:</label>
+				</td>
+				<td>
+					<xp:text id="averagescore" escape="true"
+						value="#{javascript:sessionScope.sessiondetails.getAverageScore();}">
+						<xp:this.converter>
+							<xp:convertNumber type="number" integerOnly="true">
+							</xp:convertNumber>
+						</xp:this.converter>
+					</xp:text>
+					%
+				</td>
+			</tr>
+			<tr>
+				<td>
+					<label>Number of evals completed for session:</label>
+				</td>
+				<td>
+					<xp:text id="computedField1" escape="true"
+						value="#{javascript:sessionScope.sessiondetails.getEvalCount();}">
+						<xp:this.converter>
+							<xp:convertNumber type="number" integerOnly="true">
+							</xp:convertNumber>
+						</xp:this.converter>
+					</xp:text>
+				</td>
+			</tr>
+			<tr>
+				<td>
+					<label>Comments:</label>
+				</td>
+				<td>
+					<xp:repeat
+						value="#{javascript:sessionScope.sessiondetails.getComments()}"
+						var="comment">
+						<xp:text id="comment" escape="true" value="#{javascript:comment}">
+						</xp:text>
+						<hr />
+					</xp:repeat>
+				</td>
+			</tr>
+		</table>
+	</div>
+</xp:view>

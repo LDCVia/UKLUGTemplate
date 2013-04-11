@@ -1,0 +1,182 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<xp:view xmlns:xp="http://www.ibm.com/xsp/core" dojoParseOnLoad="true"
+	dojoTheme="true" createForm="true">
+
+	<xp:this.data>
+		<xp:dominoDocument var="document1" formName="Evaluation"
+			computeWithForm="onsave">
+		</xp:dominoDocument>
+		<xp:dominoView var="view1" viewName="Sessions By Track"></xp:dominoView>
+	</xp:this.data>
+	<xp:this.resources>
+		<xp:script src="/jquery-ui-1.10.2.custom.min.js"
+			clientSide="true">
+		</xp:script>
+		<xp:script src="/jsEval.js" clientSide="true"></xp:script>
+		<xp:script src="/xpTableWalker.jss" clientSide="false"></xp:script>
+		<xp:styleSheet href="/jquery-ui-1.10.2.custom.min.css"></xp:styleSheet>
+	</xp:this.resources>
+	<div class="well">
+		<h1>Evaluation</h1>
+	</div>
+	<xp:table styleClass="table">
+		<xp:tr>
+			<xp:td style="width:300px">
+				<xp:label value="Who are you:" id="createdBy_Label1"
+					for="createdBy1">
+				</xp:label>
+			</xp:td>
+			<xp:td>
+				<xp:inputText value="#{document1.CreatedBy}"
+					id="createdBy1">
+					<xp:this.defaultValue><![CDATA[#{javascript:if (@UserName() != "Anonymous")
+	return @Name("[CN]", @UserName());}]]></xp:this.defaultValue>
+				</xp:inputText>
+			</xp:td>
+		</xp:tr>
+		<xp:tr>
+			<xp:td>
+				<xp:label id="overallscore_Label1"
+					for="overallscore1">
+					How would you rate the conference overall?
+				</xp:label>
+			</xp:td>
+			<xp:td>
+				<xp:inputText id="overallscore" style="display: none;"
+					value="#{document1.overallscore}">
+				</xp:inputText>
+				<xp:scriptBlock id="scriptBlock1">
+					<xp:this.value><![CDATA[#{javascript:"buildSlider(\"" + getClientId("overallscore") + "\")";}]]></xp:this.value>
+				</xp:scriptBlock>
+			</xp:td>
+		</xp:tr>
+		<xp:tr>
+			<xp:td>
+				<xp:label id="label1" for="overallscore1">
+					How would you rate the evening entertainment?
+				</xp:label>
+			</xp:td>
+			<xp:td>
+				<xp:inputText id="entertainment" style="display: none;"
+					value="#{document1.entertainment}">
+				</xp:inputText>
+				<xp:scriptBlock id="scriptBlock3">
+					<xp:this.value><![CDATA[#{javascript:"buildSlider(\"" + getClientId("entertainment") + "\")";}]]></xp:this.value>
+				</xp:scriptBlock>
+			</xp:td>
+		</xp:tr>
+		<xp:tr>
+			<xp:td>
+				<xp:label id="label2" for="overallscore1">
+					How would you rate the facilities (rooms, catering,
+					location etc)?
+				</xp:label>
+			</xp:td>
+			<xp:td>
+				<xp:inputText id="facilities" style="display: none;"
+					value="#{document1.facilities}">
+				</xp:inputText>
+				<xp:scriptBlock id="scriptBlock4">
+					<xp:this.value><![CDATA[#{javascript:"buildSlider(\"" + getClientId("facilities") + "\")";}]]></xp:this.value>
+				</xp:scriptBlock>
+			</xp:td>
+		</xp:tr>
+		<xp:tr>
+			<xp:td>
+				<xp:label id="overallcomments_Label1"
+					for="overallcomments1">
+					Please give us any other comments about the
+					conference. Good or bad we want to hear your
+					feedback.
+				</xp:label>
+			</xp:td>
+			<xp:td>
+				<xp:inputTextarea value="#{document1.overallcomments}"
+					id="overallcomments1" style="height:50.0px">
+				</xp:inputTextarea>
+			</xp:td>
+		</xp:tr>
+		<xp:tr>
+			<xp:td colspan="2">
+				<xp:label value="Sessions" id="sessionstitle"></xp:label>
+			</xp:td>
+		</xp:tr>
+		<xp:repeat id="sessions" var="fieldGroup"
+			indexVar="sessionindex" rows="250">
+			<xp:this.facets>
+				<xp:text disableTheme="true" xp:key="header"
+					escape="false" value=" ">
+				</xp:text>
+				<xp:text disableTheme="true" xp:key="footer"
+					escape="false" value=" ">
+				</xp:text>
+			</xp:this.facets>
+			<xp:this.value><![CDATA[#{javascript:var scopeVariableName = "group";
+var fieldNames = "sessions,scores,comments,speakers";
+var sessions = $A(@DbLookup(@DbName(), "Sessions By Status", "Approved", 2));
+var speakers = $A(@DbLookup(@DbName(), "Sessions By Status", "Approved", 5));
+
+if (viewScope.rowsadded == null || !viewScope.rowsadded){
+	tableWalker.getDataSource(scopeVariableName,document1,fieldNames);
+	for(var i=0; i<sessions.length; i++){
+		tableWalker.addRow(scopeVariableName, null, [sessions[i], "", "", speakers[i]]);
+	}
+	viewScope.rowsadded = true;
+}
+
+return tableWalker.getDataSource(scopeVariableName,document1,fieldNames);}]]></xp:this.value>
+			<xp:tr>
+				<xp:td>
+					<xp:text id="sessiontitle" escape="false"
+						style="font-weight:bold">
+						<xp:this.value><![CDATA[#{fieldGroup[0]}]]></xp:this.value>
+					</xp:text>
+					<br />
+					<xp:text id="computedField1" escape="false">
+						<xp:this.value><![CDATA[#{fieldGroup[3]}]]></xp:this.value>
+					</xp:text>
+				</xp:td>
+				<xp:td>
+					<xp:inputHidden id="sessionsfield">
+						<xp:this.value><![CDATA[#{fieldGroup[0]}]]></xp:this.value>
+					</xp:inputHidden>
+					<xp:inputHidden id="scores">
+						<xp:this.value><![CDATA[#{fieldGroup[1]}]]></xp:this.value>
+					</xp:inputHidden>
+					<xp:scriptBlock id="scriptBlock2">
+						<xp:this.value><![CDATA[#{javascript:"buildSlider(\"" + getClientId("scores") + "\")";}]]></xp:this.value>
+					</xp:scriptBlock>
+				</xp:td>
+			</xp:tr>
+			<xp:tr style="border-bottom:#222222 solid thin">
+				<xp:td>Comment</xp:td>
+				<xp:td>
+					<xp:inputTextarea id="comments"
+						style="height:50px">
+						<xp:this.value><![CDATA[#{fieldGroup[2]}]]></xp:this.value>
+					</xp:inputTextarea>
+				</xp:td>
+			</xp:tr>
+		</xp:repeat>
+		<xp:tr>
+			<xp:td></xp:td>
+			<xp:td>
+				<xp:button value="Submit" id="button1"
+					styleClass="btn btn-primary">
+					<xp:eventHandler event="onclick" submit="true"
+						refreshMode="complete">
+						<xp:this.action>
+							<xp:actionGroup>
+								<xp:executeScript>
+									<xp:this.script><![CDATA[#{javascript:tableWalker.updateDocument("group", document1);}]]></xp:this.script>
+								</xp:executeScript>
+								<xp:save name="/home.xsp"></xp:save>
+							</xp:actionGroup>
+						</xp:this.action>
+						<xp:this.script><![CDATA[return true;]]></xp:this.script>
+					</xp:eventHandler>
+				</xp:button>
+			</xp:td>
+		</xp:tr>
+	</xp:table>
+</xp:view>
