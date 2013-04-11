@@ -166,7 +166,9 @@ document1.replaceItemValue("Events", getCurrentEventName());}]]></xp:this.script
 			<p>
 				<xp:link escape="true" text="Login" id="loginlink"
 					styleClass="btn btn-primary btn-large">
-					<xp:this.value><![CDATA[#{javascript:"/" + @ReplaceSubstring(database.getFilePath(), "\\", "/") + "?open&login"}]]></xp:this.value>
+					<xp:this.value><![CDATA[#{javascript:"http://" + 
+context.getUrl().getHost() + "/" + 
+@ReplaceSubstring(database.getFilePath(), "\\", "/") + "?open&login"}]]></xp:this.value>
 				</xp:link>
 			</p>
 		</xp:div>
