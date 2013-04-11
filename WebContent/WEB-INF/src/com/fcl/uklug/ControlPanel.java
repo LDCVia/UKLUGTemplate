@@ -20,6 +20,7 @@ public class ControlPanel implements Serializable {
 	private String enableRegistration;
 	private String enableAgenda;
 	private String enableForum;
+	private String enableExtraSessionFields;
 	private String feedbackSendTo;
 	private String eventName;
 	private Date startDate;
@@ -96,6 +97,7 @@ public class ControlPanel implements Serializable {
 		this.setSessionEmailRejectedSubject(controlpaneldoc.getItemValueString("SessionEmailRejectedSubject"));
 		this.setSessionEmailRejectedBody(controlpaneldoc.getItemValueString("SessionEmailRejectedBody"));
 		this.setSessionVoting(controlpaneldoc.getItemValueString("SessionVoting"));
+		this.setEnableExtraSessionFields(controlpaneldoc.getItemValueString("EnableExtraSessionFields"));
 		controlpaneldoc.recycle();
 		controlpanels.recycle();
 	}
@@ -319,5 +321,13 @@ public class ControlPanel implements Serializable {
 
 	public String getSessionVoting() {
 		return sessionVoting;
+	}
+
+	public void setEnableExtraSessionFields(String enableExtraSessionFields) {
+		this.enableExtraSessionFields = enableExtraSessionFields;
+	}
+
+	public String getEnableExtraSessionFields() {
+		return enableExtraSessionFields;
 	}
 }

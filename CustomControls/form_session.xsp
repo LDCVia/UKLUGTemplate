@@ -36,7 +36,8 @@
 					</xp:eventHandler>
 				</xp:button>
 				<xp:button value="Submit" id="button1" styleClass="btn btn-primary">
-					<xp:this.rendered><![CDATA[#{javascript:document1.isEditable() && @UserName() != "Anonymous"}]]></xp:this.rendered><xp:eventHandler event="onclick" submit="true"
+					<xp:this.rendered><![CDATA[#{javascript:document1.isEditable() && @UserName() != "Anonymous"}]]></xp:this.rendered>
+					<xp:eventHandler event="onclick" submit="true"
 						refreshMode="complete">
 						<xp:this.action>
 							<xp:actionGroup>
@@ -115,13 +116,13 @@
 }}]]></xp:this.value>
 			</xp:text>
 			<xp:text tagName="p" id="computedField1" escape="true">
-						<xp:this.value><![CDATA[#{javascript:var out = @DbLookup(@DbName(), "Sessions By Timeslot", document1.getDocument().getUniversalID(), 2);
+				<xp:this.value><![CDATA[#{javascript:var out = @DbLookup(@DbName(), "Sessions By Timeslot", document1.getDocument().getUniversalID(), 2);
 if(@IsError(out)){
 	return "Not yet scheduled";
 }else{
 	return out;
 }}]]></xp:this.value>
-					</xp:text>
+			</xp:text>
 		</div>
 		<xp:panel id="newreg" styleClass="form-horizontal">
 			<div class="control-group">
@@ -148,8 +149,7 @@ if(@IsError(out)){
 					value="Track">
 				</xp:label>
 				<div class="controls">
-					<xp:comboBox id="inputTrack"
-						value="#{document1.Track}">
+					<xp:comboBox id="inputTrack" value="#{document1.Track}">
 						<xp:selectItems>
 							<xp:this.value><![CDATA[#{javascript:controlpanelBean.getTracks()}]]></xp:this.value>
 						</xp:selectItems>
@@ -190,6 +190,39 @@ if(@IsError(out)){
 							</xp:attr>
 						</xp:this.attrs>
 					</xp:inputTextarea>
+				</div>
+			</xp:div>
+			<xp:div id="extrafields">
+				<xp:this.rendered><![CDATA[#{javascript:controlpanelBean.getEnableExtraSessionFields() == "Yes"}]]></xp:this.rendered>
+				<div class="control-group">
+					<xp:label styleClass="control-label" for="inputSessionLength"
+						value="Session Length">
+					</xp:label>
+					<div class="controls">
+						<xp:comboBox id="inputSessionLength" value="#{document1.Length}"
+							defaultValue="45-60 minutes">
+							<xp:selectItem itemLabel="0-15 minutes"></xp:selectItem>
+							<xp:selectItem itemLabel="15-30 minutes"></xp:selectItem>
+							<xp:selectItem itemLabel="30-45 minutes"></xp:selectItem>
+							<xp:selectItem itemLabel="45-60 minutes"></xp:selectItem>
+							<xp:selectItem itemLabel="60-90 minutes"></xp:selectItem>
+						</xp:comboBox>
+					</div>
+				</div>
+				<div class="control-group">
+					<xp:label styleClass="control-label" for="inputAgeRange"
+						value="Age Range">
+					</xp:label>
+					<div class="controls">
+						<xp:comboBox id="inputAgeRange"
+							value="#{document1.AgeRange}" defaultValue="PG">
+							<xp:selectItem itemLabel="U"></xp:selectItem>
+							<xp:selectItem itemLabel="PG"></xp:selectItem>
+							<xp:selectItem itemLabel="12"></xp:selectItem>
+							<xp:selectItem itemLabel="15"></xp:selectItem>
+							<xp:selectItem itemLabel="18"></xp:selectItem>
+						</xp:comboBox>
+					</div>
 				</div>
 			</xp:div>
 			<div class="control-group">

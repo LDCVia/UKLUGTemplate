@@ -108,9 +108,14 @@ if (filter == ""){
 								<xp:this.value><![CDATA[#{javascript:getDbPath() + "/session.xsp?action=openDocument&documentId=" + sessiondoc.getColumnValue("UNID");}]]></xp:this.value>
 							</xp:attr>
 						</xp:this.attrs>
+						<xp:panel tagName="div">
+							<xp:this.styleClass><![CDATA[#{javascript:"imgclassificationuk uk-" + sessiondoc.getDocument().getItemValueString("AgeRange")}]]></xp:this.styleClass>
+							<xp:this.rendered><![CDATA[#{javascript:sessiondoc.getDocument().hasItem("AgeRange")}]]></xp:this.rendered>
+						</xp:panel>
 						<xp:text tagName="h3" escape="true" id="title"
 							value="#{sessiondoc.Title}">
 						</xp:text>
+
 					</xp:panel>
 					<xp:text tagName="span" value="#{sessiondoc.Status}">
 						<xp:this.styleClass><![CDATA[#{javascript:var out = "label ";
@@ -192,8 +197,8 @@ if(@IsError(out)){
 								</xp:panel>
 								<xp:panel tagName="li" id="panel1">
 									<xp:link escape="true" text="Delete" id="link9">
-										<xp:eventHandler event="onclick"
-											submit="true" refreshMode="complete">
+										<xp:eventHandler event="onclick" submit="true"
+											refreshMode="complete">
 											<xp:this.action><![CDATA[#{javascript:deleteSession(sessiondoc.getDocument());}]]></xp:this.action>
 											<xp:this.script><![CDATA[if (confirm("Are you sure, there is no getting back from this!")){
 	return true;
@@ -273,5 +278,6 @@ if(@IsError(out)){
 		condensed: true
 	});
 });]]></xp:this.script>
-		</xp:eventHandler></xp:panel>
+		</xp:eventHandler>
+	</xp:panel>
 </xp:view>

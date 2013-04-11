@@ -102,8 +102,10 @@ controlpanelBean.init();}]]></xp:this.script>
 					</xp:td>
 					<xp:td>
 						<xp:comboBox value="#{document1.EnableAgenda}" id="enableAgenda1">
-							<xp:selectItem itemLabel="Yes" id="selectItem1"></xp:selectItem>
-							<xp:selectItem itemLabel="No" id="selectItem2"></xp:selectItem>
+							<xp:selectItem itemLabel="Yes" id="selectItem1">
+							</xp:selectItem>
+							<xp:selectItem itemLabel="No" id="selectItem2">
+							</xp:selectItem>
 						</xp:comboBox>
 					</xp:td>
 				</xp:tr>
@@ -115,8 +117,10 @@ controlpanelBean.init();}]]></xp:this.script>
 					</xp:td>
 					<xp:td>
 						<xp:comboBox value="#{document1.EnableForum}" id="enableForum1">
-							<xp:selectItem itemLabel="Yes" id="selectItem3"></xp:selectItem>
-							<xp:selectItem itemLabel="No" id="selectItem4"></xp:selectItem>
+							<xp:selectItem itemLabel="Yes" id="selectItem3">
+							</xp:selectItem>
+							<xp:selectItem itemLabel="No" id="selectItem4">
+							</xp:selectItem>
 						</xp:comboBox>
 					</xp:td>
 				</xp:tr>
@@ -184,13 +188,29 @@ controlpanelBean.init();}]]></xp:this.script>
 				<xp:tr>
 					<xp:td>
 						<xp:label value="Session Voting:" id="sessionvotinglabel"
-							for="SessionVoting"></xp:label>
+							for="SessionVoting">
+						</xp:label>
 					</xp:td>
 					<xp:td>
 						<xp:comboBox id="SessionVoting" value="#{document1.SessionVoting}">
-							<xp:selectItem itemLabel="Disabled"></xp:selectItem>
-							<xp:selectItem itemLabel="Enabled"></xp:selectItem>
-							<xp:selectItem itemLabel="Read Mode"></xp:selectItem>
+							<xp:selectItem itemLabel="Disabled" id="selectItem7"></xp:selectItem>
+							<xp:selectItem itemLabel="Enabled" id="selectItem8"></xp:selectItem>
+							<xp:selectItem itemLabel="Read Mode" id="selectItem9"></xp:selectItem>
+						</xp:comboBox>
+					</xp:td>
+				</xp:tr>
+				<xp:tr>
+					<xp:td>
+						<xp:label value="Enable extra session fields:" id="enableExtraSessionFields_Label1"
+							for="enableExtraSessionFields1"></xp:label>
+					</xp:td>
+					<xp:td>
+						<xp:comboBox id="enableExtraSessionFields1"
+							value="#{document1.EnableExtraSessionFields}">
+							<xp:selectItem itemLabel="No" id="selectItem10">
+							</xp:selectItem>
+							<xp:selectItem itemLabel="Yes" id="selectItem11">
+							</xp:selectItem>
 						</xp:comboBox>
 					</xp:td>
 				</xp:tr>
@@ -203,8 +223,10 @@ controlpanelBean.init();}]]></xp:this.script>
 					<xp:td>
 						<xp:comboBox value="#{document1.EnableRegistration}"
 							id="enableRegistration1">
-							<xp:selectItem itemLabel="Yes" id="selectItem5"></xp:selectItem>
-							<xp:selectItem itemLabel="No" id="selectItem6"></xp:selectItem>
+							<xp:selectItem itemLabel="Yes" id="selectItem5">
+							</xp:selectItem>
+							<xp:selectItem itemLabel="No" id="selectItem6">
+							</xp:selectItem>
 						</xp:comboBox>
 					</xp:td>
 				</xp:tr>

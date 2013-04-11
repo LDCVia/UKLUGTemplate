@@ -662,3 +662,34 @@ code .nd { color: #9FAD7E; } /* CSS pseudo selector */
 .bs-docs-sidenav.affix {
 	top: auto !important;
 }
+
+.imgclassificationuk {
+    float:right;
+    margin:0 0 0 0;
+    display: none;
+    height: 21px;
+    width: 24px;
+    background-image: url(certificates.png);
+    background-repeat:  no-repeat;
+    margin-top: 20px;
+}
+.uk-U {
+    background-position: 0 -25px;
+    display: block;    
+}
+.uk-PG {
+    background-position: 0 -50px;
+    display: block;    
+}
+.uk-12 {
+    background-position: 0 -75px;
+    display: block;    
+}
+.uk-15 {
+    background-position: 0 -100px;
+    display: block;    
+}
+.uk-18 {
+    background-position: 0 -125px;
+    display: block;    
+}
