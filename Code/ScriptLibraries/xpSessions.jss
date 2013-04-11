@@ -120,3 +120,7 @@ function demoteSession(unid){
 		sessiondoc.save();
 	}
 }
+
+function deleteSession(sessiondoc:NotesDocument){
+	sessiondoc.remove(true);
+}

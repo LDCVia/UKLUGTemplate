@@ -190,6 +190,19 @@ if(@IsError(out)){
 										</xp:eventHandler>
 									</xp:link>
 								</xp:panel>
+								<xp:panel tagName="li" id="panel1">
+									<xp:link escape="true" text="Delete" id="link9">
+										<xp:eventHandler event="onclick"
+											submit="true" refreshMode="complete">
+											<xp:this.action><![CDATA[#{javascript:deleteSession(sessiondoc.getDocument());}]]></xp:this.action>
+											<xp:this.script><![CDATA[if (confirm("Are you sure, there is no getting back from this!")){
+	return true;
+}else{
+	return false;
+}]]></xp:this.script>
+										</xp:eventHandler>
+									</xp:link>
+								</xp:panel>
 							</ul>
 						</xp:div>
 					</p>
