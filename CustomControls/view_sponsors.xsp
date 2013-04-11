@@ -86,7 +86,7 @@ if (filter == ""){
 							url="#{javascript:getSponsorPhoto(sponsordoc.getDocument())}" id="image1"
 							styleClass="img-rounded sponsorlogo">
 						</xp:image>
-						<xp:text tagName="span">
+						<xp:text tagName="span" escape="true">
 							<xp:this.styleClass><![CDATA[#{javascript:var out = "label ";
 if (sponsordoc.getColumnValue("Level") == "1"){
 	out += "label-important";
@@ -103,7 +103,7 @@ if (level == "1"){
 	return "Silver";
 }}]]></xp:this.value>
 						</xp:text>
-						<xp:text tagName="p" escape="true" id="blurb"
+						<xp:text tagName="p" escape="false" id="blurb"
 							value="#{sponsordoc.Blurb}">
 						</xp:text>
 						<xp:panel id="editbutton" tagName="p">
