@@ -77,6 +77,10 @@
 		if (controlpanelBean.getEnableForum() == "Yes"){
 			return true;
 		}	
+	}else if(rowData.controlpanelconfig == "EnableRegistration"){
+		if (controlpanelBean.getEnableRegistration() == "Yes"){
+			return true;
+		}	
 	}
 	return false;
 }else{

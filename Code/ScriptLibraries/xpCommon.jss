@@ -3,7 +3,7 @@
  */
 var TOPMENUITEMS = [
 	{"title": "Home", "link": "/home.xsp", "controlpanelconfig": null}, 
-	{"title": "Registration", "link": "/registration.xsp", "controlpanelconfig": "EnableAgenda"}, 
+	{"title": "Registration", "link": "/registration.xsp", "controlpanelconfig": "EnableRegistration"}, 
 	{"title": "Agenda", "link": "/agenda.xsp", "controlpanelconfig": "EnableAgenda"}, 
 	{"title": "Sessions", "link": "/sessions.xsp", "controlpanelconfig": null}, 
 	{"title": "Speakers", "link": "/speakers.xsp", "controlpanelconfig": null}, 
