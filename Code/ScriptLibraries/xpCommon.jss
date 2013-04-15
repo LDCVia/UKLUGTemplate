@@ -7,7 +7,7 @@ var TOPMENUITEMS = [
 	{"title": "Agenda", "link": "/agenda.xsp", "controlpanelconfig": "EnableAgenda"}, 
 	{"title": "Sessions", "link": "/sessions.xsp", "controlpanelconfig": null}, 
 	{"title": "Speakers", "link": "/speakers.xsp", "controlpanelconfig": null}, 
-	{"title": "Forum", "link": "http://www.uklug.info/forum", "controlpanelconfig": "EnableForum"}, 
+	{"title": "Forum", "link": "http://" + facesContext.getExternalContext().getRequest().getServerName() + "/forum", "controlpanelconfig": "EnableForum"}, 
 	{"title": "Sponsors", "link": "/sponsors.xsp", "controlpanelconfig": null}, 
 	{"title": "FAQ", "link": "/faqs.xsp", "controlpanelconfig": null}, 
 	{"title": "Contact Us", "link": "/contact.xsp", "controlpanelconfig": null}
@@ -21,7 +21,7 @@ var TOPMENUITEMSUSER = [
 	{"title": "Agenda", "link": "/agenda.xsp", "controlpanelconfig": "EnableAgenda"}, 
 	{"title": "Sessions", "link": "/sessions.xsp", "controlpanelconfig": null}, 
 	{"title": "Speakers", "link": "/speakers.xsp", "controlpanelconfig": null}, 
-	{"title": "Forum", "link": "http://www.uklug.info/forum", "controlpanelconfig": "EnableForum"}, 
+	{"title": "Forum", "link": "http://" + facesContext.getExternalContext().getRequest().getServerName() + "/forum", "controlpanelconfig": "EnableForum"}, 
 	{"title": "Sponsors", "link": "/sponsors.xsp", "controlpanelconfig": null}, 
 	{"title": "FAQ", "link": "/faqs.xsp", "controlpanelconfig": null}, 
 	{"title": "Contact Us", "link": "/contact.xsp", "controlpanelconfig": null}
