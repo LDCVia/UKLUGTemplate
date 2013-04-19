@@ -46,7 +46,7 @@ return "#" + @ReplaceSubstring(text, " ", "");}]]></xp:this.value>
 	<xp:text escape="false" id="contentholder" tagName="div">
 		<xp:this.value><![CDATA[#{javascript:var out = "<div id=\"content\" class=\"span9\">";
 if (context.getUser().getRoles().contains("[Admin]")){
-	out += "<div><a href=\"/homepage.xsp\" class=\"btn btn-primary btn-large\">New Section...</a></div>";
+	out += "<div><a href=\"/" + @ReplaceSubstring(database.getFilePath(), "\\", "/") + "/homepage.xsp\" class=\"btn btn-primary btn-large\">New Section...</a></div>";
 }
 return out + viewScope.homehtml + "</div>";}]]></xp:this.value>
 	</xp:text>
