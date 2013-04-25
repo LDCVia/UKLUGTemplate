@@ -37,5 +37,5 @@ if (level == "1"){
 			</xp:panel>
 		</xp:span>
 	</xp:repeat>
-	<p>&#169; UKLUG 2012</p>
+	<p>&#169; UKLUG 2012 | Site created by&#160;<a href="http://londc.com" target="newwin">London Developer Co-op</a></p>
 </xp:view>

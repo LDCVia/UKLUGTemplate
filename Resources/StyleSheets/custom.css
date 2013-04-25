@@ -697,3 +697,7 @@ code .nd { color: #9FAD7E; } /* CSS pseudo selector */
 .ui-slider {
 	width: 80%;
 }
+
+#homeimages {
+	padding-top: 30px;
+}

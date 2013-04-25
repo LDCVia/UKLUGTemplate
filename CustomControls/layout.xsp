@@ -31,15 +31,17 @@
 					<span class="icon-bar"></span>
 					<span class="icon-bar"></span>
 				</a>
-				<xp:link id="homelink" styleClass="brand"
-					text="${javascript:database.getTitle()}" value="/home.xsp">
+				<xp:link id="homelink" styleClass="brand" value="/home.xsp"
+					title="#{javascript:database.getTitle()}">
+					<xp:image id="image1" url="/ICONUKLogo250.png"
+						style="height:40.0px">
+					</xp:image>
 				</xp:link>
 				<div class="nav-collapse collapse">
 					<ul class="nav pull-right">
 						<xp:panel tagName="li">
 							<xp:this.rendered><![CDATA[#{javascript:@UserName() != "Anonymous";}]]></xp:this.rendered>
-							<xp:link escape="true"
-								styleClass="navbar-link" id="profilelink"
+							<xp:link escape="true" styleClass="navbar-link" id="profilelink"
 								value="#{javascript:getProfileURL();}">
 								<xp:this.text><![CDATA[#{javascript:@Name("[CN]", @UserName())}]]></xp:this.text>
 							</xp:link>
