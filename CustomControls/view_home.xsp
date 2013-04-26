@@ -10,7 +10,12 @@
 	</xp:this.resources>
 
 	<div class="span3 bs-docs-sidebar nav hidden-phone">
-
+	
+		<xp:image url="/ICONUKLogo250.png" styleClass="img-rounded"
+			id="image3">
+		</xp:image>
+		<br /><br />
+	
 		<ul class="nav-list bs-docs-sidenav affix">
 			<xp:repeat id="repeat1" rows="999" value="#{view1}" var="homepage"
 				indexVar="homepageindex" disableOutputTag="true">

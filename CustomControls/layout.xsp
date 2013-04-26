@@ -26,17 +26,17 @@
 	<div class="navbar navbar-inverse navbar-fixed-top">
 		<div class="navbar-inner">
 			<div class="container-fluid">
+				<xp:link id="homelink" styleClass="brand" value="/home.xsp"
+					title="#{javascript:database.getTitle()}">
+					<xp:image id="image1" url="/ICONUKwebmono.png"
+						style="width:150px;">
+					</xp:image>
+				</xp:link>
 				<a class="btn btn-navbar" data-toggle="collapse" data-target=".nav-collapse">
 					<span class="icon-bar"></span>
 					<span class="icon-bar"></span>
 					<span class="icon-bar"></span>
 				</a>
-				<xp:link id="homelink" styleClass="brand" value="/home.xsp"
-					title="#{javascript:database.getTitle()}">
-					<xp:image id="image1" url="/ICONUKLogo250.png"
-						style="height:40.0px">
-					</xp:image>
-				</xp:link>
 				<div class="nav-collapse collapse">
 					<ul class="nav pull-right">
 						<xp:panel tagName="li">

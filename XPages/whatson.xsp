@@ -118,7 +118,8 @@
 		<div class="navbar-inner">
 			<div class="container">
 				<xp:link id="homelink" styleClass="brand"
-					text="${javascript:database.getTitle()}" value="/home.xsp">
+					value="/home.xsp">
+					<xp:image id="image1" url="/ICONUKwebmono.png"></xp:image>
 				</xp:link>
 			</div>
 		</div>
