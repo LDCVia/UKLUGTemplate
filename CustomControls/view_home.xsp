@@ -24,7 +24,7 @@
 						<xp:this.attrs>
 							<xp:attr name="href">
 								<xp:this.value><![CDATA[#{javascript:var text = homepage.getColumnValue("Title");
-var out = "<section id=\"" + @ReplaceSubstring(homepage.getColumnValue("Title"), " ", "") + "\">";
+var out = "<section id=\"" + @ReplaceSubstring(homepage.getColumnValue("Title"), ["'", "?", " "], "") + "\">";
 out += "<div class=\"page-header\"><h1>" + homepage.getColumnValue("Title") + "</h1></div>";
 out += homepage.getColumnValue("Body");
 if (context.getUser().getRoles().contains("[Admin]")){
@@ -36,7 +36,7 @@ if (viewScope.homehtml == null){
 }else{
 	viewScope.homehtml = viewScope.homehtml + out;
 }
-return "#" + @ReplaceSubstring(text, " ", "");}]]></xp:this.value>
+return "#" + @ReplaceSubstring(text, ["'", "?", " "], "");}]]></xp:this.value>
 							</xp:attr>
 						</xp:this.attrs>
 						<i class="icon-chevron-right"></i>
