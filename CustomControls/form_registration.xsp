@@ -64,7 +64,7 @@
 							<xp:validateRequired message="Please enter your email address">
 							</xp:validateRequired>
 							<xp:validateConstraint message="Please enter a valid email address">
-								<xp:this.regex><![CDATA[[a-z0-9!#$%&'*+/=?^_`{|}~-]+(?:\.[a-z0-9!#$%&'*+/=?^_`{|}~-]+)*@(?:[a-z0-9](?:[a-z0-9-]*[a-z0-9])?\.)+(?:[A-Z]{2}|com|org|net|gov|mil|biz|info|mobi|name|aero|jobs|museum)\b]]></xp:this.regex>
+								<xp:this.regex><![CDATA[^[a-zA-Z0-9_.+-]+@[a-zA-Z0-9-]+\.[a-zA-Z0-9-.]+$]]></xp:this.regex>
 							</xp:validateConstraint>
 							<xp:validateExpression
 								message="That email address has already been registered. Please login to register for the event.">
