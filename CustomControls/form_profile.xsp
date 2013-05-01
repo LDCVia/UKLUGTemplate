@@ -93,9 +93,6 @@ return $A(@Trim(@Unique(list))).sort();}]]></xp:this.value>
 						<xp:this.validators>
 							<xp:validateRequired message="Please enter your email address">
 							</xp:validateRequired>
-							<xp:validateConstraint message="Please enter a valid email address">
-								<xp:this.regex><![CDATA[[a-z0-9!#$%&'*+/=?^_`{|}~-]+(?:\.[a-z0-9!#$%&'*+/=?^_`{|}~-]+)*@(?:[a-z0-9](?:[a-z0-9-]*[a-z0-9])?\.)+(?:[A-Z]{2}|com|org|net|gov|mil|biz|info|mobi|name|aero|jobs|museum)\b]]></xp:this.regex>
-							</xp:validateConstraint>
 						</xp:this.validators>
 						<xp:this.attrs>
 							<xp:attr name="placeholder" value="fred@company.com">
