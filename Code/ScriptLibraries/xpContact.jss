@@ -5,8 +5,8 @@
 function sendFeedback(){
 	emailBean.setSendTo( controlpanelBean.getFeedbackSendTo() );
 	emailBean.setSubject("New Feedback from " + database.getTitle());
-	emailBean.setSenderEmail(viewScope.contactname);
-	emailBean.setSenderName(viewScope.contactemail);
+	emailBean.setSenderEmail(controlpanelBean.getRegistrationEmailFromEmail());
+	emailBean.setSenderName(controlpanelBean.getRegistrationEmailFromName());
 	emailBean.addHTML(viewScope.contactname + "<br />" + viewScope.contactemail + "<br />" + viewScope.contactbody);
 	emailBean.send();
 }
