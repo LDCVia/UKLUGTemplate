@@ -41,12 +41,11 @@
 			</ul>
 		</div>
 	</div>
-
 	<xp:panel styleClass="thumbnail col3">
 		<xp:this.rendered><![CDATA[#{javascript:context.getUser().getRoles().contains("[Admin]")}]]></xp:this.rendered>
 		<h3>Create a new sponsor</h3>
 		<p>
-			<xp:link escape="true" id="link1" text="New Sponsor..."
+			<xp:link escape="true" id="link3" text="New Sponsor..."
 				value="/sponsor.xsp" styleClass="btn btn-primary btn-large">
 			</xp:link>
 		</p>

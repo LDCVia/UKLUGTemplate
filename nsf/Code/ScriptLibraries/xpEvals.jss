@@ -44,7 +44,7 @@ var SessionDetails = function(){
 	}
 	
 	function addSpeaker(speaker){
-		print("Adding speaker " + speaker);
+		//print("Adding speaker " + speaker);
 		if (speaker != null && speaker != "")
 			speakers.push(speaker);
 	}

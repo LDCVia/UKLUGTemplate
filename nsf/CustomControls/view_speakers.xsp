@@ -39,7 +39,7 @@
 	<div id="container" class="clearfix fluid">
 		<div id="bricks" class="thumbnails" style="margin-top: 10px;">
 			<xp:repeat id="speakers" var="presentername"
-				indexVar="presenternameindex" disableOutputTag="true">
+				indexVar="presenternameindex" disableOutputTag="true" rows="999">
 				<xp:this.value><![CDATA[#{javascript:var filter = context.getUrlParameter("filter");
 var out;
 if (filter == ""){
@@ -68,19 +68,36 @@ if (out == ""){
 							disableOutputTag="true">
 							<xp:panel
 								rendered="#{javascript:sessiondocindex == 0}">
-								<xp:image
-									url="#{javascript:getPresenterPhoto(sessiondoc.getDocument(), presentername)}"
-									id="image1" styleClass="img-rounded speakerphoto">
-								</xp:image>
+								<div style="height: 80px;">
+									<xp:image
+										url="#{javascript:getPresenterPhoto(sessiondoc.getDocument(), presentername)}"
+										id="image1" styleClass="img-rounded speakerphoto">
+									</xp:image>
+								</div>
 								<xp:panel tagName="h4" id="biotitle">
 									Bio
 								</xp:panel>
 								<xp:text id="bio" tagName="p">
-									<xp:this.value><![CDATA[#{javascript:if (presentername == sessiondoc.getColumnValue("Presenter")){
+									<xp:this.value><![CDATA[#{javascript:var speakerbio = @Subset(@DbLookup(@DbName(), "Speaker Bios", presentername, 2), 1);
+if(@IsError(speakerbio)){
+	speakerbio = @Subset(@DbLookup(@DbName(), "Speaker2 Bios", presentername, 2), 1);
+	if(@IsError(speakerbio)){
+		return "";
+	}else{
+		return speakerbio;
+	}
+}else{
+	return speakerbio;
+}
+/*
+if (presentername == sessiondoc.getColumnValue("Presenter")){
+	print("Bio for " + presentername + " = " + sessiondoc.getColumnValue("Bio"));
 	return sessiondoc.getColumnValue("Bio");
 }else if (presentername == sessiondoc.getColumnValue("Presenter2")){
+	print("Bio for second presenter " + presentername + " = " + sessiondoc.getColumnValue("Bio"));
 	return sessiondoc.getColumnValue("Bio2");
-}}]]></xp:this.value>
+}
+*/}]]></xp:this.value>
 								</xp:text>
 								<h4>Sessions</h4>
 							</xp:panel>

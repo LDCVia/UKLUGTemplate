@@ -1,14 +1,15 @@
 <?xml version="1.0" encoding="UTF-8"?><note xmlns="http://www.lotus.com/dxl" class="filter" maintenanceversion="1.0" replicaid="80257A6A002CAD3E" version="9.0">
-<noteinfo noteid="5d2" sequence="20" unid="0756CAB9B6092B5980257A94002CB083">
-<created><datetime dst="true">20121011T090807,71+01</datetime></created>
-<modified><datetime dst="true">20130411T085650,19+01</datetime></modified>
-<revised><datetime dst="true">20130411T085650,18+01</datetime></revised>
-<lastaccessed><datetime dst="true">20130411T085650,19+01</datetime></lastaccessed>
-<addedtofile><datetime>20130220T125817,62+00</datetime></addedtofile></noteinfo>
-<updatedby><name>CN=Matt White/O=Exhilarate</name></updatedby>
+<noteinfo noteid="1c4e" sequence="1" unid="FD1F03DB31DE02F580257CB7002D4139">
+<created><datetime dst="true">20140411T091418,17+01</datetime></created>
+<modified><datetime dst="true">20140411T091418,31+01</datetime></modified>
+<revised><datetime dst="true">20140411T091418,30+01</datetime></revised>
+<lastaccessed><datetime dst="true">20140411T091418,31+01</datetime></lastaccessed>
+<addedtofile><datetime dst="true">20140411T091418,31+01</datetime></addedtofile></noteinfo>
+<updatedby><name>CN=Matt White/O=Exhilarate</name><name>CN=domino9/O=tcsoft</name><name>CN=Matt White/O=Exhilarate</name></updatedby>
 <wassignedby><name>CN=Matt White/O=Exhilarate</name></wassignedby>
 <item name="$TITLE" sign="true"><text>xpSessions</text></item>
 <item name="$Flags"><text>.5834Q</text></item>
 <item name="$PublicAccess" sign="true"><text>1</text></item>
-<item name="$DesignerVersion"><text>8.5.3</text></item>
-</note>
+<item name="$DesignerVersion" sign="true"><text>8.5.3</text></item>
+
+<item name="$POID"><datetime dst="true">20130411T085650,18+01</datetime></item></note>

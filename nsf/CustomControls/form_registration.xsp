@@ -117,6 +117,19 @@ return true;}]]></xp:this.expression>
 				</div>
 			</div>
 			<div class="control-group">
+				<xp:label styleClass="control-label" for="inputRole"
+					value="Role">
+				</xp:label>
+				<div class="controls">
+					<xp:comboBox id="inputRole"
+						value="#{document1.Role}">
+						<xp:selectItems>
+							<xp:this.value><![CDATA[#{javascript:["|Not Specified", "Administrator", "Developer", "Manager", "Marketing", "Other"]}]]></xp:this.value>
+						</xp:selectItems>
+					</xp:comboBox>
+				</div>
+			</div>
+			<div class="control-group">
 				<xp:label styleClass="control-label" for="inputTwitter"
 					value="Twitter ID">
 				</xp:label>
@@ -127,6 +140,14 @@ return true;}]]></xp:this.expression>
 							</xp:attr>
 						</xp:this.attrs>
 					</xp:inputText>
+				</div>
+			</div>
+			<div class="control-group">
+				<div class="controls">
+					<xp:checkBox id="checkBox1"
+						value="#{document1.EmailOptout}" checkedValue="Yes"
+						uncheckedValue="No" text=" Don't send me any marketing emails">
+					</xp:checkBox>
 				</div>
 			</div>
 			<div class='control-group'>

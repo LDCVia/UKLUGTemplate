@@ -10,12 +10,12 @@
 	response.setContentType("text/calendar");
 	response.setHeader("Cache-Control", "no-cache");
 	response.setHeader("Content-disposition", "attachment; filename=agenda.ics");
+	//response.setContentType("text/plain");
 	
-	var startdatevector:java.util.Vector = controlpanelBean.getStartDate();
-	var startdate:NotesDateTime = startdatevector.elementAt(0);
+	var startdate:java.util.Date = controlpanelBean.getStartDate();
 	for (var i=0; i<controlpanelBean.getAgendaDays(); i++){
-		startdate.adjustDay(i);
-		viewScope.put("day" + (i + 1), startdate.toJavaDate());
+		viewScope.put("day" + (i + 1), startdate);
+		startdate = new Date(startdate.getTime()+(24*60*60*1000))
 	}
 		
 	var out = "BEGIN:VCALENDAR\n";

@@ -1,22 +1,22 @@
 <?xml version="1.0" encoding="UTF-8"?><note xmlns="http://www.lotus.com/dxl" class="form" maintenanceversion="1.0" replicaid="80257A6A002CAD3E" version="9.0">
-<noteinfo noteid="726" sequence="40" unid="831C4E1A2282578980257A99004CFFA0">
-<created><datetime dst="true">20121016T150101,76+01</datetime></created>
-<modified><datetime dst="true">20130411T143408,20+01</datetime></modified>
-<revised><datetime dst="true">20130411T143408,19+01</datetime></revised>
-<lastaccessed><datetime dst="true">20130411T143408,20+01</datetime></lastaccessed>
-<addedtofile><datetime>20130220T125824,50+00</datetime></addedtofile></noteinfo>
+<noteinfo noteid="1bb2" sequence="8" unid="B8A1BF0BACBC884280257CB7002D2F5B">
+<created><datetime dst="true">20140411T091332,43+01</datetime></created>
+<modified><datetime dst="true">20140411T091754,30+01</datetime></modified>
+<revised><datetime dst="true">20140411T091754,29+01</datetime></revised>
+<lastaccessed><datetime dst="true">20140411T091754,30+01</datetime></lastaccessed>
+<addedtofile><datetime dst="true">20140411T091332,47+01</datetime></addedtofile></noteinfo>
 <updatedby><name>CN=Matt White/O=Exhilarate</name></updatedby>
 <wassignedby><name>CN=Matt White/O=Exhilarate</name></wassignedby>
-<item name="$Flags"><text>gC~4;</text></item>
 <item name="$TITLE"><text>view_attendees.xsp</text></item>
+<item name="$Flags"><text>gC~4;</text></item>
+
+
+<item name="$FileNames" sign="true"><text>view_attendees.xsp</text></item>
+
+
 <item name="$DesignerVersion"><text>8.5.2</text></item>
 
 
 
-
-
-
-
-<item name="$FileNames" sign="true"><text>view_attendees.xsp</text></item>
 
 </note>

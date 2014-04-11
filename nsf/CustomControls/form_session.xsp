@@ -372,5 +372,6 @@ if(@IsError(out)){
 	</div>
 	<xc:form_sessioneval>
 		<xc:this.sessiontitle><![CDATA[#{javascript:document1.getItemValueString("Title");}]]></xc:this.sessiontitle>
+		<xc:this.rendered><![CDATA[#{javascript:context.getUser().getRoles().contains("[Admin]") || context.getUser().getCommonName() == document1.getItemValueString("Presenter")}]]></xc:this.rendered>
 	</xc:form_sessioneval>
 </xp:view>

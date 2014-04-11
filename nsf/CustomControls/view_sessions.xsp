@@ -69,7 +69,7 @@
 	<div id="container" class="clearfix fluid">
 		<div id="bricks" class="thumbnails" style="margin-top: 10px;">
 			<xp:panel styleClass="thumbnail col3">
-				<xp:this.rendered><![CDATA[#{javascript:@UserName() != "Anonymous" && context.getUrlParameter("filter") != "voting"}]]></xp:this.rendered>
+				<xp:this.rendered><![CDATA[#{javascript:return false;@UserName() != "Anonymous" && context.getUrlParameter("filter") != "voting"}]]></xp:this.rendered>
 				<h3>Submit a session</h3>
 				<p>
 					We're always looking for new speakers, if

@@ -46,7 +46,7 @@ function getCurrentXPage() {
 Cache the dbPath variables in an applicationScope variable
 */
 function getDbPath() {
-	if (isCacheInvalid("dbpathweb", 600)) {
+	if (isCacheInvalid("dbpathweb", 5)) {
 		synchronized(applicationScope) {
 			var dbPath = @Left(context.getUrl(), ".nsf") + ".nsf";
 			var pos = (context.isRunningContext("Notes")) ? 4 : 3;

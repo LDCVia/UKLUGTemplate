@@ -49,7 +49,7 @@ public class HTMLEMail implements Serializable {
 	private String bannerHTML = "";
 	private String footerHTML = "";
 
-	private boolean debugMode = false;
+	private boolean debugMode = true;
 
 	private static final Pattern imgRegExp = Pattern
 			.compile("<img[^>]+src\\s*=\\s*['\"]([^'\"]+)['\"][^>]*>");
