@@ -182,9 +182,29 @@ return "window.location.href='whatson.xsp?room=5&day=" + day + "';";}]]></xp:thi
 								</xp:this.action>
 							</xp:eventHandler>
 						</xp:button>
+						&#160;
+						<xp:button value="Delete" id="button3" styleClass="btn btn-danger">
+							<xp:this.rendered><![CDATA[#{javascript:context.getUser().getRoles().contains("[Admin]")}]]></xp:this.rendered>
+							<xp:eventHandler event="onclick" submit="true"
+								refreshMode="complete">
+								<xp:this.action>
+									<xp:actionGroup>
+										<xp:executeScript>
+											<xp:this.script><![CDATA[#{javascript:var doc:NotesDocument = database.getDocumentByUNID(timeslot.getColumnValue("UNID"));
+doc.remove(true);}]]></xp:this.script>
+										</xp:executeScript>
+									</xp:actionGroup>
+								</xp:this.action>
+							</xp:eventHandler>
+						</xp:button>
 					</td>
-					<xp:panel tagName="td" id="break" style="text-align: center;">
-						<xp:this.rendered><![CDATA[#{javascript:timeslot.getColumnValue("Break") == "Yes"}]]></xp:this.rendered>
+					<xp:panel tagName="td" id="break"
+						style="text-align: center;">
+						<xp:this.rendered><![CDATA[#{javascript:timeslot.getColumnValue("Break") == "Yes" && 
+getSessionDetails(timeslot.getColumnValue("Session1")) == "" &&
+getSessionDetails(timeslot.getColumnValue("Session2")) == "" &&
+getSessionDetails(timeslot.getColumnValue("Session3")) == "" &&
+getSessionDetails(timeslot.getColumnValue("Session4")) == ""}]]></xp:this.rendered>
 						<h2>Break</h2>
 						<xp:this.attrs>
 							<xp:attr name="colspan" value="5"></xp:attr>
@@ -192,23 +212,43 @@ return "window.location.href='whatson.xsp?room=5&day=" + day + "';";}]]></xp:thi
 					</xp:panel>
 					<xp:text tagName="td" id="session1" escape="false">
 						<xp:this.value><![CDATA[#{javascript:getSessionDetails(timeslot.getColumnValue("Session1"));}]]></xp:this.value>
-						<xp:this.rendered><![CDATA[#{javascript:timeslot.getColumnValue("Break") != "Yes"}]]></xp:this.rendered>
+						<xp:this.rendered><![CDATA[#{javascript: 
+(getSessionDetails(timeslot.getColumnValue("Session1")) != "" ||
+getSessionDetails(timeslot.getColumnValue("Session2")) != "" ||
+getSessionDetails(timeslot.getColumnValue("Session3")) != "" ||
+getSessionDetails(timeslot.getColumnValue("Session4")) != "")}]]></xp:this.rendered>
 					</xp:text>
 					<xp:text tagName="td" id="session2" escape="false">
 						<xp:this.value><![CDATA[#{javascript:getSessionDetails(timeslot.getColumnValue("Session2"));}]]></xp:this.value>
-						<xp:this.rendered><![CDATA[#{javascript:timeslot.getColumnValue("Break") != "Yes" && controlpanelBean.getAgendaRooms() > 1}]]></xp:this.rendered>
+						<xp:this.rendered><![CDATA[#{javascript:controlpanelBean.getAgendaRooms() > 1 && 
+(getSessionDetails(timeslot.getColumnValue("Session1")) != "" ||
+getSessionDetails(timeslot.getColumnValue("Session2")) != "" ||
+getSessionDetails(timeslot.getColumnValue("Session3")) != "" ||
+getSessionDetails(timeslot.getColumnValue("Session4")) != "")}]]></xp:this.rendered>
 					</xp:text>
 					<xp:text tagName="td" id="session3" escape="false">
 						<xp:this.value><![CDATA[#{javascript:getSessionDetails(timeslot.getColumnValue("Session3"));}]]></xp:this.value>
-						<xp:this.rendered><![CDATA[#{javascript:timeslot.getColumnValue("Break") != "Yes" && controlpanelBean.getAgendaRooms() > 2}]]></xp:this.rendered>
+						<xp:this.rendered><![CDATA[#{javascript:controlpanelBean.getAgendaRooms() > 2 && 
+(getSessionDetails(timeslot.getColumnValue("Session1")) != "" ||
+getSessionDetails(timeslot.getColumnValue("Session2")) != "" ||
+getSessionDetails(timeslot.getColumnValue("Session3")) != "" ||
+getSessionDetails(timeslot.getColumnValue("Session4")) != "")}]]></xp:this.rendered>
 					</xp:text>
 					<xp:text tagName="td" id="session4" escape="false">
 						<xp:this.value><![CDATA[#{javascript:getSessionDetails(timeslot.getColumnValue("Session4"));}]]></xp:this.value>
-						<xp:this.rendered><![CDATA[#{javascript:timeslot.getColumnValue("Break") != "Yes" && controlpanelBean.getAgendaRooms() > 3}]]></xp:this.rendered>
+						<xp:this.rendered><![CDATA[#{javascript:controlpanelBean.getAgendaRooms() > 3 && 
+(getSessionDetails(timeslot.getColumnValue("Session1")) != "" ||
+getSessionDetails(timeslot.getColumnValue("Session2")) != "" ||
+getSessionDetails(timeslot.getColumnValue("Session3")) != "" ||
+getSessionDetails(timeslot.getColumnValue("Session4")) != "")}]]></xp:this.rendered>
 					</xp:text>
 					<xp:text tagName="td" id="session5" escape="false">
 						<xp:this.value><![CDATA[#{javascript:getSessionDetails(timeslot.getColumnValue("Session5"));}]]></xp:this.value>
-						<xp:this.rendered><![CDATA[#{javascript:timeslot.getColumnValue("Break") != "Yes" && controlpanelBean.getAgendaRooms() > 4}]]></xp:this.rendered>
+						<xp:this.rendered><![CDATA[#{javascript:controlpanelBean.getAgendaRooms() > 4 && 
+(getSessionDetails(timeslot.getColumnValue("Session1")) != "" ||
+getSessionDetails(timeslot.getColumnValue("Session2")) != "" ||
+getSessionDetails(timeslot.getColumnValue("Session3")) != "" ||
+getSessionDetails(timeslot.getColumnValue("Session4")) != "")}]]></xp:this.rendered>
 					</xp:text>
 
 				</xp:panel>
