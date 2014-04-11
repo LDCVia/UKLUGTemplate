@@ -42,24 +42,24 @@
 		</div>
 	</div>
 
+	<xp:panel styleClass="thumbnail col3">
+		<xp:this.rendered><![CDATA[#{javascript:context.getUser().getRoles().contains("[Admin]")}]]></xp:this.rendered>
+		<h3>Create a new sponsor</h3>
+		<p>
+			<xp:link escape="true" id="link1" text="New Sponsor..."
+				value="/sponsor.xsp" styleClass="btn btn-primary btn-large">
+			</xp:link>
+		</p>
+	</xp:panel>
+	<xp:panel styleClass="thumbnail col3">
+		<h3>Become a sponsor</h3>
+		<p>
+			If you would like to sponsor the event, please&#160;
+			<a href="contact.xsp">contact us</a>
+		</p>
+	</xp:panel>
 	<div id="container" class="clearfix fluid">
 		<div id="bricks" class="thumbnails" style="margin-top: 10px;">
-			<xp:panel styleClass="thumbnail col3">
-				<xp:this.rendered><![CDATA[#{javascript:context.getUser().getRoles().contains("[Admin]")}]]></xp:this.rendered>
-				<h3>Create a new sponsor</h3>
-				<p>
-					<xp:link escape="true" id="link1" text="New Sponsor..."
-						value="/sponsor.xsp" styleClass="btn btn-primary btn-large">
-					</xp:link>
-				</p>
-			</xp:panel>
-			<xp:panel styleClass="thumbnail col3">
-				<h3>Become a sponsor</h3>
-				<p>
-					If you would like to sponsor the event, please&#160;
-					<a href="contact.xsp">contact us</a>
-				</p>
-			</xp:panel>
 			<xp:repeat id="repeat1" rows="999" value="#{view1}" var="sponsordoc"
 				indexVar="sponsorindex" disableOutputTag="true">
 				<xp:div id="thumbnail" styleClass="thumbnail col3">
