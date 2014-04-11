@@ -3,8 +3,14 @@
 	<name>UKLUGTemplate</name>
 	<comment></comment>
 	<projects>
+		<project>uklug.nsf</project>
 	</projects>
 	<buildSpec>
+		<buildCommand>
+			<name>com.ibm.designer.domino.team.builder.PhysicalToNsfSynBuilder</name>
+			<arguments>
+			</arguments>
+		</buildCommand>
 	</buildSpec>
 	<natures>
 	</natures>

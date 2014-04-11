@@ -1,0 +1,23 @@
+<?xml version="1.0" encoding="UTF-8"?><note xmlns="http://www.lotus.com/dxl" class="form" maintenanceversion="1.0" replicaid="80257A6A002CAD3E" version="9.0">
+<noteinfo noteid="1a06" sequence="1" unid="3547C07F1BA67F3680257B58004B2F24">
+<created><datetime dst="true">20130425T144112,68+01</datetime></created>
+<modified><datetime dst="true">20130425T144112,72+01</datetime></modified>
+<revised><datetime dst="true">20130425T144112,71+01</datetime></revised>
+<lastaccessed><datetime dst="true">20130425T144112,72+01</datetime></lastaccessed>
+<addedtofile><datetime dst="true">20130425T144112,72+01</datetime></addedtofile></noteinfo>
+<updatedby><name>CN=Matt White/O=Exhilarate</name></updatedby>
+<wassignedby><name>CN=Matt White/O=Exhilarate</name></wassignedby>
+<item name="$TITLE"><text>dreamstime_m_24910508-500wide.jpg</text></item>
+<item name="$Flags"><text>D34CiQ</text></item>
+<item name="$FlagsExt"><text>D</text></item>
+<item name="$ImagesWide" sign="true"><number>1</number></item>
+<item name="$ImagesHigh" sign="true"><number>1</number></item>
+<item name="$ImagesColorize" sign="true"><number>0</number></item>
+
+
+
+
+<item name="$MimeType" sign="true"><text>image/jpeg</text></item>
+<item name="$FileModDT" sign="true"><datetime dst="true">20130425T144037,00+01</datetime></item>
+<item name="$ImageNames" sign="true"><text>dreamstime_m_24910508-500wide.jpg</text></item>
+<item name="$DesignerVersion"><text>8.5.3</text></item></note>
